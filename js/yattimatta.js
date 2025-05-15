@@ -1,47 +1,47 @@
 (function(){
 
-    //—v‘f‚Ìæ“¾
+    //è¦ç´ ã®å–å¾—
     var elements = document.getElementsByClassName("drag-and-drop");
 
-    //—v‘f“à‚ÌƒNƒŠƒbƒN‚³‚ê‚½ˆÊ’u‚ğæ“¾‚·‚éƒOƒ[ƒoƒ‹i‚Ì‚æ‚¤‚Èj•Ï”
+    //è¦ç´ å†…ã®ã‚¯ãƒªãƒƒã‚¯ã•ã‚ŒãŸä½ç½®ã‚’å–å¾—ã™ã‚‹ã‚°ãƒ­ãƒ¼ãƒãƒ«ï¼ˆã®ã‚ˆã†ãªï¼‰å¤‰æ•°
     var x;
     var y;
 
-    //ƒ}ƒEƒX‚ª—v‘f“à‚Å‰Ÿ‚³‚ê‚½‚Æ‚«A–”‚Íƒ^ƒbƒ`‚³‚ê‚½‚Æ‚«”­‰Î
+    //ãƒã‚¦ã‚¹ãŒè¦ç´ å†…ã§æŠ¼ã•ã‚ŒãŸã¨ãã€åˆã¯ã‚¿ãƒƒãƒã•ã‚ŒãŸã¨ãç™ºç«
     for(var i = 0; i < elements.length; i++) {
         elements[i].addEventListener("mousedown", mdown, false);
         elements[i].addEventListener("touchstart", mdown, false);
     }
 
-	//ƒXƒNƒ[ƒ‹‚µ‚»‚¤‚É‚È‚Á‚½‚ç”­‰Î
+	//ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã—ãã†ã«ãªã£ãŸã‚‰ç™ºç«
 	function noscroll(e){
 		e.preventDefault();
 	}
 
-    //ƒ}ƒEƒX‚ª‰Ÿ‚³‚ê‚½Û‚ÌŠÖ”
+    //ãƒã‚¦ã‚¹ãŒæŠ¼ã•ã‚ŒãŸéš›ã®é–¢æ•°
     function mdown(e) {
 
 
-        //ƒNƒ‰ƒX–¼‚É .drag ‚ğ’Ç‰Á
+        //ã‚¯ãƒ©ã‚¹åã« .drag ã‚’è¿½åŠ 
         this.classList.add("drag");
 
-        //ƒ^ƒbƒ`ƒfƒCƒxƒ“ƒg‚Æƒ}ƒEƒX‚ÌƒCƒxƒ“ƒg‚Ì·ˆÙ‚ğ‹zû
+        //ã‚¿ãƒƒãƒãƒ‡ã‚¤ãƒ™ãƒ³ãƒˆã¨ãƒã‚¦ã‚¹ã®ã‚¤ãƒ™ãƒ³ãƒˆã®å·®ç•°ã‚’å¸å
         if(e.type === "mousedown") {
             var event = e;
         } else {
             var event = e.changedTouches[0];
         }
 
-        //—v‘f“à‚Ì‘Š‘ÎÀ•W‚ğæ“¾
+        //è¦ç´ å†…ã®ç›¸å¯¾åº§æ¨™ã‚’å–å¾—
         x = event.pageX - this.offsetLeft;
         y = event.pageY - this.offsetTop;
 
-        //ƒ€[ƒuƒCƒxƒ“ƒg‚ÉƒR[ƒ‹ƒoƒbƒN
+        //ãƒ ãƒ¼ãƒ–ã‚¤ãƒ™ãƒ³ãƒˆã«ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
         document.body.addEventListener("mousemove", mmove, false);
         document.body.addEventListener("touchmove", mmove, false);
     }
 
-    //ƒ}ƒEƒXƒJ[ƒ\ƒ‹‚ª“®‚¢‚½‚Æ‚«‚É”­‰Î
+    //ãƒã‚¦ã‚¹ã‚«ãƒ¼ã‚½ãƒ«ãŒå‹•ã„ãŸã¨ãã«ç™ºç«
     function mmove(e) {
 
 		var sW,sH,s;
@@ -50,54 +50,54 @@
 		const text = document.getElementById('hunatex');
 
 
-        //ƒhƒ‰ƒbƒO‚µ‚Ä‚¢‚é—v‘f‚ğæ“¾
+        //ãƒ‰ãƒ©ãƒƒã‚°ã—ã¦ã„ã‚‹è¦ç´ ã‚’å–å¾—
         var drag = document.getElementsByClassName("drag")[0];
 
-        //“¯—l‚Éƒ}ƒEƒX‚Æƒ^ƒbƒ`‚Ì·ˆÙ‚ğ‹zû
+        //åŒæ§˜ã«ãƒã‚¦ã‚¹ã¨ã‚¿ãƒƒãƒã®å·®ç•°ã‚’å¸å
         if(e.type === "mousemove") {
             var event = e;
         } else {
             var event = e.changedTouches[0];
         }
 
-        //ƒ}ƒEƒX‚ª“®‚¢‚½êŠ‚É—v‘f‚ğ“®‚©‚·
+        //ãƒã‚¦ã‚¹ãŒå‹•ã„ãŸå ´æ‰€ã«è¦ç´ ã‚’å‹•ã‹ã™
         drag.style.top = event.pageY - y + "px";
         drag.style.left = event.pageX - x + "px";
 
-		//¤•i‚ª‚©‚²‚É“ü‚Á‚½‚ç¤•i‚ğÁ‚·(drag.style.top‚Í¤•i)
+		//å•†å“ãŒã‹ã”ã«å…¥ã£ãŸã‚‰å•†å“ã‚’æ¶ˆã™(drag.style.topã¯å•†å“)
 		if((parseInt(drag.style.top) > sH - 250) && (parseInt(drag.style.left) > sW - 250)){
 			drag.style.opacity = "0.5";
 			const text = document.getElementById('hunatex');
-			text.innerHTML = '‚¨‚Í‚æ‚¤‚²‚´‚¢‚Ü‚·I';
+			text.innerHTML = 'ãŠã¯ã‚ˆã†ã”ã–ã„ã¾ã™ï¼';
 
 		}
 		if((parseInt(drag.style.top) < sH - 250) && (parseInt(drag.style.left) < sW - 250)){
 			drag.style.opacity = "1";
 		}
 
-        //ƒ}ƒEƒXƒ{ƒ^ƒ“‚ª—£‚³‚ê‚½‚Æ‚«A‚Ü‚½‚ÍƒJ[ƒ\ƒ‹‚ªŠO‚ê‚½‚Æ‚«”­‰Î
+        //ãƒã‚¦ã‚¹ãƒœã‚¿ãƒ³ãŒé›¢ã•ã‚ŒãŸã¨ãã€ã¾ãŸã¯ã‚«ãƒ¼ã‚½ãƒ«ãŒå¤–ã‚ŒãŸã¨ãç™ºç«
         drag.addEventListener("mouseup", mup, false);
         document.body.addEventListener("mouseleave", mup, false);
         drag.addEventListener("touchend", mup, false);
         document.body.addEventListener("touchleave", mup, false);
 
-		//ƒy[ƒW‚ÌƒXƒNƒ[ƒ‹‚ğ‹–‰Â‚µ‚È‚¢
+		//ãƒšãƒ¼ã‚¸ã®ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã‚’è¨±å¯ã—ãªã„
 		document.addEventListener('touchmove', noscroll, {passive: false});
 		document.addEventListener('wheel', noscroll, {passive: false});
 
     }
 
-    //ƒ}ƒEƒXƒ{ƒ^ƒ“‚ªã‚ª‚Á‚½‚ç”­‰Î
+    //ãƒã‚¦ã‚¹ãƒœã‚¿ãƒ³ãŒä¸ŠãŒã£ãŸã‚‰ç™ºç«
     function mup(e) {
         var drag = document.getElementsByClassName("drag")[0];
 
-        //ƒ€[ƒuƒxƒ“ƒgƒnƒ“ƒhƒ‰‚ÌÁ‹
+        //ãƒ ãƒ¼ãƒ–ãƒ™ãƒ³ãƒˆãƒãƒ³ãƒ‰ãƒ©ã®æ¶ˆå»
         document.body.removeEventListener("mousemove", mmove, false);
         drag.removeEventListener("mouseup", mup, false);
         document.body.removeEventListener("touchmove", mmove, false);
         drag.removeEventListener("touchend", mup, false);
 
-        //ƒNƒ‰ƒX–¼ .drag ‚àÁ‚·
+        //ã‚¯ãƒ©ã‚¹å .drag ã‚‚æ¶ˆã™
         drag.classList.remove("drag");
 
 	const elm1 = document.getElementById('canvas1');

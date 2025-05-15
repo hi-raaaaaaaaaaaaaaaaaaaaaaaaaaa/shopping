@@ -73,6 +73,7 @@
 		}
 		if((parseInt(drag.style.top) < sH - 250) && (parseInt(drag.style.left) < sW - 250)){
 			drag.style.opacity = "1";
+			const text = document.getElementById('hunatex');
 			text.innerHTML = 'こんにちは👍';
 		}
 

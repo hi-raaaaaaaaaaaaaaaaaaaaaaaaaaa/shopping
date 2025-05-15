@@ -73,6 +73,7 @@
 		}
 		if((parseInt(drag.style.top) < sH - 250) && (parseInt(drag.style.left) < sW - 250)){
 			drag.style.opacity = "1";
+			text.innerHTML = 'こんにちは👍';
 		}
 
         //マウスボタンが離されたとき、またはカーソルが外れたとき発火

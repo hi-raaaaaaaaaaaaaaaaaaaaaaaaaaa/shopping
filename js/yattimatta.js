@@ -64,7 +64,7 @@
         drag.style.left = event.pageX - x + "px";
 
 		//商品がかごに入ったら商品を消す(drag.style.topは商品)
-	    if (fruitname == "carrot"){
+	    if (fruitname == 'carrot'){
 		if((parseInt(drag.style.top) > sH - 250) && (parseInt(drag.style.left) > sW - 250)){
 			drag.style.opacity = "0.5";
 			const text_before = document.getElementById('hunatex_carrot');

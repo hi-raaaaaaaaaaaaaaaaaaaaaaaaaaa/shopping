@@ -32,27 +32,27 @@
   left: 88%;
 }
 
-#qu1-1 {
+#carrot-1 {
   position: absolute;
 	bottom: 15%;
 	left: 5%;
 	z-index: 4;
 }
-#qu1-2 {
+#carrot-2 {
   position: absolute;
 	bottom: 17%;
 	left: 6%;
 	z-index: 3;
 }
 
-#qu1-3 {
+#carrot-3 {
   position: absolute;
 	bottom: 19%;
 	left: 7%;
 	z-index: 2;
 }
 
-#qu1-4 {
+#carrot-4 {
   position: absolute;
 	bottom: 21%;
 	left: 8%;
@@ -60,27 +60,27 @@
 }
 
 
-#qu2-1 {
+#orange-1 {
   position: absolute;
 	bottom: 15%;
 	left: 23%;
 	z-index: 4;
 }
-#qu2-2 {
+#orange-2 {
   position: absolute;
 	bottom: 17%;
 	left: 23.5%;
 	z-index: 3;
 }
 
-#qu2-3 {
+#orange-3 {
   position: absolute;
 	bottom: 19%;
 	left: 24%;
 	z-index: 2;
 }
 
-#qu2-4 {
+#orange-4 {
   position: absolute;
 	bottom: 21%;
 	left: 24.5%;
@@ -88,27 +88,27 @@
 }
 
 
-#qu3-1 {
+#grape-1 {
   position: absolute;
 	bottom: 15%;
 	left: 41.5%;
 	z-index: 4;
 }
-#qu3-2 {
+#grape-2 {
   position: absolute;
 	bottom: 17%;
 	left: 41%;
 	z-index: 3;
 }
 
-#qu3-3 {
+#grape-3 {
   position: absolute;
 	bottom: 19%;
 	left: 40.5%;
 	z-index: 2;
 }
 
-#qu3-4 {
+#grape-4 {
   position: absolute;
 	bottom: 21%;
 	left: 40%;
@@ -116,27 +116,27 @@
 }
 
 
-#qu4-1 {
+#apple-1 {
   position: absolute;
 	bottom: 15%;
 	left: 59%;
 	z-index: 4;
 }
-#qu4-2 {
+#apple-2 {
   position: absolute;
 	bottom: 17%;
 	left: 58%;
 	z-index: 3;
 }
 
-#qu4-3 {
+#apple-3 {
   position: absolute;
 	bottom: 19%;
 	left: 57%;
 	z-index: 2;
 }
 
-#qu4-4 {
+#apple-4 {
   position: absolute;
 	bottom: 21%;
 	left: 56%;
@@ -147,13 +147,13 @@
 #question{
 	font-size: 45px;
 	letter-spacing: 0.5em;
-	font-family: 'UD ÉfÉWÉ^Éã ã≥â»èëëÃ N-R';
+	font-family: 'UD „Éá„Ç∏„Çø„É´ ÊïôÁßëÊõ∏‰Ωì N-R';
 	color: #FFFFFF;
 }
 
 #q1 {
 	letter-spacing: 0.1em;
-	font-family: 'UD ÉfÉWÉ^Éã ã≥â»èëëÃ N-R';
+	font-family: 'UD „Éá„Ç∏„Çø„É´ ÊïôÁßëÊõ∏‰Ωì N-R';
 	font-size: 100px;
 	color: white;
 }

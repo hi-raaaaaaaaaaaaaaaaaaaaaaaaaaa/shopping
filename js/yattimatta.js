@@ -21,7 +21,7 @@
     //マウスが押された際の関数
     function mdown(e) {
 
-
+	var fruitname = this.getAttribute("id"); // input要素のid属性の値を取得
         //クラス名に .drag を追加
         this.classList.add("drag");
 
@@ -64,6 +64,7 @@
         drag.style.left = event.pageX - x + "px";
 
 		//商品がかごに入ったら商品を消す(drag.style.topは商品)
+	    if (fruitname == "carrot"){
 		if((parseInt(drag.style.top) > sH - 500) && (parseInt(drag.style.left) > sW - 500)){
 			drag.style.opacity = "0.5";
 			const text_before = document.getElementById('hunatex_carrot');
@@ -75,6 +76,7 @@
 			const text_after = document.getElementById('hunatex_carrot');
 			text_after.innerHTML = '';
 		}
+	    }
 	    //商品がかごに入ったら商品を消す(drag.style.topは商品)
 		if((parseInt(drag.style.top) > sH - 500) && (parseInt(drag.style.left) > sW - 500)){
 			drag.style.opacity = "0.5";

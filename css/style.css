@@ -29,6 +29,7 @@ img {
 }
 
 #stuff.list {
+	position: static;
 	width: 30%;
 	height: 65%;
 	top: 5%;

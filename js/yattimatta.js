@@ -67,16 +67,51 @@
 		if((parseInt(drag.style.top) > sH - 500) && (parseInt(drag.style.left) > sW - 500)){
 			drag.style.opacity = "0.5";
 			const text_before = document.getElementById('hunatex_carrot');
-			x++;
-			text_before.innerHTML = 'にんじんが%dこ',x;
+			text_before.innerHTML = 'にんじんが こ';
 
 		}
 		if((parseInt(drag.style.top) < sH - 500) && (parseInt(drag.style.left) < sW - 500)){
 			drag.style.opacity = "1";
 			const text_after = document.getElementById('hunatex_carrot');
-			x--;
-			text_after.innerHTML = 'にんじんが%dこ',x;
+			text_after.innerHTML = '';
 		}
+	    //商品がかごに入ったら商品を消す(drag.style.topは商品)
+		if((parseInt(drag.style.top) > sH - 500) && (parseInt(drag.style.left) > sW - 500)){
+			drag.style.opacity = "0.5";
+			const text_before = document.getElementById('hunatex_orange');
+			text_before.innerHTML = 'みかんが こ';
+
+		}
+		if((parseInt(drag.style.top) < sH - 500) && (parseInt(drag.style.left) < sW - 500)){
+			drag.style.opacity = "1";
+			const text_after = document.getElementById('hunatex_orange');
+			text_after.innerHTML = '';
+		}
+//商品がかごに入ったら商品を消す(drag.style.topは商品)
+		if((parseInt(drag.style.top) > sH - 500) && (parseInt(drag.style.left) > sW - 500)){
+			drag.style.opacity = "0.5";
+			const text_before = document.getElementById('hunatex_grape');
+			text_before.innerHTML = 'ぶどうが こ';
+
+		}
+		if((parseInt(drag.style.top) < sH - 500) && (parseInt(drag.style.left) < sW - 500)){
+			drag.style.opacity = "1";
+			const text_after = document.getElementById('hunatex_grape');
+			text_after.innerHTML = '';
+		}
+//商品がかごに入ったら商品を消す(drag.style.topは商品)
+		if((parseInt(drag.style.top) > sH - 500) && (parseInt(drag.style.left) > sW - 500)){
+			drag.style.opacity = "0.5";
+			const text_before = document.getElementById('hunatex_apple');
+			text_before.innerHTML = 'りんごが こ';
+
+		}
+		if((parseInt(drag.style.top) < sH - 500) && (parseInt(drag.style.left) < sW - 500)){
+			drag.style.opacity = "1";
+			const text_after = document.getElementById('hunatex_apple');
+			text_after.innerHTML = '';
+		}
+
 
         //マウスボタンが離されたとき、またはカーソルが外れたとき発火
         drag.addEventListener("mouseup", mup, false);

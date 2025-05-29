@@ -66,13 +66,13 @@
 		//商品がかごに入ったら商品を消す(drag.style.topは商品)
 		if((parseInt(drag.style.top) > sH - 250) && (parseInt(drag.style.left) > sW - 250)){
 			drag.style.opacity = "0.5";
-			const text_before = document.getElementById('hunatex-carrot');
+			const text_before = document.getElementById('hunatex_carrot');
 			text_before.innerHTML = 'りんごが　こ';
 
 		}
 		if((parseInt(drag.style.top) < sH - 250) && (parseInt(drag.style.left) < sW - 250)){
 			drag.style.opacity = "1";
-			const text_after = document.getElementById('hunatex-carrot');
+			const text_after = document.getElementById('hunatex_carrot');
 			text_after.innerHTML = '';
 		}
 

@@ -47,7 +47,6 @@
 		var sW,sH,s;
 		sW = window.innerWidth;
 		sH = window.innerHeight;
-		const text = document.getElementById('hunatex');
 
 
         //ドラッグしている要素を取得

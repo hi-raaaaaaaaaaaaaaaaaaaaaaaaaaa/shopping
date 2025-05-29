@@ -64,16 +64,18 @@
         drag.style.left = event.pageX - x + "px";
 
 		//商品がかごに入ったら商品を消す(drag.style.topは商品)
-		if((parseInt(drag.style.top) > sH - 250) && (parseInt(drag.style.left) > sW - 250)){
+		if((parseInt(drag.style.top) > sH - 500) && (parseInt(drag.style.left) > sW - 500)){
 			drag.style.opacity = "0.5";
 			const text_before = document.getElementById('hunatex_carrot');
-			text_before.innerHTML = 'りんごが　こ';
+			x++;
+			text_before.innerHTML = 'にんじんが%dこ',x;
 
 		}
-		if((parseInt(drag.style.top) < sH - 250) && (parseInt(drag.style.left) < sW - 250)){
+		if((parseInt(drag.style.top) < sH - 500) && (parseInt(drag.style.left) < sW - 500)){
 			drag.style.opacity = "1";
 			const text_after = document.getElementById('hunatex_carrot');
-			text_after.innerHTML = '';
+			x--;
+			text_after.innerHTML = 'にんじんが%dこ',x;
 		}
 
         //マウスボタンが離されたとき、またはカーソルが外れたとき発火

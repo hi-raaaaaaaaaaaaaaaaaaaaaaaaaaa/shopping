@@ -73,7 +73,7 @@
 		}
 		if((parseInt(drag.style.top) < sH - 250) && (parseInt(drag.style.left) < sW - 250)){
 			drag.style.opacity = "1";
-			const text_after = document.getElementById('hunatex');
+			const text_after = document.getElementById('hunatex-carrot');
 			text_after.innerHTML = '';
 		}
 

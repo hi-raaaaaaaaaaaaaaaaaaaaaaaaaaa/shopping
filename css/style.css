@@ -15,15 +15,23 @@
 }
 
 img {
-    user-drag: none; /* ƒhƒ‰ƒbƒO‹Ö~ */
-    user-select: none; /* ‘I‘ğ‹Ö~ */
-    -webkit-user-drag: none; /* Webkitƒuƒ‰ƒEƒUiChrome‚âSafarijŒü‚¯ */
+    user-drag: none; /* ãƒ‰ãƒ©ãƒƒã‚°ç¦æ­¢ */
+    user-select: none; /* é¸æŠç¦æ­¢ */
+    -webkit-user-drag: none; /* Webkitãƒ–ãƒ©ã‚¦ã‚¶ï¼ˆChromeã‚„Safariï¼‰å‘ã‘ */
     -webkit-user-select: none;
-    -moz-user-select: none; /* FirefoxŒü‚¯ */
-    -ms-user-select: none; /* IEŒü‚¯ */
+    -moz-user-select: none; /* Firefoxå‘ã‘ */
+    -ms-user-select: none; /* IEå‘ã‘ */
     
 }
 
 .content::-webkit-scrollbar {
-  display:none; /*ƒXƒNƒ[ƒ‹ƒo[”ñ•\¦iChromeESafarij*/
+  display:none; /*ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒãƒ¼éè¡¨ç¤ºï¼ˆChromeãƒ»Safariï¼‰*/
 }
+
+.list {
+	width: 30%;
+	height: 65%;
+	top: 5%;
+	left: 65%;
+}
+	

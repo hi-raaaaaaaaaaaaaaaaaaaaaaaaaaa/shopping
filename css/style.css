@@ -28,7 +28,7 @@ img {
   display:none; /*スクロールバー非表示（Chrome・Safari）*/
 }
 
-.list {
+#stuff.list {
 	width: 30%;
 	height: 65%;
 	top: 5%;

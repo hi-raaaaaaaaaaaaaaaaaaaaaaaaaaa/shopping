@@ -51,7 +51,7 @@
 
         //ドラッグしている要素を取得
         var drag = document.getElementsByClassName("drag")[0];
-	var fruitname = document.getAttribute("id"); // input要素のid属性の値を取得
+	var fruitname = this.getAttribute("id"); // input要素のid属性の値を取得
 
         //同様にマウスとタッチの差異を吸収
         if(e.type === "mousemove") {

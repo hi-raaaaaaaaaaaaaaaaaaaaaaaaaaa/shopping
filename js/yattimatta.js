@@ -51,7 +51,6 @@
 
         //ドラッグしている要素を取得
         var drag = document.getElementsByClassName("drag")[0];
-	var fruitname = this.getAttribute("id"); // input要素のid属性の値を取得
 
         //同様にマウスとタッチの差異を吸収
         if(e.type === "mousemove") {
@@ -65,19 +64,18 @@
         drag.style.left = event.pageX - x + "px";
 
 		//商品がかごに入ったら商品を消す(drag.style.topは商品)
-	    if (fruitname == 'carrot'){
 		if((parseInt(drag.style.top) > sH - 250) && (parseInt(drag.style.left) > sW - 250)){
 			drag.style.opacity = "0.5";
 			const text_before = document.getElementById('hunatex_carrot');
 			text_before.innerHTML = 'にんじんが こ';
 
 		}
-		if((parseInt(drag.style.top) < sH - 500) && (parseInt(drag.style.left) < sW - 500)){
+		if((parseInt(drag.style.top) < sH - 250) && (parseInt(drag.style.left) < sW - 250)){
 			drag.style.opacity = "1";
 			const text_after = document.getElementById('hunatex_carrot');
 			text_after.innerHTML = '';
 		}
-	    }
+	    
 	    
         //マウスボタンが離されたとき、またはカーソルが外れたとき発火
         drag.addEventListener("mouseup", mup, false);

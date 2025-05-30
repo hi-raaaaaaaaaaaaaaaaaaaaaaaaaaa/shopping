@@ -1,3 +1,3 @@
 function click_carrot() {
-    this.classList.add("drag");
+    this.classList.add("click");
 }

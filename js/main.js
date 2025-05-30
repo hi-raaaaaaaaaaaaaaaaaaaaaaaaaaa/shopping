@@ -1,3 +1,3 @@
 function click_carrot() {
-    alert("ボタンがクリックされました！");
+    alert("ボタンがクリックされましたよ");
 }

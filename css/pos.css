@@ -32,33 +32,12 @@
   left: 88%;
 }
 
-#carrot-1 {
+#carrot_1 {
   position: absolute;
 	bottom: 15%;
 	left: 5%;
 	z-index: 4;
 }
-#carrot-2 {
-  position: absolute;
-	bottom: 17%;
-	left: 6%;
-	z-index: 3;
-}
-
-#carrot-3 {
-  position: absolute;
-	bottom: 19%;
-	left: 7%;
-	z-index: 2;
-}
-
-#carrot-4 {
-  position: absolute;
-	bottom: 21%;
-	left: 8%;
-	z-index: 1;
-}
-
 
 #orange-1 {
   position: absolute;

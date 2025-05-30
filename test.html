@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>斜方投射ボール（一定速度）</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      overflow: hidden;
+      position: relative;
+      background-color: #e0f7fa;
+    }
+    #ball {
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      left: 100px;
+      bottom: 50px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <img id="ball" src="https://upload.wikimedia.org/wikipedia/commons/d/d3/Soccerball.svg" alt="Soccer Ball">
+
+  <script>
+    const ball = document.getElementById("ball");
+
+    // 初期設定
+    let x = 100;
+    let y = 50;
+    const vx = 20;  // 水平方向の速度（一定）
+    const vyInitial = 15;  // 初期垂直速度（一定）
+    const gravity = -0.6;  // 重力の影響
+    let vy = vyInitial;  // 現在の垂直速度（初期値でスタート）
+    let interval = null;
+    let isMoving = false;
+
+    function startMotion() {
+      if (isMoving) return;
+
+      // 初期化
+      x = 100;
+      y = 50;
+      vy = vyInitial;  // 垂直速度を初期値に戻す
+      isMoving = true;
+
+      interval = setInterval(() => {
+        x += vx;  // 水平方向に一定の速度で進む
+        vy += gravity;  // 重力が垂直方向に影響を与える
+        y += vy;  // 垂直方向の移動
+
+        // 地面に到達したら停止（跳ねない）
+        if (y <= 0) {
+          y = 0;  // 地面での位置調整
+          clearInterval(interval);  // アニメーション停止
+          isMoving = false;
+        }
+
+        // ボールの位置を更新
+        ball.style.left = `${x}px`;
+        ball.style.bottom = `${y}px`;
+      }, 30);
+    }
+
+    ball.addEventListener("click", startMotion);
+  </script>
+
+</body>
+</html>

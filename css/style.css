@@ -1,17 +1,63 @@
-.drag-and-drop {
+#carrot {
     position: absolute;
-    z-index: 1000;
+    width: 20%;
 }
 
-.drag {
-    z-index: 1001;
+#carrot_real {
+    position: absolute;
+    width: 20%;
+    left: 10%;
+    top: 60%;
+}
+
+#orange {
+    position: absolute;
+    width: 20%;
+}
+
+#orange_real {
+    position: absolute;
+    width: 20%;
+    left: 40%;
+    top: 60%;
+}
+
+#grape {
+    position: absolute;
+    width: 20%;
+}
+
+#grape_real {
+    position: absolute;
+    width: 20%;
+    left: 10%;
+    top: 30%;
+}
+
+#apple {
+    position: absolute;
+    width: 20%;
+}
+
+#apple_real {
+    position: absolute;
+    width: 20%;
+    left: 40%;
+    top: 30%;
 }
 
 .basket {
-	width: 20%;
 	position: absolute;
-	bottom: 0px;
-	right: 0px;
+    width: 20%;
+}
+
+.list {
+    position: absolute;
+    width: 25%;
+    height: 55%;
+    left: 70%;
+    top: 5%;
+    border: 2px solid #000000;
 }
 
 img {
@@ -21,19 +67,9 @@ img {
     -webkit-user-select: none;
     -moz-user-select: none; /* Firefox向け */
     -ms-user-select: none; /* IE向け */
-    
 }
 
 .content::-webkit-scrollbar {
-  display:none; /*スクロールバー非表示（Chrome・Safari）*/
+    display:none; /*スクロールバー非表示（Chrome・Safari）*/
 }
 
-#stuff.list {
-	position: absolute;
-	width: 25%;
-	height: 60%;
-	top: 5%;
-	left: 72%;
-	border: 1px solid #000;
-}
-	

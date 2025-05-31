@@ -1,72 +1,140 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>斜方投射ボール（一定速度）</title>
-  <style>
-    body {
-      margin: 0;
-      height: 100vh;
-      overflow: hidden;
-      position: relative;
-      background-color: #e0f7fa;
-    }
-    #ball {
-      position: absolute;
-      width: 50px;
-      height: 50px;
-      left: 100px;
-      bottom: 50px;
-      cursor: pointer;
-    }
-  </style>
+<title>ボールを動かす (戻るアニメーションなし)</title>
+<style>
+  body { margin: 0; overflow: hidden; background-color: #f0f0f0; }
+  #container { position: relative; width: 100vw; height: 100vh; }
+  .ball {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background-color: lightblue;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 10px;
+  }
+  #box {
+    position: absolute;
+    width: 80px;
+    height: 60px;
+    background-color: lightcoral;
+    border: 2px solid red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+  }
+</style>
 </head>
 <body>
 
-  <img id="ball" src="https://upload.wikimedia.org/wikipedia/commons/d/d3/Soccerball.svg" alt="Soccer Ball">
+<div id="container">
+  <div id="ball1" class="ball">ボール1</div>
+  <div id="ball2" class="ball">ボール2</div>
+  <div id="ball3" class="ball">ボール3</div>
+  <div id="ball4" class="ball">ボール4</div>
+  <div id="box">ボックス</div>
+</div>
 
-  <script>
-    const ball = document.getElementById("ball");
+<script>
+  const container = document.getElementById('container');
+  const balls = [
+    { element: document.getElementById('ball1'), startX: 0, startY: 0 },
+    { element: document.getElementById('ball2'), startX: 0, startY: 0 },
+    { element: document.getElementById('ball3'), startX: 0, startY: 0 },
+    { element: document.getElementById('ball4'), startX: 0, startY: 0 },
+  ];
+  const box = document.getElementById('box');
 
-    // 初期設定
-    let x = 100;
-    let y = 50;
-    const vx = 20;  // 水平方向の速度（一定）
-    const vyInitial = 15;  // 初期垂直速度（一定）
-    const gravity = -0.6;  // 重力の影響
-    let vy = vyInitial;  // 現在の垂直速度（初期値でスタート）
-    let interval = null;
+  const boxMargin = 20;
+  const boxRect = {
+    left: container.offsetWidth - box.offsetWidth - boxMargin,
+    top: container.offsetHeight - box.offsetHeight - boxMargin,
+    right: container.offsetWidth - boxMargin,
+    bottom: container.offsetHeight - boxMargin,
+  };
+  box.style.left = `${boxRect.left}px`;
+  box.style.top = `${boxRect.top}px`;
+
+  const centerX = container.offsetWidth / 2;
+  const centerY = container.offsetHeight / 2;
+  const offset = 30;
+
+  balls[0].startX = centerX - offset;
+  balls[0].startY = centerY - offset;
+  balls[1].startX = centerX + offset;
+  balls[1].startY = centerY - offset;
+  balls[2].startX = centerX - offset;
+  balls[2].startY = centerY + offset;
+  balls[3].startX = centerX + offset;
+  balls[3].startY = centerY + offset;
+
+  balls.forEach(ballInfo => {
+    const ballElement = ballInfo.element;
+    ballElement.style.left = `${ballInfo.startX - ballElement.offsetWidth / 2}px`;
+    ballElement.style.top = `${ballInfo.startY - ballElement.offsetHeight / 2}px`;
+    let animationInterval = null;
     let isMoving = false;
 
-    function startMotion() {
+    ballElement.addEventListener('click', () => {
       if (isMoving) return;
-
-      // 初期化
-      x = 100;
-      y = 50;
-      vy = vyInitial;  // 垂直速度を初期値に戻す
       isMoving = true;
 
-      interval = setInterval(() => {
-        x += vx;  // 水平方向に一定の速度で進む
-        vy += gravity;  // 重力が垂直方向に影響を与える
-        y += vy;  // 垂直方向の移動
+      if (animationInterval) {
+        clearInterval(animationInterval);
+        animationInterval = null;
+      }
 
-        // 地面に到達したら停止（跳ねない）
-        if (y <= 0) {
-          y = 0;  // 地面での位置調整
-          clearInterval(interval);  // アニメーション停止
+      const targetX = boxRect.left + box.offsetWidth / 2 - ballElement.offsetWidth / 2;
+      const targetY = boxRect.top + box.offsetHeight / 2 - ballElement.offsetHeight / 2;
+      const startX = parseFloat(ballElement.style.left);
+      const startY = parseFloat(ballElement.style.top);
+      const duration = 1000;
+      let startTime;
+
+      function animateToBox(currentTime) {
+        if (!startTime) {
+          startTime = currentTime;
+        }
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(1, elapsed / duration);
+        const newX = startX + (targetX - startX) * progress;
+        const newY = startY + (targetY - startY) * progress;
+
+        ballElement.style.left = `${newX}px`;
+        ballElement.style.top = `${newY}px`;
+
+        // ボックスに入ったかどうかの判定
+        const ballRect = ballElement.getBoundingClientRect();
+        if (
+          ballRect.left >= boxRect.left &&
+          ballRect.right <= boxRect.right &&
+          ballRect.top >= boxRect.top &&
+          ballRect.bottom <= boxRect.bottom
+        ) {
           isMoving = false;
+          // ボックスに入ったら元の位置に瞬時に戻す
+          ballElement.style.left = `${ballInfo.startX - ballElement.offsetWidth / 2}px`;
+          ballElement.style.top = `${ballInfo.startY - ballElement.offsetHeight / 2}px`;
+          return;
         }
 
-        // ボールの位置を更新
-        ball.style.left = `${x}px`;
-        ball.style.bottom = `${y}px`;
-      }, 30);
-    }
+        if (progress < 1) {
+          requestAnimationFrame(animateToBox);
+        } else {
+          isMoving = false; // アニメーションが完了してもボックスに入らなかった場合は移動フラグをリセット
+          animationInterval = null;
+        }
+      }
 
-    ball.addEventListener("click", startMotion);
-  </script>
+      requestAnimationFrame(animateToBox);
+    });
+  });
+</script>
 
 </body>
 </html>

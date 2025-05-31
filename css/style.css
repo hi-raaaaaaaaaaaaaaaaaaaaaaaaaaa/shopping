@@ -51,6 +51,19 @@
     width: 20%;
 }
 
+.question {
+    position: absolute;
+    width: 60%;
+    height: 15%;
+    left: 5%;
+    top: 5%;
+    border: 2px solid #000000;
+    justify-content: center;
+    text-align: center;
+    letter-spacing: 0.2em;
+    font-size: 28px;
+}
+
 .list {
     position: absolute;
     width: 25%;

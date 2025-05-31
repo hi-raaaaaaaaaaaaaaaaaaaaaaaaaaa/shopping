@@ -58,7 +58,7 @@ fruits.forEach(fruitInfo => {
         const targetY = boxRect.top + box.offsetHeight / 2 - fruitElement.offsetHeight / 2;
         const startX = parseFloat(fruitElement.style.left);
         const startY = parseFloat(fruitElement.style.top);
-        const duration = 800; //アニメーションに要する秒数
+        const duration = 600; //アニメーションに要する秒数
         let startTime;
 
         function animateToBox(currentTime) {

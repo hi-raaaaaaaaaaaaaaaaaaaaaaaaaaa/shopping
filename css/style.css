@@ -62,6 +62,7 @@
     text-align: center;
     letter-spacing: 0.2em;
     font-size: 28px;
+    touch-action: none;/*ダブルタップズーム禁止*/
 }
 
 .list {
@@ -71,14 +72,13 @@
     left: 70%;
     top: 5%;
     border: 2px solid #000000;
+    touch-action: none;/*ダブルタップズーム禁止*/
 }
 
-img ,
-.question,
-.list {
+img {
     user-drag: none; /* ドラッグ禁止 */
     user-select: none; /* 選択禁止 */
-    touch-action: manipulation;/*ダブルタップ禁止*/
+    touch-action: none;/*ダブルタップズーム禁止*/
     -webkit-user-drag: none; /* Webkitブラウザ（ChromeやSafari）向け */
     -webkit-user-select: none;
     -moz-user-select: none; /* Firefox向け */

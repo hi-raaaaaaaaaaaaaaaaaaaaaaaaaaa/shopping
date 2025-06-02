@@ -3,7 +3,6 @@ const fruits = [
     { element: document.getElementById('carrot'), startX: 0, startY: 0 },
     { element: document.getElementById('orange'), startX: 0, startY: 0 },
     { element: document.getElementById('lemon'), startX: 0, startY: 0 },
-    { element: document.getElementById('apple'), startX: 0, startY: 0 },
     ];
 
 
@@ -25,17 +24,15 @@ box.style.top = `${boxRect.top}px`;
 
 //動くフルーツたちの位置指定
 fruits[0].startX = sW * 0.1;
-fruits[0].startY = sH * 0.6;
-fruits[1].startX = sW * 0.4;
+fruits[0].startY = sH * 0.5;
+fruits[1].startX = sW * 0.5;
 fruits[1].startY = sH * 0.6;
 fruits[2].startX = sW * 0.1;
 fruits[2].startY = sH * 0.3;
-fruits[3].startX = sW * 0.4;
-fruits[3].startY = sH * 0.3;
 
-//  fruit[2]---fruit[3]
-//     |          |
-//  fruit[0]---fruit[1]
+//            ---fruit[3]
+//  fruit[0]         |
+//       ---fruit[1]
 
 //移動開始
 fruits.forEach(fruitInfo => {

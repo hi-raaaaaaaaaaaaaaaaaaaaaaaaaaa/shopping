@@ -17,7 +17,7 @@ var sH = window.innerHeight;
 const boxMargin = 20;
 const boxRect = {
     left: sW * 0.6,
-    top: sH * 0.6,
+    top: sH * 0.75,
 };
 
 box.style.left = `${boxRect.left}px`;
@@ -76,8 +76,8 @@ fruits.forEach(fruitInfo => {
             // ボックスに入ったかどうかの判定
             const fruitRect = fruitElement.getBoundingClientRect();
             if (
-                fruitRect.left >= boxRect.left &&
-                fruitRect.top >= boxRect.top
+                fruitRect.left + 10 >= boxRect.left &&
+                fruitRect.top + 10 >= boxRect.top
             ) {
                 isMoving = false;
                 // ボックスに入ったら元の位置に瞬時に戻す

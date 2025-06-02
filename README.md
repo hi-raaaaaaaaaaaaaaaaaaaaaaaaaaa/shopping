@@ -3,8 +3,9 @@
 ## ゲーム
 ### 4つの場合
 
-https://hi-raaaaaaaaaaaaaaaaaaaaaaaaaaa.github.io/shopping/game4.html
+[game4.html](https://hi-raaaaaaaaaaaaaaaaaaaaaaaaaaa.github.io/shopping/game4.html)
 
 
 ### ３つの場合
-https://hi-raaaaaaaaaaaaaaaaaaaaaaaaaaa.github.io/shopping/game3.html
+
+[game3.html]([URL](https://hi-raaaaaaaaaaaaaaaaaaaaaaaaaaa.github.io/shopping/game3.html))

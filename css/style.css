@@ -73,7 +73,9 @@
     border: 2px solid #000000;
 }
 
-body {
+img ,
+.question,
+.list {
     user-drag: none; /* ドラッグ禁止 */
     user-select: none; /* 選択禁止 */
     touch-action: manipulation;/*ダブルタップ禁止*/

@@ -16,7 +16,7 @@ var sH = window.innerHeight;
 //box(買い物かご)の位置指定
 const boxMargin = 20;
 const boxRect = {
-    left: sW * 0.75,
+    left: sW * 0.6,
     top: sH * 0.6,
 };
 

@@ -17,7 +17,7 @@ var sH = window.innerHeight;
 const boxMargin = 20;
 const boxRect = {
     left: sW * 0.75,
-    top: sH * 0.6,
+    top: sH * 0.55,
 };
 
 box.style.left = `${boxRect.left}px`;

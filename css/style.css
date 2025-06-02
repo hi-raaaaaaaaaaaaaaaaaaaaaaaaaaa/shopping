@@ -76,6 +76,7 @@
 img {
     user-drag: none; /* ドラッグ禁止 */
     user-select: none; /* 選択禁止 */
+    touch-action: manipulation;/*ダブルタップ禁止*/
     -webkit-user-drag: none; /* Webkitブラウザ（ChromeやSafari）向け */
     -webkit-user-select: none;
     -moz-user-select: none; /* Firefox向け */

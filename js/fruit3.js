@@ -1,6 +1,6 @@
 const container = document.getElementById('container');
 const fruits = [
-    { element: document.getElementById('carrot'), startX: 0, startY: 0 },
+    { element: document.getElementById('apple'), startX: 0, startY: 0 },
     { element: document.getElementById('orange'), startX: 0, startY: 0 },
     { element: document.getElementById('lemon'), startX: 0, startY: 0 },
     ];

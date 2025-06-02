@@ -73,7 +73,7 @@
     border: 2px solid #000000;
 }
 
-img {
+body {
     user-drag: none; /* ドラッグ禁止 */
     user-select: none; /* 選択禁止 */
     touch-action: manipulation;/*ダブルタップ禁止*/

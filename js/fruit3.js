@@ -76,8 +76,8 @@ fruits.forEach(fruitInfo => {
             // ボックスに入ったかどうかの判定
             const fruitRect = fruitElement.getBoundingClientRect();
             if (
-                fruitRect.left >= boxRect.left &&
-                fruitRect.top >= boxRect.top
+                fruitRect.left + 10 >= boxRect.left &&
+                fruitRect.top + 10 >= boxRect.top
             ) {
                 isMoving = false;
                 // ボックスに入ったら元の位置に瞬時に戻す

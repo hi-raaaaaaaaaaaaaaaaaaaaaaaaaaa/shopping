@@ -1,45 +1,45 @@
-#carrot {
+#tomato {
     position: absolute;
     width: 20%;
 }
 
-#carrot_real {
+#tomato_real {
     position: absolute;
     width: 20%;
     left: 10%;
     top: 60%;
 }
 
-#orange {
+#jagaimo {
     position: absolute;
     width: 20%;
 }
 
-#orange_real {
+#jagaimo_real {
     position: absolute;
     width: 20%;
     left: 40%;
     top: 60%;
 }
 
-#lemon {
+#pi-man {
     position: absolute;
     width: 20%;
 }
 
-#lemon_real {
+#pi-man_real {
     position: absolute;
     width: 20%;
     left: 10%;
     top: 30%;
 }
 
-#apple {
+#satumaimo {
     position: absolute;
     width: 20%;
 }
 
-#apple_real {
+#satumaimo_real {
     position: absolute;
     width: 20%;
     left: 40%;

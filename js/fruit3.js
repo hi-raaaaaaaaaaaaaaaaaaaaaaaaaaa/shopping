@@ -1,21 +1,21 @@
 const container = document.getElementById('container');
 const fruits = [
-    { element: document.getElementById('apple'), startX: 0, startY: 0 },
-    { element: document.getElementById('orange'), startX: 0, startY: 0 },
-    { element: document.getElementById('lemon'), startX: 0, startY: 0 },
+    { element: document.getElementById('yam'), startX: 0, startY: 0 },
+    { element: document.getElementById('potato'), startX: 0, startY: 0 },
+    { element: document.getElementById('greenpepper'), startX: 0, startY: 0 },
     ];
 
 
 const box = document.getElementById('box');
-const apple_list = document.getElementById("apple_list");
-const orange_list = document.getElementById("orange_list");
-const lemon_list = document.getElementById("lemon_list");
+const yam_list = document.getElementById("yam_list");
+const potato_list = document.getElementById("potato_list");
+const greenpepper_list = document.getElementById("greenpepper_list");
 
 
 var sW = window.innerWidth;
 var sH = window.innerHeight;
 
-var apple_cnt = 0, orange_cnt = 0, lemon_cnt = 0, carrot_cnt = 0;
+var yam_cnt = 0, potato_cnt = 0, greenpepper_cnt = 0, carrot_cnt = 0;
 
 //box(買い物かご)の位置指定
 const boxMargin = 20;
@@ -86,18 +86,18 @@ fruits.forEach(fruitInfo => {
                 fruitElement.style.left = `${fruitInfo.startX}px`;
                 fruitElement.style.top = `${fruitInfo.startY}px`;
 
-		if(fruitElement.id == 'apple') apple_cnt++;
-		if(fruitElement.id == 'orange') orange_cnt++;
-		if(fruitElement.id == 'lemon') lemon_cnt++;
-		console.warn(apple_cnt, orange_cnt, lemon_cnt);
+		if(fruitElement.id == 'yam') yam_cnt++;
+		if(fruitElement.id == 'potato') potato_cnt++;
+		if(fruitElement.id == 'greenpepper') greenpepper_cnt++;
+		console.warn(yam_cnt, potato_cnt, greenpepper_cnt);
 
-		if(apple_cnt == 0) apple_list.innerHTML = "";
-		if(orange_cnt == 0) orange_list.innerHTML = "";
-		if(lemon_cnt == 0) lemon_list.innerHTML = "";
+		if(yam_cnt == 0) yam_list.innerHTML = "";
+		if(potato_cnt == 0) potato_list.innerHTML = "";
+		if(greenpepper_cnt == 0) greenpepper_list.innerHTML = "";
 
-		if(apple_cnt != 0) apple_list.innerHTML = `りんご　${apple_cnt}こ`;
-		if(orange_cnt != 0) orange_list.innerHTML = `みかん　${orange_cnt}こ`;
-		if(lemon_cnt != 0) lemon_list.innerHTML = `レモン　${lemon_cnt}こ`;
+		if(yam_cnt != 0) yam_list.innerHTML = `りんご　${yam_cnt}こ`;
+		if(potato_cnt != 0) potato_list.innerHTML = `みかん　${potato_cnt}こ`;
+		if(greenpepper_cnt != 0) greenpepper_list.innerHTML = `レモン　${greenpepper_cnt}こ`;
 
                 return;
             }

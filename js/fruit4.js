@@ -8,10 +8,16 @@ const fruits = [
 
 
 const box = document.getElementById('box');
+const apple_list = document.getElementById("apple_list");
+const orange_list = document.getElementById("orange_list");
+const lemon_list = document.getElementById("lemon_list");
+const carrot_list = document.getElementById("carrot_list");
 
 
 var sW = window.innerWidth;
 var sH = window.innerHeight;
+
+var apple_cnt = 0, orange_cnt = 0, lemon_cnt = 0, carrot_cnt = 0;
 
 //box(買い物かご)の位置指定
 const boxMargin = 20;
@@ -83,6 +89,23 @@ fruits.forEach(fruitInfo => {
                 // ボックスに入ったら元の位置に瞬時に戻す
                 fruitElement.style.left = `${fruitInfo.startX}px`;
                 fruitElement.style.top = `${fruitInfo.startY}px`;
+
+		if(fruitElement.id == 'apple') apple_cnt++;
+		if(fruitElement.id == 'orange') orange_cnt++;
+		if(fruitElement.id == 'lemon') lemon_cnt++;
+		if(fruitElement.id == 'carrot') carrot_cnt++;
+		console.warn(apple_cnt, orange_cnt, lemon_cnt, carrot_cnt);
+
+		if(apple_cnt == 0) apple_list.innerHTML = "";
+		if(orange_cnt == 0) orange_list.innerHTML = "";
+		if(lemon_cnt == 0) lemon_list.innerHTML = "";
+		if(carrot_cnt == 0) carrot_list.innerHTML = "";
+
+		if(apple_cnt != 0) apple_list.innerHTML = `りんご　${apple_cnt}こ`;
+		if(orange_cnt != 0) orange_list.innerHTML = `みかん　${orange_cnt}こ`;
+		if(lemon_cnt != 0) lemon_list.innerHTML = `レモン　${lemon_cnt}こ`;
+		if(carrot_cnt != 0) carrot_list.innerHTML = `にんじん　${carrot_cnt}こ`;
+		
                 return;
             }
 

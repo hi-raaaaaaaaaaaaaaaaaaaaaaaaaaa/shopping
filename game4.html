@@ -16,46 +16,96 @@
 
 	<div class="game" id="container">
 		<!--動かない果物たち-->
-		<image class="tomato_real" id="tomato_real" src="image/tomato.png"></image>
-		<image class="jagaimo_real" id="jagaimo_real" src="image/jagaimo.png"></image>
-		<image class="pi-man_real" id="pi-man_real" src="image/pi-man.png"></image>
-		<image class="satumaimo_real" id="satumaimo_real" src="image/satumaimo.png"></image>
+		<image class="carrot_real" id="carrot_real" src="image/carrot.png"></image>
+		<image class="orange_real" id="orange_real" src="image/orange.png"></image>
+		<image class="lemon_real" id="lemon_real" src="image/lemon.png"></image>
+		<image class="apple_real" id="apple_real" src="image/apple.png"></image>
 
 		<!--動く果物たち-->
-		<image class="tomato" id="tomato" src="image/tomato.png"></image>
-		<image class="jagaimo" id="jagaimo" src="image/jagaimo.png"></image>
-		<image class="pi-man" id="pi-man" src="image/pi-man.png"></image>
-		<image class="satumaimo" id="satumaimo" src="image/satumaimo.png"></image>
+		<image class="carrot" id="carrot" src="image/carrot.png"></image>
+		<image class="orange" id="orange" src="image/orange.png"></image>
+		<image class="lemon" id="lemon" src="image/lemon.png"></image>
+		<image class="apple" id="apple" src="image/apple.png"></image>
 		<!--
-		<image class="drag-and-drop" id="jagaimo-1" src="image/jagaimo.png"></image>
-		<image class="drag-and-drop" id="jagaimo-2" src="image/jagaimo.png"></image>
-		<image class="drag-and-drop" id="jagaimo-3" src="image/jagaimo.png"></image>
-		<image class="drag-and-drop" id="jagaimo-4" src="image/jagaimo.png"></image>
+		<image class="drag-and-drop" id="orange-1" src="image/orange.png"></image>
+		<image class="drag-and-drop" id="orange-2" src="image/orange.png"></image>
+		<image class="drag-and-drop" id="orange-3" src="image/orange.png"></image>
+		<image class="drag-and-drop" id="orange-4" src="image/orange.png"></image>
 	
 	
-		<image class="drag-and-drop" id="pi-man-1" src="image/pi-man.png"></image>
-		<image class="drag-and-drop" id="pi-man-2" src="image/pi-man.png"></image>
-		<image class="drag-and-drop" id="pi-man-3" src="image/pi-man.png"></image>
-		<image class="drag-and-drop" id="pi-man-4" src="image/pi-man.png"></image>
+		<image class="drag-and-drop" id="lemon-1" src="image/lemon.png"></image>
+		<image class="drag-and-drop" id="lemon-2" src="image/lemon.png"></image>
+		<image class="drag-and-drop" id="lemon-3" src="image/lemon.png"></image>
+		<image class="drag-and-drop" id="lemon-4" src="image/lemon.png"></image>
 	
 	
-		<image class="drag-and-drop" id="satumaimo-1" src="image/dragonfruit.png"></image>
-		<image class="drag-and-drop" id="satumaimo-2" src="image/dragonfruit.png"></image>
-		<image class="drag-and-drop" id="satumaimo-3" src="image/dragonfruit.png"></image>
-		<image class="drag-and-drop" id="satumaimo-4" src="image/dragonfruit.png"></image>
+		<image class="drag-and-drop" id="apple-1" src="image/dragonfruit.png"></image>
+		<image class="drag-and-drop" id="apple-2" src="image/dragonfruit.png"></image>
+		<image class="drag-and-drop" id="apple-3" src="image/dragonfruit.png"></image>
+		<image class="drag-and-drop" id="apple-4" src="image/dragonfruit.png"></image>
 	-->
 
 		<image class="basket" id="box" src="image/kaimono.png"></image>
 	</div>
 
 	<div class="list" id="stuff">
-		<h1 id="hunatex_tomato"></h1>
-		<h1 id="hunatex_jagaimo"></h1>
-		<h1 id="hunatex_pi-man"></h1>
-		<h1 id="hunatex_satumaimo"></h1>
+		<h1 id="apple_list"></h1>
+		<h1 id="orange_list"></h1>
+		<h1 id="lemon_list"></h1>
+		<h1 id="carrot_list"></h1>
 	</div>
 	
 </body>
+
+<style>
+	#carrot {
+	    position: absolute;
+	    width: 20%;
+	}
+
+	#carrot_real {
+	    position: absolute;
+	    width: 20%;
+	    left: 10%;
+	    top: 60%;
+	}
+
+	#orange {
+	    position: absolute;
+	    width: 20%;
+	}
+
+	#orange_real {
+	    position: absolute;
+	    width: 20%;
+	    left: 40%;
+	    top: 60%;
+	}
+
+	#lemon {
+	    position: absolute;
+	    width: 20%;
+	}
+
+	#lemon_real {
+	    position: absolute;
+	    width: 20%;
+	    left: 10%;
+	    top: 30%;
+	}
+
+	#apple {
+	    position: absolute;
+	    width: 20%;
+	}
+
+	#apple_real {
+	    position: absolute;
+	    width: 20%;
+	    left: 40%;
+	    top: 30%;
+	}
+</style>
 
 <script type="text/javascript" src="js/fruit4.js"></script>
 

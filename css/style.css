@@ -47,7 +47,7 @@
 }
 
 .basket {
-	position: absolute;
+    position: absolute;
     width: 20%;
 }
 
@@ -63,6 +63,16 @@
     letter-spacing: 0.2em;
     font-size: 28px;
     touch-action: none;/*ダブルタップズーム禁止*/
+}
+
+.background {
+    user-drag: none; /* ドラッグ禁止 */
+    user-select: none; /* 選択禁止 */
+    touch-action: none;/*ダブルタップズーム禁止*/
+    -webkit-user-drag: none; /* Webkitブラウザ（ChromeやSafari）向け */
+    -webkit-user-select: none;
+    -moz-user-select: none; /* Firefox向け */
+    -ms-user-select: none; /* IE向け */
 }
 
 .list {

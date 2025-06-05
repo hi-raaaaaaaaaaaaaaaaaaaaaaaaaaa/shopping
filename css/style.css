@@ -65,7 +65,7 @@
     touch-action: none;/*ダブルタップズーム禁止*/
 }
 
-.background {
+#background {
     user-drag: none; /* ドラッグ禁止 */
     user-select: none; /* 選択禁止 */
     touch-action: none;/*ダブルタップズーム禁止*/

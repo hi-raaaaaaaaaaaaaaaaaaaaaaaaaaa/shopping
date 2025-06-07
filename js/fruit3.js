@@ -95,9 +95,9 @@ fruits.forEach(fruitInfo => {
 		if(potato_cnt == 0) potato_list.innerHTML = "";
 		if(greenpepper_cnt == 0) greenpepper_list.innerHTML = "";
 
-		if(yam_cnt != 0) yam_list.innerHTML = `りんご　${yam_cnt}こ`;
-		if(potato_cnt != 0) potato_list.innerHTML = `みかん　${potato_cnt}こ`;
-		if(greenpepper_cnt != 0) greenpepper_list.innerHTML = `レモン　${greenpepper_cnt}こ`;
+		if(yam_cnt != 0) yam_list.innerHTML = `さつまいも　${yam_cnt}こ`;
+		if(potato_cnt != 0) potato_list.innerHTML = `じゃがいも　${potato_cnt}こ`;
+		if(greenpepper_cnt != 0) greenpepper_list.innerHTML = `ピーマン　${greenpepper_cnt}こ`;
 
                 return;
             }

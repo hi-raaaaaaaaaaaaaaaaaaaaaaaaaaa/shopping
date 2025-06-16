@@ -3,6 +3,10 @@
     height: 65%;
 }
 
+.content {
+    overflow-y:hidden;
+}
+
 .choose {
     display: flex;
     position: absolute;

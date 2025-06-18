@@ -1,6 +1,6 @@
 # お買い物ゲーム
 特支５班
-##タイトル
+## タイトル
 
 [title.html](https://hi-raaaaaaaaaaaaaaaaaaaaaaaaaaa.github.io/shopping/title.html)
 

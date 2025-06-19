@@ -15,7 +15,7 @@ const greenpepper_list = document.getElementById("list-3");
 var sW = window.innerWidth;
 var sH = window.innerHeight;
 
-var yam_cnt = 0, potato_cnt = 0, greenpepper_cnt = 0,
+var yam_cnt = 0, potato_cnt = 0, greenpepper_cnt = 0;
 
 //box(買い物かご)の位置指定
 const boxMargin = 20;

@@ -50,7 +50,8 @@ fruits.forEach(fruitInfo => {
     fruitElement.style.top = `${fruitInfo.startY}px`;
     let animationInterval = null;
     let isMoving = false;
-
+	
+	
     fruitElement.addEventListener('click', () => {
         if (isMoving) return;
         isMoving = true;
@@ -101,10 +102,10 @@ fruits.forEach(fruitInfo => {
 		if(greenpepper_cnt == 0) greenpepper_list.innerHTML = "";
 		if(tomato_cnt == 0) tomato_list.innerHTML = "";
 
-		if(yam_cnt != 0) yam_list.innerHTML = `りんご　${yam_cnt}こ`;
-		if(potato_cnt != 0) potato_list.innerHTML = `みかん　${potato_cnt}こ`;
-		if(greenpepper_cnt != 0) greenpepper_list.innerHTML = `レモン　${greenpepper_cnt}こ`;
-		if(tomato_cnt != 0) tomato_list.innerHTML = `にんじん　${tomato_cnt}こ`;
+		if(yam_cnt != 0) yam_list.innerHTML = `さつまいも　${yam_cnt}こ`;
+		if(potato_cnt != 0) potato_list.innerHTML = `じゃがいも　${potato_cnt}こ`;
+		if(greenpepper_cnt != 0) greenpepper_list.innerHTML = `ピーマン　${greenpepper_cnt}こ`;
+		if(tomato_cnt != 0) tomato_list.innerHTML = `トマト　${tomato_cnt}こ`;
 		
                 return;
             }
@@ -120,3 +121,27 @@ fruits.forEach(fruitInfo => {
         requestAnimationFrame(animateToBox);
     });
 });
+
+function DecYam() {
+		yam_cnt--;
+		if(yam_cnt == 0) yam_list.innerHTML = "";
+		if(yam_cnt != 0) yam_list.innerHTML = `さつまいも　${yam_cnt}こ`;
+}
+
+function DecPotato() {
+		potato_cnt--;
+		if(potato_cnt == 0) potato_list.innerHTML = "";
+		if(potato_cnt != 0) potato_list.innerHTML = `じゃがいも　${potato_cnt}こ`;
+}
+
+function DecGreenpepper() {
+		greenpepper_cnt--;
+		if(yam_cnt == 0) greenpepper_list.innerHTML = "";
+		if(yam_cnt != 0) greenpepper_list.innerHTML = `ピーマン　${greenpepper_cnt}こ`;
+}
+
+function DecTomato() {
+		tomato_cnt--;
+		if(tomato_cnt == 0) tomato_list.innerHTML = "";
+		if(tomato_cnt != 0) tomato_list.innerHTML = `トマト　${tomato_cnt}こ`;
+}

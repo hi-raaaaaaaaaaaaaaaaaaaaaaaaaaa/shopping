@@ -15,7 +15,7 @@ const greenpepper_list = document.getElementById("greenpepper_list");
 var sW = window.innerWidth;
 var sH = window.innerHeight;
 
-var yam_cnt = 0, potato_cnt = 0, greenpepper_cnt = 0, carrot_cnt = 0;
+var yam_cnt = 0, potato_cnt = 0, greenpepper_cnt = 0,
 
 //box(買い物かご)の位置指定
 const boxMargin = 20;
@@ -113,3 +113,22 @@ fruits.forEach(fruitInfo => {
         requestAnimationFrame(animateToBox);
     });
 });
+
+
+function DecYam() {
+		yam_cnt--;
+		if(yam_cnt == 0) yam_list.innerHTML = "";
+		if(yam_cnt != 0) yam_list.innerHTML = `さつまいも　${yam_cnt}こ`;
+}
+
+function DecPotato() {
+		potato_cnt--;
+		if(potato_cnt == 0) potato_list.innerHTML = "";
+		if(potato_cnt != 0) potato_list.innerHTML = `じゃがいも　${potato_cnt}こ`;
+}
+
+function DecGreenpepper() {
+		greenpepper_cnt--;
+		if(greenpepper_cnt == 0) greenpepper_list.innerHTML = "";
+		if(greenpepper_cnt != 0) greenpepper_list.innerHTML = `ピーマン　${greenpepper_cnt}こ`;
+}

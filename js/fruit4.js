@@ -136,8 +136,8 @@ function DecPotato() {
 
 function DecGreenpepper() {
 		greenpepper_cnt--;
-		if(yam_cnt == 0) greenpepper_list.innerHTML = "";
-		if(yam_cnt != 0) greenpepper_list.innerHTML = `ピーマン　${greenpepper_cnt}こ`;
+		if(greenpepper_cnt == 0) greenpepper_list.innerHTML = "";
+		if(greenpepper_cnt != 0) greenpepper_list.innerHTML = `ピーマン　${greenpepper_cnt}こ`;
 }
 
 function DecTomato() {

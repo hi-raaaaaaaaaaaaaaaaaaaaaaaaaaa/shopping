@@ -7,9 +7,9 @@ const fruits = [
 
 
 const box = document.getElementById('box');
-const yam_list = document.getElementById("yam_list");
-const potato_list = document.getElementById("potato_list");
-const greenpepper_list = document.getElementById("greenpepper_list");
+const yam_list = document.getElementById("list-1");
+const potato_list = document.getElementById("list-2");
+const greenpepper_list = document.getElementById("list-3");
 
 
 var sW = window.innerWidth;

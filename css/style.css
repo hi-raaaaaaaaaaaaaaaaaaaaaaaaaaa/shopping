@@ -37,19 +37,19 @@
     touch-action: none;/*ダブルタップズーム禁止*/
 }
 
-.list-1 {
+#list-1 {
     position: absolute;
     margin-top: 0%;
 }
-.list-2 {
+#list-2 {
     position: absolute;
     margin-top: 10%;
 }
-.list-3 {
+#list-3 {
     position: absolute;
     margin-top: 20%;
 }
-.list-4 {
+#list-4 {
     position: absolute;
     margin-top: 30%;
 }

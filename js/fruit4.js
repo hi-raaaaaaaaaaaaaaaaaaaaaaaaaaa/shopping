@@ -124,24 +124,24 @@ fruits.forEach(fruitInfo => {
 
 function DecYam() {
 		yam_cnt--;
-		if(yam_cnt == 0) yam_list.innerHTML = "";
-		if(yam_cnt != 0) yam_list.innerHTML = `さつまいも　${yam_cnt}こ`;
+		if(yam_cnt == 0) list-1.innerHTML = "";
+		if(yam_cnt != 0) list-1.innerHTML = `さつまいも　${yam_cnt}こ`;
 }
 
 function DecPotato() {
 		potato_cnt--;
-		if(potato_cnt == 0) potato_list.innerHTML = "";
-		if(potato_cnt != 0) potato_list.innerHTML = `じゃがいも　${potato_cnt}こ`;
+		if(potato_cnt == 0) list-2.innerHTML = "";
+		if(potato_cnt != 0) list-2.innerHTML = `じゃがいも　${potato_cnt}こ`;
 }
 
 function DecGreenpepper() {
 		greenpepper_cnt--;
-		if(greenpepper_cnt == 0) greenpepper_list.innerHTML = "";
-		if(greenpepper_cnt != 0) greenpepper_list.innerHTML = `ピーマン　${greenpepper_cnt}こ`;
+		if(greenpepper_cnt == 0) list-3.innerHTML = "";
+		if(greenpepper_cnt != 0) list-3.innerHTML = `ピーマン　${greenpepper_cnt}こ`;
 }
 
 function DecTomato() {
 		tomato_cnt--;
-		if(tomato_cnt == 0) tomato_list.innerHTML = "";
-		if(tomato_cnt != 0) tomato_list.innerHTML = `トマト　${tomato_cnt}こ`;
+		if(tomato_cnt == 0) list-4.innerHTML = "";
+		if(tomato_cnt != 0) list-4.innerHTML = `トマト　${tomato_cnt}こ`;
 }

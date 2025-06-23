@@ -8,10 +8,10 @@
 
 	<title>お買い物ゲーム</title>
 </head>
-<body class="content"id="background">
+<body class="content" id="background">
 
-	<div class="question" id="title">
-		<h2>さつまいも　２つ</h2>
+	<div class="question">
+		<h2 id="title"></h2>
 	</div>
 
 	<div class="game" id="container">
@@ -26,24 +26,6 @@
 		<image class="potato" id="potato" src="image/potato.png"></image>
 		<image class="greenpepper" id="greenpepper" src="image/greenpepper.png"></image>
 		<image class="yam" id="yam" src="image/yam.png"></image>
-		<!--
-		<image class="drag-and-drop" id="potato-1" src="image/potato.png"></image>
-		<image class="drag-and-drop" id="potato-2" src="image/potato.png"></image>
-		<image class="drag-and-drop" id="potato-3" src="image/potato.png"></image>
-		<image class="drag-and-drop" id="potato-4" src="image/potato.png"></image>
-	
-	
-		<image class="drag-and-drop" id="greenpepper-1" src="image/greenpepper.png"></image>
-		<image class="drag-and-drop" id="greenpepper-2" src="image/greenpepper.png"></image>
-		<image class="drag-and-drop" id="greenpepper-3" src="image/greenpepper.png"></image>
-		<image class="drag-and-drop" id="greenpepper-4" src="image/greenpepper.png"></image>
-	
-	
-		<image class="drag-and-drop" id="yam-1" src="image/dragonfruit.png"></image>
-		<image class="drag-and-drop" id="yam-2" src="image/dragonfruit.png"></image>
-		<image class="drag-and-drop" id="yam-3" src="image/dragonfruit.png"></image>
-		<image class="drag-and-drop" id="yam-4" src="image/dragonfruit.png"></image>
-	-->
 
 		<image class="basket" id="box" src="image/kaimono.png"></image>
 	</div>
@@ -61,6 +43,7 @@
 	#tomato {
 	    position: absolute;
 	    width: 20%;
+		z-index: 3;
 	}
 
 	#tomato_real {
@@ -73,6 +56,7 @@
 	#potato {
 	    position: absolute;
 	    width: 20%;
+		z-index: 2;
 	}
 
 	#potato_real {
@@ -85,6 +69,7 @@
 	#greenpepper {
 	    position: absolute;
 	    width: 20%;
+		z-index: 3;
 	}
 
 	#greenpepper_real {
@@ -97,6 +82,7 @@
 	#yam {
 	    position: absolute;
 	    width: 20%;
+		z-index: 1;
 	}
 
 	#yam_real {
@@ -107,6 +93,6 @@
 	}
 </style>
 
-<script type="text/javascript" src="js/fruit4.js"></script>
+<script type="text/javascript" src="js/vegetable4.js"></script>
 
 </html>

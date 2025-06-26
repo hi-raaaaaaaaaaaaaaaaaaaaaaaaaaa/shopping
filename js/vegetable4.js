@@ -196,6 +196,13 @@ function updateCountDisplay() {
 // 正誤判定
 //1はトマト 2はじゃがいも　3はピーマン 4はさつまいも
 function ansJudge() {
+    const countAll[3];
+    countAll[0] = vege_name == 0 ? vege_num : 0; 
+    countAll[1] = vege_name == 1 ? vege_num : 0; 
+    countAll[2] = vege_name == 2 ? vege_num : 0; 
+    countAll[3] = vege_name == 3 ? vege_num : 0; 
+    console.warn(countAll);
+}
     
 
 //かごの中身をクリックしたら中身減るプログラム達

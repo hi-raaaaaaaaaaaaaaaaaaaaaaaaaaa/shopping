@@ -196,7 +196,7 @@ function updateCountDisplay() {
 // 正誤判定
 //1はトマト 2はじゃがいも　3はピーマン 4はさつまいも
 function ansJudge() {
-    const countAll[] = {0, 0, 0, 0};
+    let countAll = [0, 0, 0, 0];
     countAll[0] = vege_name == 0 ? vege_num : 0; 
     countAll[1] = vege_name == 1 ? vege_num : 0; 
     countAll[2] = vege_name == 2 ? vege_num : 0; 

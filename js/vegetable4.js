@@ -197,10 +197,10 @@ function updateCountDisplay() {
 //1はトマト 2はじゃがいも　3はピーマン 4はさつまいも
 function ansJudge() {
     let countAll = [0, 0, 0, 0];
-    countAll[0] = vege_name == 0 ? vege_num : 0; 
-    countAll[1] = vege_name == 1 ? vege_num : 0; 
-    countAll[2] = vege_name == 2 ? vege_num : 0; 
-    countAll[3] = vege_name == 3 ? vege_num : 0; 
+    countAll[0] = vege_name_num == 0 ? vege_num : 0; 
+    countAll[1] = vege_name_num == 1 ? vege_num : 0; 
+    countAll[2] = vege_name_num == 2 ? vege_num : 0; 
+    countAll[3] = vege_name_num == 3 ? vege_num : 0; 
     console.warn(countAll);
 }
     

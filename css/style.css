@@ -54,6 +54,11 @@
     margin-top: 85%;
 }
 
+.check {
+    position: absolute;
+    margin-top: 60%;
+    margin-left: 70%;
+}
 
 img {
     user-drag: none; /* ドラッグ禁止 */

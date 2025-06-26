@@ -193,6 +193,11 @@ function updateCountDisplay() {
     tomato_list.innerHTML = tomato_cnt > 0 ? `トマト　${tomato_cnt}こ` : "";
 }
 
+// 正誤判定
+//1はトマト 2はじゃがいも　3はピーマン 4はさつまいも
+function ansJudge() {
+    
+
 //かごの中身をクリックしたら中身減るプログラム達
 function DecYam() {
     if (isMoving) return;

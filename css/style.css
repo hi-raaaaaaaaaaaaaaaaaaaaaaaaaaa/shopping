@@ -56,8 +56,10 @@
 
 .check {
     position: absolute;
-    margin-top: 60%;
-    margin-left: 70%;
+    height: 15%;
+    width: 30%;
+    margin-top: 58%;
+    margin-left: 65%;
 }
 
 img {

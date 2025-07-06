@@ -29,6 +29,7 @@
 }
 
 .panel {
+    position: absolute;
     left: 65%;
     width: 35%;
     height: 100%;

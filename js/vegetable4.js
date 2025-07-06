@@ -32,7 +32,7 @@ var yam_cnt = 0, potato_cnt = 0, greenpepper_cnt = 0, tomato_cnt = 0;
 //box(買い物かご)の位置指定
 const boxRect = {
     left: sW * 0.75,
-    top: sH * 0.55,
+    top: sH * 0.7,
 };
 box.style.left = `${boxRect.left}px`;
 box.style.top = `${boxRect.top}px`;

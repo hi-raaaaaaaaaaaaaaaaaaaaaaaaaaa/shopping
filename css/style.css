@@ -1,6 +1,7 @@
 ﻿.basket {
     position: absolute;
     width: 20%;
+     z-index: 3;
 }
 
 .question {
@@ -27,10 +28,18 @@
     -ms-user-select: none; /* IE向け */
 }
 
+.panel {
+    left: 65%;
+    width: 35%;
+    height: 100%;
+    z-index: 2;
+    background: linear-gradient(to left, #22c1c3, #fdbb2d 10%);
+}
+
 .list {
     position: absolute;
     width: 25%;
-    height: 50%;
+    height: 60%;
     left: 70%;
     top: 5%;
     z-index: 2;

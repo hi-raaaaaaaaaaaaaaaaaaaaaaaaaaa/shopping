@@ -16,11 +16,14 @@ const greenpepper_list = document.getElementById("list-3");
 const tomato_list = document.getElementById("list-4");
 
 //問題決定 と #titleにinnerHTML
-let vege_name_num = Math.floor(Math.random() * 3);
-const vege_name = ["トマト", "じゃがいも", "ピーマン", "さつまいも"];
+let vege_name_num = Math.floor(Math.random() * 4);
+const vege_name = ["さつまいも", "じゃがいも", "ピーマン", "トマト"];
 let vege_num = Math.floor(Math.random() * (4 - 1) + 1);
 console.warn(vege_name_num, vege_name[vege_name_num], vege_num);
-if((vege_name !== null) && (vege_num != 0)) question.innerHTML = `${vege_name[vege_name_num]}　${vege_num}こ`;
+if((vege_name !== null) && (vege_num != 0)) question.innerHTML = `${vege_name[vege_name_num]}　${toFullWidth(vege_num)}こ`;
+
+//現在の野菜たちの数(随時更新)
+const countAll  = [0, 0, 0, 0];
 
 //ウィンドウの縦幅(sW)と横幅(sH)
 var sW = window.innerWidth;
@@ -31,20 +34,20 @@ var yam_cnt = 0, potato_cnt = 0, greenpepper_cnt = 0, tomato_cnt = 0;
 
 //box(買い物かご)の位置指定
 const boxRect = {
-    left: sW * 0.75,
-    top: sH * 0.7,
+    left: sW * 0.72,
+    top: sH * 0.65,
 };
 box.style.left = `${boxRect.left}px`;
 box.style.top = `${boxRect.top}px`;
 
-//動くフルーツたちの位置指定
-veges[0].startX = sW * 0.1;
-veges[0].startY = sH * 0.6;
-veges[1].startX = sW * 0.4;
-veges[1].startY = sH * 0.6;
-veges[2].startX = sW * 0.1;
+//動く野菜たちの位置指定
+veges[0].startX = sW * 0.2;
+veges[0].startY = sH * 0.65;
+veges[1].startX = sW * 0.5;
+veges[1].startY = sH * 0.64;
+veges[2].startX = sW * 0.2;
 veges[2].startY = sH * 0.3;
-veges[3].startX = sW * 0.4;
+veges[3].startX = sW * 0.44;
 veges[3].startY = sH * 0.3;
 
 //  vege[2]---vege[3]
@@ -115,7 +118,13 @@ veges.forEach(vegeInfo => {
                 if(vegeElement.id == 'potato') potato_cnt++;
                 if(vegeElement.id == 'greenpepper') greenpepper_cnt++;
                 if(vegeElement.id == 'tomato') tomato_cnt++;
-                console.warn(yam_cnt, potato_cnt, greenpepper_cnt, tomato_cnt);//不要
+
+                //countAllの数を更新
+                countAll[0] = yam_cnt;
+                countAll[1] = potato_cnt;
+                countAll[2] = greenpepper_cnt;
+                countAll[3] = tomato_cnt;
+                console.warn(countAll);
 
                 updateCountDisplay(); // カウント表示を更新する関数を呼び出し
 
@@ -187,23 +196,46 @@ function animateFromBox(vegeId) {
 
 // カウント表示を更新する関数
 function updateCountDisplay() {
-    yam_list.innerHTML = yam_cnt > 0 ? `さつまいも　${yam_cnt}こ` : "";
-    potato_list.innerHTML = potato_cnt > 0 ? `じゃがいも　${potato_cnt}こ` : "";
-    greenpepper_list.innerHTML = greenpepper_cnt > 0 ? `ピーマン　${greenpepper_cnt}こ` : "";
-    tomato_list.innerHTML = tomato_cnt > 0 ? `トマト　${tomato_cnt}こ` : "";
+    yam_list.innerHTML = yam_cnt > 0 ? `さつまいも　${toFullWidth(yam_cnt)}こ` : "";
+    potato_list.innerHTML = potato_cnt > 0 ? `じゃがいも　${toFullWidth(potato_cnt)}こ` : "";
+    greenpepper_list.innerHTML = greenpepper_cnt > 0 ? `ピーマン　　${toFullWidth(greenpepper_cnt)}こ` : "";
+    tomato_list.innerHTML = tomato_cnt > 0 ? `トマト　　　${toFullWidth(tomato_cnt)}こ` : "";
 }
 
 // 正誤判定
 //1はトマト 2はじゃがいも　3はピーマン 4はさつまいも
 function ansJudge() {
-    let countAll = [0, 0, 0, 0];
-    countAll[0] = vege_name_num == 0 ? vege_num : 0; 
-    countAll[1] = vege_name_num == 1 ? vege_num : 0; 
-    countAll[2] = vege_name_num == 2 ? vege_num : 0; 
-    countAll[3] = vege_name_num == 3 ? vege_num : 0; 
-    console.warn(countAll);
+    let countAll_quest = [0, 0, 0, 0];
+    let judge = 0;
+    countAll_quest[0] = vege_name_num == 0 ? vege_num : 0;
+    countAll_quest[1] = vege_name_num == 1 ? vege_num : 0;
+    countAll_quest[2] = vege_name_num == 2 ? vege_num : 0;
+    countAll_quest[3] = vege_name_num == 3 ? vege_num : 0;
+    console.warn(countAll_quest, countAll);
+
+    if (JSON.stringify(countAll_quest) === JSON.stringify(countAll)) judge = 1;
+
+    if (judge == 1) correctPopup();
+    else if (judge == 0) wrongPopup();
+    else console.warn("判定プログラムが壊れています");
+
+    judge = 0;
 }
-    
+
+// ポップアップを表示する関数
+function correctPopup(){
+    document.getElementById('correct_Popup').classList.add('show');
+};
+
+function wrongPopup(){
+    document.getElementById('wrong_Popup').classList.add('show');
+};
+
+// ポップアップを非表示にする関数
+function hidePopup() {
+    document.getElementById('correct_Popup').classList.remove('show');
+    document.getElementById('wrong_Popup').classList.remove('show');
+}
 
 //かごの中身をクリックしたら中身減るプログラム達
 function DecYam() {
@@ -211,6 +243,7 @@ function DecYam() {
     if (yam_cnt > 0) {
         yam_cnt--;
         updateCountDisplay();
+        countAll[0] = yam_cnt;
         animateFromBox('yam'); // アニメーションを呼び出す
     }
 }
@@ -220,6 +253,7 @@ function DecPotato() {
     if (potato_cnt > 0) {
         potato_cnt--;
         updateCountDisplay();
+        countAll[1] = potato_cnt;
         animateFromBox('potato'); // アニメーションを呼び出す
     }
 }
@@ -229,6 +263,7 @@ function DecGreenpepper() {
     if (greenpepper_cnt > 0) {
         greenpepper_cnt--;
         updateCountDisplay();
+        countAll[2] = greenpepper_cnt;
         animateFromBox('greenpepper'); // アニメーションを呼び出す
     }
 }
@@ -238,6 +273,16 @@ function DecTomato() {
     if (tomato_cnt > 0) {
         tomato_cnt--;
         updateCountDisplay();
+        countAll[3] = tomato_cnt;
         animateFromBox('tomato'); // アニメーションを呼び出す
     }
+}
+
+function toFullWidth(str) {
+    str = String(str);
+    // 半角英数字を全角に変換
+    str = str.replace(/[A-Za-z0-9]/g, function(s) {
+        return String.fromCharCode(s.charCodeAt(0) + 0xFEE0);
+    });
+    return str;
 }

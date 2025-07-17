@@ -1,0 +1,32 @@
+<link rel="stylesheet" href="css/test.css">
+
+
+<button id="showPopupButton" onclick="popup()">ポップアップを表示</button>
+
+<div class="popup-overlay" id="correct_Popup">
+    <div class="popup-content">
+        <div class="popup-title">かんぺき！</div>
+        <div class="popup-message">このちょうしでつぎもがんばろう！</div>
+        <button class="popup-button" onclick="hidePopup()">OK</button>
+    </div>
+</div>
+
+<div class="popup-overlay" id="wrong_Popup">
+    <div class="popup-content">
+        <div class="popup-title">みなおしてみよう...</div>
+        <div class="popup-message">なにかがちがうかも？</div>
+        <button class="popup-button" onclick="hidePopup()">OK</button>
+    </div>
+</div>
+
+<script>
+// ポップアップを表示する関数
+function popup(){
+    document.getElementById('iphone_Popup').classList.add('show');
+};
+
+// ポップアップを非表示にする関数
+function hidePopup() {
+    document.getElementById('iphone_Popup').classList.remove('show');
+}
+</script>

@@ -1,7 +1,33 @@
-﻿.basket {
+﻿body {
+    font-family: "BIZ UDGothic", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    letter-spacing: 0.15em;
+}
+
+img {
+    user-drag: none; /* ドラッグ禁止 */
+    user-select: none; /* 選択禁止 */
+    touch-action: none;/*ダブルタップズーム禁止*/
+    -webkit-user-drag: none; /* Webkitブラウザ（ChromeやSafari）向け */
+    -webkit-user-select: none;
+    -moz-user-select: none; /* Firefox向け */
+    -ms-user-select: none; /* IE向け */
+}
+
+button {
+    font-size: 30px;
+    font-family: "BIZ UDGothic", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    letter-spacing: 0.15em;
+}
+
+
+.basket {
     position: absolute;
-    width: 20%;
-     z-index: 3;
+    width: 25%;
+    z-index: 2;
 }
 
 .question {
@@ -13,8 +39,8 @@
     border: 2px solid #000000;
     justify-content: center;
     text-align: center;
-    letter-spacing: 0.2em;
-    font-size: 28px;
+    letter-spacing: 0.4em;
+    font-size: 30px;
     touch-action: none;/*ダブルタップズーム禁止*/
 }
 
@@ -33,7 +59,7 @@
     left: 68%;
     width: 35%;
     height: 100%;
-    z-index: 2;
+    z-index: 1;
     background: linear-gradient(to left, #ffffff 95%, transparent);
     opacity: 90%;
 }
@@ -50,40 +76,44 @@
     touch-action: none;/*ダブルタップズーム禁止*/
 }
 
+.list_label {
+    text-align: center;
+}
+
 #list-1 {
     position: absolute;
-    margin-top: 10%;
+    margin-top: 8%;
+    margin-left: 5%;
+    font-size: 28px;
 }
 #list-2 {
     position: absolute;
-    margin-top: 35%;
+    margin-top: 33%;
+    margin-left: 5%;
+    font-size: 28px;
 }
 #list-3 {
     position: absolute;
-    margin-top: 60%;
+    margin-top: 58%;
+    margin-left: 5%;
+    font-size: 28px;
 }
 #list-4 {
     position: absolute;
-    margin-top: 85%;
+    margin-top: 83%;
+    margin-left: 5%;
+    font-size: 28px;
 }
 
 .check {
     position: absolute;
-    height: 15%;
-    width: 30%;
-    margin-top: 58%;
-    margin-left: 65%;
+    height: 10%;
+    width: 20%;
+    margin-top: 35%;
+    margin-left: 74%;
+    z-index: 5;
 }
 
-img {
-    user-drag: none; /* ドラッグ禁止 */
-    user-select: none; /* 選択禁止 */
-    touch-action: none;/*ダブルタップズーム禁止*/
-    -webkit-user-drag: none; /* Webkitブラウザ（ChromeやSafari）向け */
-    -webkit-user-select: none;
-    -moz-user-select: none; /* Firefox向け */
-    -ms-user-select: none; /* IE向け */
-}
 
 .content::-webkit-scrollbar {
     display:none; /*スクロールバー非表示（Chrome・Safari）*/

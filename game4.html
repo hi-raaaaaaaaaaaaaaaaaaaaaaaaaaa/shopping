@@ -2,6 +2,10 @@
 <head>
     <meta charset="UTF-8">
 	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/iphone_popup.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=BIZ+UDGothic:wght@700&display=swap" rel="stylesheet">
 	<link rel="icon" href="favicon.ico">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
@@ -17,12 +21,9 @@
 	<div class="game" id="container">
 
 		<image class="product_locate" src="image/game4*2_fruit_basket.png"></image>
-		
+
 		<!--動かない果物たち-->
-		<image class="tomato_real" id="tomato_real" src="image/tomato.png"></image>
-		<image class="potato_real" id="potato_real" src="image/potato.png"></image>
-		<image class="greenpepper_real" id="greenpepper_real" src="image/greenpepper.png"></image>
-		<image class="yam_real" id="yam_real" src="image/yam.png"></image>
+		<image class="product_locate_overlay" src="image/game4*2_fruit_basket_OVER-VEGETABLE.png"></image>
 
 		<!--動く果物たち-->
 		<image class="tomato" id="tomato" src="image/tomato.png"></image>
@@ -34,8 +35,9 @@
 	</div>
 
 	<div class="panel"></div>
-	
+
 	<div class="list" id="stuff">
+		<h1 class="list_label">かごのなかみ</h1>
 		<h1 id="list-1" onclick="DecYam()"></h1>
 		<h1 id="list-2" onclick="DecPotato()"></h1>
 		<h1 id="list-3" onclick="DecGreenpepper()"></h1>
@@ -45,23 +47,40 @@
 	<div class="control" id="button">
 		<button class="check" onclick="ansJudge()">できた！</button>
 	</div>
-	
+
+	<div class="popup-overlay" id="correct_Popup">
+		<div class="popup-content">
+			<div class="popup-title">かんぺき！</div>
+			<div class="popup-message">このちょうしでつぎもがんばろう！</div>
+			<button class="popup-button" onclick="hidePopup()">つぎのステージへ</button>
+		</div>
+	</div>
+
+	<div class="popup-overlay" id="wrong_Popup">
+		<div class="popup-content">
+			<div class="popup-title">みなおしてみよう...</div>
+			<div class="popup-message">なにかがちがうかも？</div>
+			<button class="popup-button" onclick="hidePopup()">もどる</button>
+		</div>
+	</div>
+
 </body>
 
 <style>
-	.product_locate {
+	.product_locate ,
+	.product_locate_overlay{
 		position: absolute;
 		left: -25%;
-    		width: 125%;
-    		height: 80%;
-    		top: 22%;
+		width: 125%;
+    	height: 80%;
+    	top: 22%;
 		z-index: 1;
 	}
-	
+
 	#tomato {
 	    position: absolute;
-	    width: 20%;
-		z-index: 3;
+	    width: 10%;
+		z-index: 5;
 	}
 
 	#tomato_real {
@@ -73,8 +92,8 @@
 
 	#potato {
 	    position: absolute;
-	    width: 20%;
-		z-index: 2;
+	    width: 10%;
+		z-index: 4;
 	}
 
 	#potato_real {
@@ -86,8 +105,8 @@
 
 	#greenpepper {
 	    position: absolute;
-	    width: 20%;
-		z-index: 3;
+	    width: 10%;
+		z-index: 5;
 	}
 
 	#greenpepper_real {
@@ -99,8 +118,8 @@
 
 	#yam {
 	    position: absolute;
-	    width: 20%;
-		z-index: 1;
+	    width: 15%;
+		z-index: 3;
 	}
 
 	#yam_real {

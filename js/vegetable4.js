@@ -41,14 +41,14 @@ box.style.left = `${boxRect.left}px`;
 box.style.top = `${boxRect.top}px`;
 
 //動く野菜たちの位置指定
-veges[0].startX = sW * 0.2;
-veges[0].startY = sH * 0.65;
-veges[1].startX = sW * 0.5;
-veges[1].startY = sH * 0.64;
-veges[2].startX = sW * 0.2;
-veges[2].startY = sH * 0.3;
-veges[3].startX = sW * 0.44;
-veges[3].startY = sH * 0.3;
+veges[0].startX = sW * 0.08;
+veges[0].startY = sH * 0.57;
+veges[1].startX = sW * 0.37;
+veges[1].startY = sH * 0.57;
+veges[2].startX = sW * 0.08;
+veges[2].startY = sH * 0.2;
+veges[3].startX = sW * 0.37;
+veges[3].startY = sH * 0.2;
 
 //  vege[2]---vege[3]
 //     |          |
@@ -196,10 +196,10 @@ function animateFromBox(vegeId) {
 
 // カウント表示を更新する関数
 function updateCountDisplay() {
-    yam_list.innerHTML = yam_cnt > 0 ? `さつまいも　${toFullWidth(yam_cnt)}こ` : "";
-    potato_list.innerHTML = potato_cnt > 0 ? `じゃがいも　${toFullWidth(potato_cnt)}こ` : "";
-    greenpepper_list.innerHTML = greenpepper_cnt > 0 ? `ピーマン　　${toFullWidth(greenpepper_cnt)}こ` : "";
-    tomato_list.innerHTML = tomato_cnt > 0 ? `トマト　　　${toFullWidth(tomato_cnt)}こ` : "";
+    yam_list.innerHTML = yam_cnt > 0 ? `さつまいも ${toFullWidth(yam_cnt)}こ` : "";
+    potato_list.innerHTML = potato_cnt > 0 ? `じゃがいも ${toFullWidth(potato_cnt)}こ` : "";
+    greenpepper_list.innerHTML = greenpepper_cnt > 0 ? `ピーマン　 ${toFullWidth(greenpepper_cnt)}こ` : "";
+    tomato_list.innerHTML = tomato_cnt > 0 ? `トマト　　 ${toFullWidth(tomato_cnt)}こ` : "";
 }
 
 // 正誤判定

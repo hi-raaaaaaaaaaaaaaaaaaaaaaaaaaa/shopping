@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ゲームタイトル</title>
     <link rel="stylesheet" href="test.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div id="title-screen">
@@ -15,9 +18,114 @@
     </div>
 
     <div id="game-settings">
-        <h1>ゲーム設定</h1>
-        <h1>ゲーム設定</h1>
-        <h1>ゲーム設定</h1>
+        <div class="container" id="title">
+            <h1>ゲーム設定 / Game setting</h1>
+        </div>
+
+        <div class="container" id="format">
+            <div style="flex: 5">
+                <h2 >1. 問題の形式</h2>
+                <h3></br>どのような形式で問題が出題されるか決まります</h3>
+            </div>
+            <div style="flex: 5" class="container">
+                <div class="radio-tile-group">
+
+                    <div class="input-container">
+                        <input id="ilust" class="radio-button" type="radio" name="radio" checked="">
+                        <div class="radio-tile">
+                            <div class="icon ilust-icon">
+                                <img src="image/apple.png">
+                            </div>
+                            <label for="ilust" class="radio-tile-label">イラスト</label>
+                        </div>
+                    </div>
+
+                    <div class="input-container">
+                        <input id="chara" class="radio-button" type="radio" name="radio">
+                        <div class="radio-tile">
+                            <div class="icon chara-icon">
+                                <img src="image/apple.png">
+                            </div>
+                            <label for="chara" class="radio-tile-label">文字</label>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="container" id="options">
+            <div style="flex: 5">
+                <h2>2. 問題の合計個数</h2>
+                <h3>一度の買い物で何点の商品を購入するかの</br>合計数です（商品の種類は問わない）</h3>
+            </div>
+            <div style="flex: 5" class="counter">
+
+                <div class="field">
+                    <button class="button" id="down-options">－</button>
+                    <input type="text" value="1" class="inputtext" id="textbox-options" readonly>
+                    <button class="button" id="up-options">＋</button>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="container" id="type">
+            <div style="flex: 5">
+                <h2>3. 問題の種類</h2>
+                <h3>問題で要求される品目の数です </br>例)個数2+種類2 → トマト1こ+ピーマン1こ</h3>
+            </div>
+            <div style="flex: 5" class="counter">
+
+                <div class="field">
+                    <button class="button" id="down-type">－</button>
+                    <input type="text" value="1" class="inputtext" id="textbox-type" readonly>
+                    <button class="button" id="up-type">＋</button>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="container" id="difficult">
+            <div style="flex: 3">
+                <h2>4. 難易度</h2>
+                <h3></br>難しくなるにつれて商品の</br>判別が難しくなっていきます</h3>
+            </div>
+            <div style="flex: 5" class="difficult-inputs">
+                <label class="d-radio">
+                    <input type="radio" name="radio-d" checked="">
+                    <div class="name">
+                        <img src="image/apple.png"/>
+                        <h3>　＜かんたん＞</br>　やさいコース</h3>
+                    </div>
+                </label>
+
+                <label class="d-radio">
+                    <input type="radio" name="radio-d">
+                    <div class="name">
+                        <img src="image/apple.png"/>
+                        <h3>　＜ふつう＞</br>　お菓子コース</h3>
+                    </div>
+                </label>
+
+                <label class="d-radio">
+                    <input type="radio" name="radio-d">
+                    <div class="name">
+                        <img src="image/apple.png"/>
+                        <h3>　＜むずかしい＞</br>　飲み物コース</h3>
+                    </div>
+                </label>
+
+                <label class="d-radio">
+                    <input type="radio" name="radio-d">
+                    <div class="name">
+                        <img src="image/apple.png"/>
+                        <h3>　＜おに＞</br>　お肉コース</h3>
+                    </div>
+                </label>
+
+            </div>
+        </div>
     </div>
 
     <script src="test.js"></script>

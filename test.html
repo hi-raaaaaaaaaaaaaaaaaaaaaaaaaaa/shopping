@@ -10,12 +10,12 @@
 	<link href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div id="title-screen">
+    <!--<div id="title-screen">
         <div id="game-background"></div>
         <div id="press-start">
             - Press Start -
         </div>
-    </div>
+    </div>-->
 
     <div id="game-settings">
         <div class="container" id="title">
@@ -23,11 +23,11 @@
         </div>
 
         <div class="container" id="format">
-            <div style="flex: 5">
-                <h2 >1. 問題の形式</h2>
-                <h3></br>どのような形式で問題が出題されるか決まります</h3>
+            <div style="flex: 8" class="quest">
+                <h2>1. 問題の形式</h2>
+                <h3>どのような形式で問題を出題しますか</h3>
             </div>
-            <div style="flex: 5" class="container">
+            <div style="flex: 5" class="format-change">
                 <div class="radio-tile-group">
 
                     <div class="input-container">
@@ -39,6 +39,8 @@
                             <label for="ilust" class="radio-tile-label">イラスト</label>
                         </div>
                     </div>
+
+                    <or class="or">または</or>
 
                     <div class="input-container">
                         <input id="chara" class="radio-button" type="radio" name="radio">
@@ -55,15 +57,16 @@
         </div>
 
         <div class="container" id="options">
-            <div style="flex: 5">
+            <div style="flex: 5" class="quest">
                 <h2>2. 問題の合計個数</h2>
-                <h3>一度の買い物で何点の商品を購入するかの</br>合計数です（商品の種類は問わない）</h3>
+                <h3>一回の買物で合計何点の商品を購入しますか</h3>
             </div>
             <div style="flex: 5" class="counter">
 
                 <div class="field">
                     <button class="button" id="down-options">－</button>
                     <input type="text" value="1" class="inputtext" id="textbox-options" readonly>
+                    <unit class="unit">個</unit>
                     <button class="button" id="up-options">＋</button>
                 </div>
 
@@ -71,29 +74,50 @@
         </div>
 
         <div class="container" id="type">
-            <div style="flex: 5">
+            <div style="flex: 5" class="quest">
                 <h2>3. 問題の種類</h2>
-                <h3>問題で要求される品目の数です </br>例)個数2+種類2 → トマト1こ+ピーマン1こ</h3>
+                <h3>問題で要求される品目はいくつにしますか</h3>
             </div>
             <div style="flex: 5" class="counter">
 
                 <div class="field">
                     <button class="button" id="down-type">－</button>
                     <input type="text" value="1" class="inputtext" id="textbox-type" readonly>
+                    <unit class="unit">種類</unit>
                     <button class="button" id="up-type">＋</button>
                 </div>
 
             </div>
         </div>
 
-        <div class="container" id="difficult">
-            <div style="flex: 3">
-                <h2>4. 難易度</h2>
-                <h3></br>難しくなるにつれて商品の</br>判別が難しくなっていきます</h3>
+        <div class="container" id="type-disp">
+            <div style="flex: 5" class="quest">
+                <h2>4. 選択肢の種類</h2>
+                <h3>陳列する品目はいくつにしますか</h3>
             </div>
-            <div style="flex: 5" class="difficult-inputs">
+            <div style="flex: 5" class="counter">
+
+                <div class="field">
+                    <button class="button" id="down-type-disp">－</button>
+                    <input type="text" value="1" class="inputtext" id="textbox-type-disp" readonly>
+                    <unit class="unit">種類</unit>
+                    <button class="button" id="up-type-disp">＋</button>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="container" id="difficult">
+            <div style="flex: 3" class="quest">
+                <h2>5. 難易度</h2>
+                <h3>商品の判別の難しさを変更しますか</h3>
+                <h4>&lt;かんたん&gt; 色 と 形 と 名前 から判別<br>&lt;ふつう&gt; 色 と 似た形 と 名前 から判別
+                <br>&lt;むずかしい&gt; 色 と 名前 から判別<br>&lt;おに&gt; 名前 から判別
+                </h4>
+            </div>
+            <div style="flex: 4" class="difficult-inputs">
                 <label class="d-radio">
-                    <input type="radio" name="radio-d" checked="">
+                    <input type="radio" name="radio-d" id="diffi-easy" checked="">
                     <div class="name">
                         <img src="image/apple.png"/>
                         <h3>　＜かんたん＞</br>　やさいコース</h3>
@@ -101,7 +125,7 @@
                 </label>
 
                 <label class="d-radio">
-                    <input type="radio" name="radio-d">
+                    <input type="radio" id="diffi-normal" name="radio-d">
                     <div class="name">
                         <img src="image/apple.png"/>
                         <h3>　＜ふつう＞</br>　お菓子コース</h3>
@@ -109,7 +133,7 @@
                 </label>
 
                 <label class="d-radio">
-                    <input type="radio" name="radio-d">
+                    <input type="radio" id="diffi-hard" name="radio-d">
                     <div class="name">
                         <img src="image/apple.png"/>
                         <h3>　＜むずかしい＞</br>　飲み物コース</h3>
@@ -117,7 +141,7 @@
                 </label>
 
                 <label class="d-radio">
-                    <input type="radio" name="radio-d">
+                    <input type="radio" id="diffi-oni" name="radio-d">
                     <div class="name">
                         <img src="image/apple.png"/>
                         <h3>　＜おに＞</br>　お肉コース</h3>
@@ -126,6 +150,11 @@
 
             </div>
         </div>
+
+        <div class="container" id="control">
+            <button class="button-upbottom" id="start">スタート</button>
+        </div>
+
     </div>
 
     <script src="test.js"></script>

@@ -54,13 +54,23 @@ button {
     -ms-user-select: none; /* IE向け */
 }
 
-.panel {
+.panel-back {
     position: absolute;
     left: 68%;
     width: 35%;
     height: 100%;
     z-index: 1;
-    background: linear-gradient(to left, #ffffff 95%, transparent);
+    background: linear-gradient(to left, #000000 97%, transparent);
+    opacity: 50%;
+}
+
+.panel-front {
+    position: absolute;
+    left: 69%;
+    width: 31%;
+    height: 100%;
+    z-index: 1;
+    background: #ffffff;
     opacity: 90%;
 }
 

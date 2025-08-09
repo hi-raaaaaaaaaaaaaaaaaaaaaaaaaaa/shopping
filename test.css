@@ -9,7 +9,7 @@ body {
 }
 
 h1{
-    font-size: 2.5rem;
+    font-size: clamp(10px, 5vw, 35px);
     text-align: center;
 }
 
@@ -21,7 +21,7 @@ h2{
 }
 
 h3{
-    font-size: clamp(8px, 1.6vw, 18px);
+    font-size: clamp(8px, 2vw, 18px);
     margin-top: 1%;
     margin-bottom: 0;
     margin-left: 5vw;
@@ -75,6 +75,12 @@ h4 {
     border-top: 2px dotted #ffad08;
 }
 
+#control {
+    display: flex;
+    justify-content: center;
+    border-top: 2px dotted #ffad08;
+}
+
 .quest {
     display: flex;
     flex-direction: column;
@@ -112,8 +118,8 @@ h4 {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 70%;
-    height: 70%;
+    width: 65%;
+    height: 65%;
     border: 2px solid #000000;
     border-radius: 8px;
     padding: 1rem;
@@ -121,14 +127,15 @@ h4 {
 }
 
 .radio-tile-group .input-container .icon img {
+    display: flex;
     fill: #000000;
-    width: 100%;
+    width: 95%;
     height: auto;
 }
 
 .radio-tile-group .input-container .radio-tile-label {
     text-align: center;
-    font-size: 1rem;
+    font-size: clamp(8px, 2vw, 14px);
     letter-spacing: 0.05rem;
     font-weight: 600;
     text-transform: uppercase;

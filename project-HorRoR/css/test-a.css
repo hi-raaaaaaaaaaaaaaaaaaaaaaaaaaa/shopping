@@ -1,0 +1,47 @@
+body {
+    display: flex;
+    flex-direction: column;
+    background-color: dedede;
+    font-family: "Zen Old Mincho", serif;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 15px;
+}
+
+h4 {
+    margin-top: 1%;
+    margin-bottom: 0;
+}
+
+.title {
+    height: 8%;
+}
+
+.content {
+    display: flex;
+    flex-direction: row;
+    height: 92%;
+}
+
+.content-A, .content-B {
+    width: 65vh;
+    padding-top: 4vh;
+    padding-left: 5vh;
+    padding-right: 5vh;
+    background-image: url("../image_h/background.png");
+    background-size: 75vh 90vh;
+    background-repeat: no-repeat;
+    animation: typing 3s steps(23), effect .5s step-end infinite alternate;
+}
+
+@keyframes typing {
+    from {
+        width: 0
+    }
+}
+
+@keyframes effect {
+    50% {
+        border-color: transparent
+    }
+}

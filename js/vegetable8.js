@@ -97,7 +97,7 @@ veges.forEach(vegeInfo => {
 
     //野菜をクリックすると動くよ〜
     vegeElement.addEventListener('click', () => {
-        if (isMoving) return;
+        //if (isMoving) return;
         isMoving = true;
 
         if (animationInterval) {
@@ -179,7 +179,7 @@ function animateFromBox(vegeId) {
     const vegeInfo = veges.find(v => v.id === vegeId);//削除された野菜を見つけ出す
     if (!vegeInfo) return;//例外処理
 
-    if (isMoving) return;
+    //if (isMoving) return;
     isMoving = true;
 
     const vegeElement = vegeInfo.element;
@@ -280,7 +280,7 @@ function hidePopup() {
 
 //かごの中身をクリックしたら中身減るプログラム達
 function DecYam() {
-    if (isMoving) return;
+    //if (isMoving) return;
     if (yam_cnt > 0) {
         yam_cnt--;
         updateCountDisplay();

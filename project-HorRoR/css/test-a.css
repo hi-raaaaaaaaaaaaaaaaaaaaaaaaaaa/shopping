@@ -3,45 +3,124 @@ body {
     flex-direction: column;
     background-color: dedede;
     font-family: "Zen Old Mincho", serif;
-    font-weight: 500;
+    font-weight: 300;
     font-style: normal;
-    font-size: 15px;
+    font-size: 18px
 }
 
 h4 {
-    margin-top: 1%;
+    margin-top: 3%;
+    margin-bottom: .4em;
+    padding-left: 1%;
+    font-weight: 800;
+    font-size: 18px;
+    border-left: 5px solid #000000;
+    border-bottom: 1px solid #000000;
+}
+
+h5 {
+    margin-top: 2%;
     margin-bottom: 0;
+    font-weight: 500;
+    font-size: 18px;
+    text-decoration: underline;
+}
+
+p {
+    margin-block-start: .5em;
+    margin-block-end: .5em;
 }
 
 .title {
-    height: 8%;
+    font-family: "BIZ UDGothic", sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    letter-spacing: 1rem;
+    height: 10%;
+    text-align:center;
 }
 
 .content {
     display: flex;
     flex-direction: row;
-    height: 92%;
+    height: 330%;
+    flex-wrap: wrap;
 }
 
 .content-A, .content-B {
-    width: 65vh;
-    padding-top: 4vh;
-    padding-left: 5vh;
-    padding-right: 5vh;
+    width: 70%;
+    height:48%;
+    padding-top: 3.5%;
+    padding-left: 6%;
+    padding-right: 6%;
     background-image: url("../image_h/background.png");
-    background-size: 75vh 90vh;
+    background-size: 100% 100%;
     background-repeat: no-repeat;
-    animation: typing 3s steps(23), effect .5s step-end infinite alternate;
 }
 
-@keyframes typing {
-    from {
-        width: 0
-    }
+.panel {
+    position: fixed;
+    left: 82%;
+    top: 40%;
+    width: 18%;
+    height: 60%;
+    border: 2px solid #000000;
+    background-color: rgb(255, 255, 255, 0.8);
 }
 
-@keyframes effect {
-    50% {
-        border-color: transparent
-    }
+.panel h2{
+    font-family: "BIZ UDGothic", sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    margin-top: 15%;
+    padding-left: 5%;
+}
+
+.panel h1 {
+    font-family: "BIZ UDGothic", sans-serif;
+    font-weight: 700;
+    font-size: 30px;
+    text-align:right;
+    padding-right: 10%;
+    margin-left: 5%;
+    border-bottom: 2px solid #000000;
+}
+
+button.again {
+    width:90%;
+    height:15%;
+    font-family: "BIZ UDGothic", sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    letter-spacing: .1em;
+    color: #ffffff;
+    text-shadow: 0 0 5px #dec9a1;
+    background: #ce3838;
+    border: 2px solid #7c0000;
+    border-right: 5px solid #7c0000;
+    border-bottom: 5px solid #7c0000;
+    border-radius: .2em;
+    margin-left: 5%;
+    margin-top: 5%;
+}
+
+h1.upside {
+    margin:0;
+    padding: 5%;
+    font-size: 25px;
+    text-align: center;
+    padding-right: 10%;
+    background-color: #d3d3d3;
+}
+
+.ed-num {
+    position: fixed;
+    left: 85%;
+    top: 7%;
+    width: 30%;
+    height: 10%;
+    transform: rotate(-90deg);
+    font-family: "BIZ UDGothic", sans-serif;
+    font-weight: 700;
+    font-size: 15px;
 }

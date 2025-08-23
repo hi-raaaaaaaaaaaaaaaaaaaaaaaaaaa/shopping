@@ -72,7 +72,7 @@ veges.forEach(vegeInfo => {
 
     //野菜をクリックすると動くよ〜
     vegeElement.addEventListener('click', () => {
-        if (isMoving) return;
+        //if (isMoving) return;
         isMoving = true;
 
         if (animationInterval) {
@@ -146,7 +146,7 @@ function animateFromBox(vegeId) {
     const vegeInfo = veges.find(v => v.id === vegeId);//削除された野菜を見つけ出す
     if (!vegeInfo) return;//例外処理
 
-    if (isMoving) return;
+    //if (isMoving) return;
     isMoving = true;
 
     const vegeElement = vegeInfo.element;
@@ -286,3 +286,14 @@ function toFullWidth(str) {
     });
     return str;
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+    // ボタンとリストアイテムにイベントリスナーを追加
+    document.getElementById('check-button').addEventListener('click', ansJudge);
+    document.getElementById('correct-popup-button').addEventListener('click', hidePopup);
+    document.getElementById('wrong-popup-button').addEventListener('click', hidePopup);
+    document.getElementById('list-1').addEventListener('click', DecYam);
+    document.getElementById('list-2').addEventListener('click', DecPotato);
+    document.getElementById('list-3').addEventListener('click', DecGreenpepper);
+    document.getElementById('list-4').addEventListener('click', DecTomato);
+});

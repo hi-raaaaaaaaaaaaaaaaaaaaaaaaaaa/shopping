@@ -1,8 +1,13 @@
 # お買い物ゲーム
 特支５班
 ## タイトル
+###title.html
 
 [title.html](https://hi-raaaaaaaaaaaaaaaaaaaaaaaaaaa.github.io/shopping/title.html)
+
+###次世代タイトルテスト
+
+[test.html](https://hi-raaaaaaaaaaaaaaaaaaaaaaaaaaa.github.io/shopping/test.html)
 
 ## ゲーム
 ### 3つの場合
@@ -22,5 +27,5 @@
 ## testﾃｽﾄテスト
 ### test見るなテストﾐﾙﾅtest見るな
 
-[test.html](https://hi-raaaaaaaaaaaaaaaaaaaaaaaaaaa.github.io/shopping/test.html)
+[test-a.html](https://hi-raaaaaaaaaaaaaaaaaaaaaaaaaaa.github.io/shopping/test-a.html)
 

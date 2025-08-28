@@ -23,7 +23,7 @@
         </div>
 
         <div class="container" id="format">
-            <div style="flex: 8" class="quest">
+            <div style="flex: 5" class="quest">
                 <h2>1. 問題の形式</h2>
                 <h3>どのような形式で問題を出題しますか</h3>
             </div>
@@ -40,7 +40,6 @@
                         </div>
                     </div>
 
-                    <or class="or">または</or>
 
                     <div class="input-container">
                         <input id="chara" class="radio-button" type="radio" name="radio">
@@ -58,7 +57,7 @@
 
         <div class="container" id="options">
             <div style="flex: 5" class="quest">
-                <h2>2. 問題の合計個数</h2>
+                <h2>2. 問題の合計点数</h2>
                 <h3>一回の買物で合計何点の商品を購入しますか</h3>
             </div>
             <div style="flex: 5" class="counter">
@@ -66,7 +65,7 @@
                 <div class="field">
                     <button class="button" id="down-options">－</button>
                     <input type="text" value="1" class="inputtext" id="textbox-options" readonly>
-                    <unit class="unit">個</unit>
+                    <unit class="unit">点</unit>
                     <button class="button" id="up-options">＋</button>
                 </div>
 
@@ -152,7 +151,11 @@
         </div>
 
         <div class="container" id="control">
-            <button class="button-upbottom" id="start">スタート</button>
+            <div class="bubble" style="flex: 2">
+                <h3 class="bubble-r">イラスト形式で<br>0種類陳列されている中から<br>0種類選び、合計点数0点<br>の買い物を始めます</h3>
+            </div>
+
+            <button class="button-upbottom"  style="flex: 3" id="start">スタート</button>
         </div>
 
     </div>

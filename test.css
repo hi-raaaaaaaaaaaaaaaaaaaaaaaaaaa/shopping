@@ -6,6 +6,7 @@ body {
     font-style: normal;
     color: white;
     letter-spacing: 0.3rem;
+    -webkit-tap-highlight-color: transparent;
 }
 
 h1{
@@ -16,15 +17,15 @@ h1{
 h2{
     margin: 0;
     margin-top: 1%;
-    margin-left: 5vw;
-    font-size: clamp(10px, 4vw, 30px);
+    margin-left: 1vw;
+    font-size: clamp(10px, 3vw, 30px);
 }
 
 h3{
-    font-size: clamp(8px, 2vw, 18px);
+    font-size: clamp(8px, 1.5vw, 18px);
     margin-top: 1%;
     margin-bottom: 0;
-    margin-left: 5vw;
+    margin-left: 1vw;
     letter-spacing: 0.2rem;
 }
 
@@ -33,7 +34,7 @@ h4 {
     color: #525252;
     margin-top: 1%;
     margin-bottom: 0;
-    margin-left: 5vw;
+    margin-left: 1vw;
     letter-spacing: 0.1rem;
     line-height: clamp(0.5rem, 2vw, 1.1rem);
     word-break: auto-phrase;
@@ -45,40 +46,64 @@ h4 {
 }
 
 #title {
-    height: 12%;
-    border: 2px solid #ffad08;
+    height: 11%;
     justify-content: center;
 }
 
 #format {
-    height: 15%;
+    height: 10%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    margin-left: 4vw;
+    margin-right: 4vw;
+    border: 2px solid #000000;
+    background-color: #efefef;
 }
 
 
 #type {
-    height: 11%;
-    border-top: 2px dotted #ffad08;
+    height: 10%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    margin-left: 4vw;
+    margin-right: 4vw;
+    border: 2px solid #000000;
+    background-color: #efefef;
 }
 
 #type-disp {
-    height: 11%;
-    border-top: 2px dotted #ffad08;
+    height: 10%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    margin-left: 4vw;
+    margin-right: 4vw;
+    border: 2px solid #000000;
+    background-color: #efefef;
 }
 
 #options {
-    height: 11%;
-    border-top: 2px dotted #ffad08;
+    height: 10%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    margin-left: 4vw;
+    margin-right: 4vw;
+    border: 2px solid #000000;
+    background-color: #efefef;
 }
 
 #difficult {
-    height: 19%;
-    border-top: 2px dotted #ffad08;
+    height: 17%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    margin-left: 4vw;
+    margin-right: 4vw;
+    border: 2px solid #000000;
+    background-color: #efefef;
 }
 
 #control {
     display: flex;
     justify-content: center;
-    border-top: 2px dotted #ffad08;
 }
 
 .quest {
@@ -97,9 +122,9 @@ h4 {
 
 .radio-tile-group .input-container {
     position: relative;
-    margin-top: 2%;
+    margin-top: 2.5%;
+    width: 50%;
     height: 80%;
-    aspect-ratio: 1/1;
 }
 
 .radio-tile-group .input-container .radio-button {
@@ -115,54 +140,53 @@ h4 {
 
 .radio-tile-group .input-container .radio-tile {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
-    width: 65%;
-    height: 65%;
-    border: 2px solid #000000;
-    border-radius: 8px;
+    width: 15vw;
+    height: 30%;
+    border-radius: 5px;
     padding: 1rem;
-    transition: transform 300ms ease;
+    transition: all .15s ease-in-out;
+    background-color: #cdcdcd;
 }
 
 .radio-tile-group .input-container .icon img {
     display: flex;
     fill: #000000;
-    width: 95%;
+    width: 100%;
     height: auto;
 }
 
 .radio-tile-group .input-container .radio-tile-label {
+    width: 400%;
     text-align: center;
-    font-size: clamp(8px, 2vw, 14px);
+    font-size: clamp(8px, 2vw, 30px);
     letter-spacing: 0.05rem;
     font-weight: 600;
     text-transform: uppercase;
-    color: #000000;
+    color: #6d5c5c;
 }
 
 .radio-tile-group .input-container .radio-button:checked + .radio-tile {
-    background-color: #292929;
+    background-color: #ffb829;
     border: 2px solid #292929;
-    color: white;
-    transform: scale(1.1, 1.1);
+    border-bottom: 4px solid #292929;
+    color: #292929;
 }
 
 .radio-tile-group .input-container .radio-button:checked + .radio-tile .icon svg {
-    fill: white;
-    background-color: #292929;
+    background-color: #ffffff;
 }
 
 .radio-tile-group .input-container .radio-button:checked + .radio-tile .radio-tile-label {
-    color: white;
-    background-color: #292929;
+    color: #292929;
 }
 
 .or {
-    font-size: clamp(10px, 3vw, 30px);
-    margin-left: 13%;
-    margin-right: 10%;
+    font-size: clamp(10px, 3vw, 25px);
+    margin-left: 2vw;
+    margin-right: 1.8vw;
     margin-top: 10%;
 }
 
@@ -181,23 +205,23 @@ h4 {
     font-family: "BIZ UDPGothic", sans-serif;
     font-weight: 700;
     color:rgba(0, 0, 0, 0.76) ;
-    font-size: 45px;
+    font-size: clamp(10px, 3.5vw, 55px);
     border: 2px solid #000000;
     border-left: 0;
     border-right: 0;
     width: 10%;
     text-align: left;
-    padding-left: 15%;
+    padding-left: 10%;
 }
 
 .unit {
     display: flex;
-    font-size: clamp(8px, 3vw, 30px);
+    font-size: clamp(8px, 2vw, 40px);
     border: 2px solid #292929;
     border-left: 0;
     border-right: 0;
     padding-right: 5%;
-    padding-top: 2%;
+    padding-top: 1vw;
     align-items: center;
     width: 20%;
     justify-content: center;
@@ -208,7 +232,7 @@ h4 {
     font-family: "BIZ UDPGothic", sans-serif;
     font-weight: 700;
     color:rgba(0, 0, 0, 0.76) ;
-    font-size: 45px;
+    font-size: clamp(10px, 3.5vw, 55px);
     cursor: pointer;
     padding: 0 6%;
     background-color: white;
@@ -249,17 +273,15 @@ h4 {
     position: relative;
     display: flex;
     flex-wrap: wrap;
-    border-radius: .5rem;
     background-color: #fff;
     box-sizing: border-box;
-    border: 2px solid #000000;
     padding: .1rem;
     margin: 1%;
 }
 
 .difficult-inputs .d-radio {
     flex: 1 1 auto;
-    width: 50%
+    width: 40%
 }
 
 .difficult-inputs .d-radio input {
@@ -269,7 +291,6 @@ h4 {
 .difficult-inputs .d-radio .name {
     display: flex;
     cursor: pointer;
-
     border-radius: 0.5rem;
     border: none;
     padding: .4rem .4rem;
@@ -339,4 +360,41 @@ h4 {
     height: 100vh;
     background-color: #ffffff; /* ゲーム設定画面の背景色 */
     color: rgb(0, 0, 0);
+}
+
+.bubble-r {
+    position: relative;
+    display: inline-block;
+    margin-right: 33px;
+    padding: 24px 16px;
+    border: 2px solid #000000;
+    border-radius: 10px;
+    background-color: #ffffff;
+    text-align: left;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #000000;
+}
+
+.bubble-r::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 0;
+    border-style: solid;
+    border-width: 15.5px 0 15.5px 33px;
+    border-color: transparent transparent transparent #000000;
+    translate: 100% -50%;
+}
+
+.bubble-r::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 0;
+    border-style: solid;
+    border-width: 13.3px 0 13.3px 28.3px;
+    border-color: transparent transparent transparent #ffffff;
+    translate: 100% -50%;
 }

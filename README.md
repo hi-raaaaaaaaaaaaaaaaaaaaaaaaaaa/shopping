@@ -27,5 +27,5 @@
 ## testﾃｽﾄテスト
 ### test見るなテストﾐﾙﾅtest見るな
 
-[test-a.html](https://hi-raaaaaaaaaaaaaaaaaaaaaaaaaaa.github.io/shopping/test-a.html)
+[test-a.html](https://hi-raaaaaaaaaaaaaaaaaaaaaaaaaaa.github.io/shopping/project-HorRoR/test-a.html)
 

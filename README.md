@@ -27,5 +27,7 @@
 ## testﾃｽﾄテスト
 ### test見るなテストﾐﾙﾅtest見るな
 
+#### edNo.1-佐藤　優太
+
 [test-a.html](https://hi-raaaaaaaaaaaaaaaaaaaaaaaaaaa.github.io/shopping/project-HorRoR/test-a.html)
 

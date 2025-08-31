@@ -21,11 +21,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // 新しいカルーセルUIの要素を取得
     const downbuttonDiff = document.getElementById('down-diff');
     const upbuttonDiff = document.getElementById('up-diff');
+    const carouselItemElm = document.querySelector('.carousel-item');
     const courseNameElm = document.getElementById('course-name');
     const difficultyNameElm = document.getElementById('difficulty-name');
     const difficultyDescElm = document.getElementById('difficulty-desc');
     const carouselContainerElm = document.getElementById('difficult-carousel');
     const ribbonElm = document.querySelector('.ribbon'); // リボンの要素を取得
+    const carouselBgElm = document.querySelector('.carousel-bg-container');
 
     // 難易度、コース名、説明、背景画像パス、リボン色クラスをまとめた配列
     const difficulties = [
@@ -39,15 +41,36 @@ document.addEventListener('DOMContentLoaded', () => {
     // UIを更新する関数
     const updateUI = (index) => {
         const difficulty = difficulties[index];
-        // 難易度とコース名の表示を入れ替え
+
+        // 新しい画像に切り替える前に、0.5秒の遅延を設定
+        setTimeout(() => {
+            // フェードアウトを開始
+            carouselBgElm.classList.add('fade-out');
+
+            // フェードアウトが完了するのを待ってから（0.5秒後）、画像を更新してフェードイン
+            setTimeout(() => {
+                // 背景画像のパスを動的に設定
+                carouselBgElm.style.backgroundImage = `url('image/${difficulty.bg}')`;
+                // フェードアウトクラスを削除してフェードイン
+                carouselBgElm.classList.remove('fade-out');
+            }, 300); // CSSのtransition時間と合わせる
+        }, 300); // 0.5秒の待機時間
+
+        // 難易度とコース名、説明文の表示を更新
         courseNameElm.textContent = difficulty.course;
         difficultyNameElm.textContent = `難易度: ${difficulty.difficulty}`;
         difficultyDescElm.textContent = difficulty.desc;
-        // 背景画像のパスを動的に設定
-        carouselContainerElm.style.backgroundImage = `url('image/${difficulty.bg}')`;
 
         // リボンのクラスを切り替えて色を変更
         ribbonElm.className = `ribbon ${difficulty.colorClass}`;
+    };
+
+    // アニメーションを適用する関数
+    const animateCarousel = () => {
+        carouselItemElm.classList.remove('slide-right');
+        // 短い遅延を設けてクラスの再適用を有効にする
+        void carouselItemElm.offsetWidth;
+        carouselItemElm.classList.add('slide-right');
     };
 
     // 初期表示
@@ -111,13 +134,47 @@ document.addEventListener('DOMContentLoaded', () => {
     downbuttonDiff.addEventListener('click', (event) => {
         currentDiffIndex = (currentDiffIndex - 1 + difficulties.length) % difficulties.length;
         updateUI(currentDiffIndex);
+        animateCarousel();
     });
 
     // 難易度を増やすボタンの処理 (右矢印)
     upbuttonDiff.addEventListener('click', (event) => {
         currentDiffIndex = (currentDiffIndex + 1) % difficulties.length;
         updateUI(currentDiffIndex);
+        animateCarousel();
     });
+
+    // タッチ操作を追加
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    carouselContainerElm.addEventListener('touchstart', (event) => {
+        touchStartX = event.touches[0].clientX;
+    });
+
+    carouselContainerElm.addEventListener('touchend', (event) => {
+        touchEndX = event.changedTouches[0].clientX;
+        handleSwipe();
+    });
+
+    const handleSwipe = () => {
+        const swipeDistance = touchStartX - touchEndX;
+        const minSwipeDistance = 50; // スワイプと認識する最小距離
+
+        if (swipeDistance > minSwipeDistance) {
+            // 左スワイプ
+            currentDiffIndex = (currentDiffIndex + 1) % difficulties.length;
+            updateUI(currentDiffIndex);
+            animateCarousel();
+        } else if (swipeDistance < -minSwipeDistance) {
+            // 右スワイプ
+            currentDiffIndex = (currentDiffIndex - 1 + difficulties.length) % difficulties.length;
+            updateUI(currentDiffIndex);
+            animateCarousel();
+        } else {
+            return; // スワイプと認識しない場合は何もしない
+        }
+    };
 
     startButton.addEventListener('click', (event) => {
         const ilustJudgeElm = document.getElementById('ilust');
@@ -126,10 +183,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const typeJudgeElm = document.getElementById('textbox-type');
         const typedispJudgeElm = document.getElementById('textbox-type-disp');
         // 難易度の値を取得
-        const difficultJudge = difficulties[currentDiffIndex].difficulty;
+        const courseJudge = difficulties[currentDiffIndex].course;
 
         console.warn(ilustJudgeElm.checked, charaJudgeElm.checked, optJudgeElm.value, typeJudgeElm.value, typedispJudgeElm.value,
-                        difficultJudge);
+                        courseJudge);
     })
-
 });

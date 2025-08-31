@@ -17,10 +17,10 @@
 
         <div class="container" id="format">
             <div style="flex: 5" class="quest">
-                <h2>1. 問題の形式</h2>
-                <h3>どのような形式で問題を出題しますか</h3>
+                <h2 class="skew30">1. 問題の形式</h2>
+                <h3 class="skew30">どのような形式で問題を出題しますか</h3>
             </div>
-            <div style="flex: 5" class="format-change">
+            <div style="flex: 7" class="format-change">
                 <div class="radio-tile-group">
 
                     <div class="input-container">
@@ -49,8 +49,8 @@
 
         <div class="container" id="options">
             <div style="flex: 5" class="quest">
-                <h2>2. 問題の合計点数</h2>
-                <h3>一回の買物で合計何点の商品を購入しますか</h3>
+                <h2 class="skew30">2. 問題の合計点数</h2>
+                <h3 class="skew30">一回の買物で合計何点の商品を購入しますか</h3>
             </div>
             <div style="flex: 7" class="counter">
                 <div class="field">
@@ -65,7 +65,7 @@
                     </div>
 
                     <div style="flex: 4" class="message-cnt">
-                        <h4>ここで選んだ数字によって設定３、設定４の値が制限されます。</h4>
+                        <h4 class="message-cnt">ここで選んだ数字によって設定３、設定４の値が制限されます。</h4>
                     </div>
 
                 </div>
@@ -74,8 +74,8 @@
 
         <div class="container" id="type">
             <div style="flex: 5" class="quest">
-                <h2>3. 問題の種類</h2>
-                <h3>問題で要求される品目はいくつにしますか</h3>
+                <h2 class="skew30">3. 問題の種類</h2>
+                <h3 class="skew30">問題で要求される品目はいくつにしますか</h3>
             </div>
             <div style="flex: 7" class="counter">
                 <div class="field">
@@ -90,7 +90,7 @@
                     </div>
 
                     <div style="flex: 4" class="message-cnt">
-                        <h4>問題の合計個数（設定２）より上 ＆ ４より上の数値にはなりません</h4>
+                        <h4 class="message-cnt">問題の合計個数（設定２）より上 ＆ ４より上の数値にはなりません</h4>
                     </div>
 
                 </div>
@@ -99,8 +99,8 @@
 
         <div class="container" id="type-disp">
             <div style="flex: 5" class="quest">
-                <h2>4. 選択肢の種類</h2>
-                <h3>陳列する品目はいくつにしますか</h3>
+                <h2 class="skew30">4. 選択肢の種類</h2>
+                <h3 class="skew30">陳列する品目はいくつにしますか</h3>
             </div>
             <div style="flex: 7" class="counter">
                 <div class="field">
@@ -115,7 +115,7 @@
                     </div>
 
                     <div style="flex: 4" class="message-cnt">
-                        <h4>問題の種類（設定３）より下の数値にはなりません</h4>
+                        <h4 class="message-cnt">問題の種類（設定３）より下の数値にはなりません</h4>
                     </div>
 
                 </div>
@@ -124,21 +124,22 @@
 
         <div class="container" id="difficult">
             <div style="flex: 5" class="quest">
-                <h2>5. 難易度</h2>
-                <h3>商品の判別の難しさを変更しますか</h3>
-                <h4>矢印をタップすると操作できます</h4>
+                <h2 class="skew30">5. 難易度</h2>
+                <h3 class="skew30">商品の判別の難しさを変更しますか</h3>
+                <h4 class="skew30">矢印をタップすると操作できます</h4>
             </div>
             <div style="flex: 7" class="carousel">
                 <div class="carousel-nav left">
                     <button class="carousel-btn" id="down-diff">◀︎</button>
                 </div>
                 <div class="carousel-item-container" id="difficult-carousel">
+                    <div class="carousel-bg-container"></div>
                     <div class="carousel-item">
-                        <div class="ribbon">
-                            <h3 id="difficulty-name"></h3>
-                        </div>
-                        <h2 id="course-name"></h2>
-                        <p id="difficulty-desc"></p>
+                            <div class="ribbon">
+                                <h3 id="difficulty-name"></h3>
+                            </div>
+                            <h2 id="course-name"></h2>
+                            <p id="difficulty-desc"></p>
                     </div>
                 </div>
                 <div class="carousel-nav right">

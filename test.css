@@ -19,13 +19,14 @@ h2{
     margin-top: 1%;
     margin-left: 1vw;
     font-size: clamp(10px, 3vw, 30px);
+    letter-spacing: 0.4rem;
 }
 
 h3{
     font-size: clamp(8px, 1.5vw, 18px);
     margin-top: 1%;
+    margin-left: 2.5vw;
     margin-bottom: 0;
-    margin-left: 1vw;
     letter-spacing: 0.2rem;
 }
 
@@ -34,7 +35,7 @@ h4 {
     color: #525252;
     margin-top: 1%;
     margin-bottom: 0;
-    margin-left: 1vw;
+    margin-left: 3.6vw;
     letter-spacing: 0.1rem;
     line-height: clamp(0.5rem, 2vw, 1.1rem);
     word-break: auto-phrase;
@@ -47,16 +48,17 @@ h4 {
 #title {
     height: 11%;
     justify-content: center;
+    margin-bottom: 1%;
 }
 
 #format, #type, #type-disp, #options, #difficult {
     height: 10%;
-    margin-top: 1%;
-    margin-bottom: 1%;
+    width: 92vw;
+    margin-bottom: 1.5%;
     margin-left: 4vw;
-    margin-right: 4vw;
     border: 2px solid #000000;
     background-color: #efefef;
+    overflow: hidden;
 }
 
 #difficult {
@@ -71,9 +73,34 @@ h4 {
 }
 
 .quest {
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    color: #efefef;
+    background-image: repeating-linear-gradient(90deg, #454f65, #454f65 10px, #4e5667 10px, #4e5667 20px);
+    background-size: 50%;
+    -webkit-transform: skewX(-30deg);
+    -moz-transform: skewX(-30deg);
+    transform: skewX(-30deg);
+    margin-right: 0;
+    &::before{
+        content: "";
+        position: absolute;
+        left: -80%;
+        width: 100%;
+        height: 100%;
+        background-image: repeating-linear-gradient(90deg, #454f65, #454f65 10px, #4e5667 10px, #4e5667 20px);
+        z-index: -1;
+    }
+}
+
+.skew30 {
+    transform: skewX(30deg);
+}
+
+.quest h4 {
+    color: #cacaca
 }
 
 .radio-tile-group {
@@ -81,12 +108,13 @@ h4 {
     justify-content: left;
     width:100%;
     height:100%;
+    margin-left: 8vw;
 }
 
 .radio-tile-group .input-container {
     position: relative;
     margin-top: 2.5%;
-    width: 50%;
+    width: 45%;
     height: 80%;
 }
 
@@ -124,7 +152,7 @@ h4 {
 .radio-tile-group .input-container .radio-tile-label {
     width: 400%;
     text-align: center;
-    font-size: clamp(8px, 3vw, 28px);
+    font-size: clamp(8px, 3vw, 25px);
     letter-spacing: .3rem;
     font-weight: 600;
     text-transform: uppercase;
@@ -133,7 +161,7 @@ h4 {
 
 .radio-tile-group .input-container .radio-button:checked + .radio-tile {
     margin-top: -3px;
-    background-image: repeating-linear-gradient(45deg, #ffc72b, #ffc72b 10px, #ffb829 10px, #ffb829 20px);
+    background-image: repeating-linear-gradient(120deg, #ffc72b, #ffc72b 10px, #ffb829 10px, #ffb829 20px);
     border: 2px solid #292929;
     border-bottom: 4px solid #292929;
     color: #292929;
@@ -214,7 +242,8 @@ h4 {
 }
 
 .message-cnt {
-    margin-right: 2vw;
+    margin-right: 1.5vw;
+    margin-left: 0;
 }
 
 .button-upbottom {
@@ -287,7 +316,7 @@ h4 {
     flex-direction: column;
     width: 100vw;
     height: 100vh;
-    background-color: #ffffff;
+    background-color: #fff8e5;
     color: rgb(0, 0, 0);
 }
 
@@ -362,12 +391,28 @@ h4 {
     position: relative;
     border: 2px solid #000000;
     border-radius: .5em;
-    background-size: cover;
-    background-position: center;
     background-color: #ffffff;
+    overflow: hidden;
+}
+
+.carousel-bg-container {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: auto 100%;
+    background-repeat: no-repeat;
+    background-position: left;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.fade-out {
+    opacity: 0;
 }
 
 .carousel-item {
+    position:absolute;
+    top: 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -378,6 +423,23 @@ h4 {
     padding: 0;
     box-sizing: border-box;
     color: black;
+    transition: transform 0.5s ease;
+}
+
+/* スライドアニメーション */
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.slide-right {
+    animation: slideInRight 0.5s forwards;
 }
 
 .ribbon {
@@ -387,11 +449,11 @@ h4 {
     height: 20%;
     clip-path: polygon(100% 0, 100% 50%, 100% 100%, 10% 100%, 0% 50%, 10% 0);
     padding: 1%;
-    padding-left: 30%;
+    padding-left: 20%;
     padding-right: 5%;
     margin-bottom: 1%;
     align-items: center;
-    transition: background-color 0.3s ease;
+    transition: background-color .3s ease;
 }
 
 /* 難易度名 */
@@ -417,23 +479,23 @@ h4 {
     margin: 0;
     margin-bottom: 1%;
     padding-right: 2vw;
-    letter-spacing: 0.2rem;
+    letter-spacing: 0.1rem;
 }
 
 
 /* 難易度ごとのリボンの色 */
 .ribbon-vegetable {
-    background-image: repeating-linear-gradient(45deg, #387628, #387628 10px, #418a2f 10px, #418a2f 20px);
+    background-image: repeating-linear-gradient(30deg, #387628, #387628 10px, #418a2f 10px, #418a2f 20px);
 }
 
 .ribbon-sweets {
-    background-image: repeating-linear-gradient(45deg, #2a5678, #2a5678 10px, #2f638a 10px, #2f638a 20px);
+    background-image: repeating-linear-gradient(30deg, #2a5678, #2a5678 10px, #2f638a 10px, #2f638a 20px);
 }
 
 .ribbon-drink {
-    background-image: repeating-linear-gradient(45deg, #827900, #827900 10px, #8f8600 10px, #8f8600 20px);
+    background-image: repeating-linear-gradient(30deg, #827900, #827900 10px, #8f8600 10px, #8f8600 20px);
 }
 
 .ribbon-meat {
-    background-image: repeating-linear-gradient(45deg, #76003f, #76003f 10px, #8f004c 10px, #8f004c 20px);
+    background-image: repeating-linear-gradient(30deg, #76003f, #76003f 10px, #8f004c 10px, #8f004c 20px);
 }

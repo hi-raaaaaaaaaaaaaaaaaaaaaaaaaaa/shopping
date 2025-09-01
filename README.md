@@ -29,5 +29,5 @@
 
 #### edNo.1-佐藤　優太
 
-[test-a.html](https://hi-raaaaaaaaaaaaaaaaaaaaaaaaaaa.github.io/shopping/project-HorRoR/test-a.html)
+[ed1.html](https://hi-raaaaaaaaaaaaaaaaaaaaaaaaaaa.github.io/shopping/project-HorRoR/ed1.html)
 

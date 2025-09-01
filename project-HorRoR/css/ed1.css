@@ -18,7 +18,7 @@
     font-family: "Zen Old Mincho", serif;
     font-weight: 300;
     font-style: normal;
-    font-size: 18px;
+    font-size: clamp(5px, 2vh, 18px);
 }
 
 .ipad {
@@ -35,10 +35,10 @@
 
 .motherb {
     width:calc(100vw - 130vh);
-    margin-top: 2vh;
     margin-left: -7vh;
+    margin-top: 1vh;
     background-image: url(../image_h/ipad-right.png);
-    background-size: 73vh;
+    background-size: 81.5vh;
     background-position: right;
     background-repeat: no-repeat;
     z-index: -1;
@@ -49,7 +49,7 @@ h4 {
     margin-bottom: .4em;
     padding-left: 1%;
     font-weight: 800;
-    font-size: 18px;
+    font-size: clamp(5px, 2vh, 18px);
     border-left: 5px solid #000000;
     border-bottom: 1px solid #000000;
 }
@@ -58,7 +58,7 @@ h5 {
     margin-top: 2%;
     margin-bottom: 0;
     font-weight: 500;
-    font-size: 18px;
+    font-size: clamp(5px, 2vh, 18px);
     text-decoration: underline;
 }
 
@@ -70,8 +70,8 @@ p {
 .title {
     font-family: "BIZ UDGothic", sans-serif;
     font-weight: 700;
-    font-size: 20px;
-    letter-spacing: 1rem;
+    font-size: clamp(5px, 2vh, 20px);
+    letter-spacing: clamp(.1rem, 2vh, 1rem);
     height: 10%;
     padding-top: 8%;
     text-align:center;
@@ -110,7 +110,7 @@ p {
 .panel h2{
     font-family: "BIZ UDGothic", sans-serif;
     font-weight: 700;
-    font-size: 18px;
+    font-size: clamp(5px, 2vh, 18px);
     margin-top: 15%;
     padding-left: 5%;
 }
@@ -118,9 +118,10 @@ p {
 .panel h1 {
     font-family: "BIZ UDGothic", sans-serif;
     font-weight: 700;
-    font-size: 28px;
+    font-size: clamp(8px, 3vh, 28px);
     text-align:right;
     padding-right: 15%;
+    margin-bottom: 0;
     margin-left: 5%;
     border-bottom: 2px solid #000000;
 }
@@ -130,7 +131,7 @@ button.again {
     height:15%;
     font-family: "BIZ UDGothic", sans-serif;
     font-weight: 700;
-    font-size: 18px;
+    font-size: clamp(5px, 1.5vh, 18px);
     letter-spacing: .1em;
     color: #ffffff;
     text-shadow: 0 0 5px #dec9a1;
@@ -139,14 +140,14 @@ button.again {
     border-right: 5px solid #7c0000;
     border-bottom: 5px solid #7c0000;
     border-radius: .2em;
-    margin-left: 7%;
-    margin-top: 5%;
+    margin-left: 10%;
+    margin-top: 1.9vh;
 }
 
 h1.upside {
     margin:0;
     padding: 5%;
-    font-size: 25px;
+    font-size: clamp(10px, 3vh, 25px);
     text-align: center;
     padding-right: 10%;
     background-color: #d3d3d3;
@@ -162,7 +163,7 @@ h1.upside {
     border-radius: 2em;
     font-family: "BIZ UDGothic", sans-serif;
     font-weight: 700;
-    font-size: 15px;
+    font-size: clamp(5px, 1.7vh, 15px);
     text-align: right;
     background-color: #fff;
     z-index: 3;

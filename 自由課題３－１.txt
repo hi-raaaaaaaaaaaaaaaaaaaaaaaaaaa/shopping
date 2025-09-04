@@ -1,0 +1,64 @@
+#include "board.h"
+
+void setup(){
+  PORTB = LED_LEFT;
+  DDRB = LED_LEFT | LED_RIGHT;
+  DDRD = 0xff;
+  DDRC = 0x3f;
+}
+
+void loop() {
+  static uint8_t STM[] = {0x20, 0x10, 0x08, 0x04};
+  static uint8_t NOT_STM[] = {0x04, 0x08, 0x10, 0x20};
+  static int cnt = 0;
+
+  display(cnt);
+
+  if(cnt < 3){
+    if(red_push()){
+      for(int i = 0; (i < 480) & (cnt < 3); i++){
+        PORTC = STM[i & 3];
+        delay(3);
+      }
+    cnt++;
+    }
+  }
+  
+  if(cnt > 0){
+    if(green_push()){
+      for(int i = 0; (i < 480) ; i++){
+       PORTC = NOT_STM[i & 3];
+       delay(3);
+      }
+    cnt--;
+    }
+  }
+  
+  delay(3);
+}
+
+bool red_push(){
+  static int before = 1;
+  int now = PINB & SW_RED;
+  if (before != now) {
+    before = now;
+    if (now == 0) return true;
+  }
+  return false;
+}
+
+bool green_push(){
+  static int before = 1;
+  int now = PINB & SW_GREEN;
+  if (before != now) {
+    before = now;
+    if (now == 0) return true;
+  }
+  return false;
+}
+
+void display(int n) {
+  static uint8_t pat[] = {0x3f,0x06,0x5b,0x4f,0x66,0x6d,0x7d,0x27,0x7f,0x6f};
+  PORTD = pat[n % 10];
+  PORTB = LED_LEFT;
+}

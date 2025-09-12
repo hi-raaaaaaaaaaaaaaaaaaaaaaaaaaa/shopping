@@ -23,11 +23,3 @@
 ### 8つの場合
 
 [game8.html](https://hi-raaaaaaaaaaaaaaaaaaaaaaaaaaa.github.io/shopping/game8.html)
-
-<!--## testﾃｽﾄテスト
-//### test見るなテストﾐﾙﾅtest見るな
-
-//#### edNo.1-佐藤　優太
-
-//[ed1.html](https://hi-raaaaaaaaaaaaaaaaaaaaaaaaaaa.github.io/shopping/project-HorRoR/ed1.html)->
-

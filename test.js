@@ -76,6 +76,19 @@ document.addEventListener('DOMContentLoaded', () => {
     // 初期表示
     updateUI(currentDiffIndex);
 
+    // 画面がタップされたときの処理
+    titleScreen.addEventListener('click', () => {
+        // 背景を上方向にスライドさせるクラスを追加
+        gameBackground.classList.add('slide-up');
+        pressStart.style.display = 'none'; // Press Start テキストを非表示にする
+
+        // アニメーションが完了した後にゲーム設定を表示
+        gameBackground.addEventListener('transitionend', () => {
+            titleScreen.style.display = 'none'; // タイトル画面全体を非表示にする
+            gameSettings.style.display = 'flex'; // ゲーム設定を表示する
+        }, { once: true }); // イベントリスナーを一度だけ実行
+    });
+
     // ボタンが押されたらカウント減(個数)
     downbuttonOpt.addEventListener('click', (event) => {
         //1以下にはならないようにする
@@ -177,7 +190,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     startButton.addEventListener('click', (event) => {
-        const ilustJudgeElm = document.getElementById('ilust');
+        const pictoJudgeElm = document.getElementById('picto');
         const charaJudgeElm = document.getElementById('chara');
         const optJudgeElm = document.getElementById('textbox-options');
         const typeJudgeElm = document.getElementById('textbox-type');
@@ -185,7 +198,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // 難易度の値を取得
         const courseJudge = difficulties[currentDiffIndex].course;
 
-        console.warn(ilustJudgeElm.checked, charaJudgeElm.checked, optJudgeElm.value, typeJudgeElm.value, typedispJudgeElm.value,
+        console.warn(pictoJudgeElm.checked, charaJudgeElm.checked, optJudgeElm.value, typeJudgeElm.value, typedispJudgeElm.value,
                         courseJudge);
     })
 });

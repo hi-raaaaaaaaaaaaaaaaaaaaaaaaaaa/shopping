@@ -248,19 +248,20 @@ h4 {
 
 .button-upbottom {
     font-family: "BIZ UDPGothic", sans-serif;
-    font-weight: 700;
-    color: rgba(0, 0, 0, 0.76);
+    font-weight: 800;
+    color: rgb(43, 43, 43);
     font-size: 45px;
     cursor: pointer;
     padding: 0 5%;
+    margin-right: 5%;
     letter-spacing: 1rem;
-    background-color: white;
-    border: 2px solid #000000;
-    border-left: 0;
-    border-right: 0;
+    background-image: repeating-linear-gradient(120deg, #dac5ff, #dac5ff 10px, #d1b6ff 10px, #d1b6ff 20px);
+    border: 4px solid rgba(51, 51, 51, 1);
+    box-shadow: 8px 8px 0px 0px rgba(51, 51, 51, 1);
     outline: 0;
     height: 60%;
     margin-top: 1.5rem;
+    text-shadow: 0 0 10px #ffffff;
 }
 
 #title-screen {

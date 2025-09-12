@@ -189,14 +189,3 @@ document.addEventListener('DOMContentLoaded', () => {
                         courseJudge);
     })
 });
-
- titleScreen.addEventListener('click', () => {
-        // 背景を上方向にスライドさせるクラスを追加
-        gameBackground.classList.add('slide-up');
-        pressStart.style.display = 'none'; // Press Start テキストを非表示にする
-@@ -23,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
-            titleScreen.style.display = 'none'; // タイトル画面全体を非表示にする
-            gameSettings.style.display = 'flex'; // ゲーム設定を表示する
-        }, { once: true }); // イベントリスナーを一度だけ実行
-    });
-    });

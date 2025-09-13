@@ -1,11 +1,11 @@
 # お買い物ゲーム
 特支５班
 ## タイトル
-###title.html
+### title.html
 
 [title.html](https://hi-raaaaaaaaaaaaaaaaaaaaaaaaaaa.github.io/shopping/title.html)
 
-###次世代タイトルテスト
+### 次世代タイトルテスト
 
 [test.html](https://hi-raaaaaaaaaaaaaaaaaaaaaaaaaaa.github.io/shopping/test.html)
 

@@ -12,7 +12,11 @@ body {
 h1{
     font-size: clamp(10px, 5vw, 35px);
     text-align: center;
+    -webkit-text-stroke: 8px #77108e;
+    paint-order: stroke;
 }
+
+
 
 h2{
     margin: 0;
@@ -46,9 +50,11 @@ h4 {
 }
 
 #title {
-    height: 11%;
+    height: 10%;
     justify-content: center;
-    margin-bottom: 1%;
+    margin-bottom: 2%;
+    color: #ffffff;
+    background-image: repeating-linear-gradient(120deg, #b931d7, #b931d7 40px, #b303db 10px, #b303db 80px);
 }
 
 #format, #type, #type-disp, #options, #difficult {
@@ -100,7 +106,7 @@ h4 {
 }
 
 .quest h4 {
-    color: #cacaca
+    color: #dfdfdf
 }
 
 .radio-tile-group {
@@ -156,7 +162,7 @@ h4 {
     letter-spacing: .3rem;
     font-weight: 600;
     text-transform: uppercase;
-    color: #463e3e;
+    color: #313131;
 }
 
 .radio-tile-group .input-container .radio-button:checked + .radio-tile {
@@ -164,7 +170,7 @@ h4 {
     background-image: repeating-linear-gradient(120deg, #ffc72b, #ffc72b 10px, #ffb829 10px, #ffb829 20px);
     border: 2px solid #292929;
     border-bottom: 4px solid #292929;
-    color: #292929;
+    color: #000000;
 }
 
 .radio-tile-group .input-container .radio-button:checked + .radio-tile .icon svg {
@@ -172,7 +178,7 @@ h4 {
 }
 
 .radio-tile-group .input-container .radio-button:checked + .radio-tile .radio-tile-label {
-    color: #292929;
+    color: #000000;
 }
 
 .or {
@@ -209,7 +215,7 @@ h4 {
 .inputtext {
     font-family: "BIZ UDPGothic", sans-serif;
     font-weight: 700;
-    color:rgba(0, 0, 0, 0.76) ;
+    color:rgb(0, 0, 0) ;
     font-size: clamp(10px, 3.5vw, 55px);
     width: 10%;
     text-align: left;
@@ -232,7 +238,7 @@ h4 {
 .button {
     font-family: "BIZ UDPGothic", sans-serif;
     font-weight: 700;
-    color:rgba(0, 0, 0, 0.76) ;
+    color:rgb(0, 0, 0) ;
     font-size: clamp(10px, 3.5vw, 55px);
     cursor: pointer;
     padding: 0 3%;
@@ -248,20 +254,20 @@ h4 {
 
 .button-upbottom {
     font-family: "BIZ UDPGothic", sans-serif;
-    font-weight: 800;
-    color: rgb(43, 43, 43);
-    font-size: 45px;
+    font-weight: 700;
+    color: rgb(0, 0, 0);
+    font-size: 43px;
     cursor: pointer;
     padding: 0 5%;
     margin-right: 5%;
     letter-spacing: 1rem;
-    background-image: repeating-linear-gradient(120deg, #dac5ff, #dac5ff 10px, #d1b6ff 10px, #d1b6ff 20px);
-    border: 4px solid rgba(51, 51, 51, 1);
-    box-shadow: 8px 8px 0px 0px rgba(51, 51, 51, 1);
+    background-image: repeating-linear-gradient(120deg, #ede23f, #ede23f 10px, #fff129 10px, #fff129 20px);
+    border: 4px solid rgb(0, 0, 0);
+    box-shadow: 8px 8px 0px 0px rgb(88, 88, 88);
     outline: 0;
     height: 60%;
     margin-top: 1.5rem;
-    text-shadow: 0 0 10px #ffffff;
+
 }
 
 #title-screen {
@@ -317,22 +323,24 @@ h4 {
     flex-direction: column;
     width: 100vw;
     height: 100vh;
-    background-color: #fff8e5;
+    background-color: #fbebff;
     color: rgb(0, 0, 0);
 }
 
 .bubble-r {
     position: relative;
+    width: 70%;
     display: inline-block;
-    margin-right: 33px;
-    padding: 24px 16px;
+    padding: 1vw;
+    padding-left: 1.5vw;
+    margin-left: 4vw;
     border: 2px solid #000000;
     border-radius: 10px;
     background-color: #ffffff;
     text-align: left;
-    font-size: 16px;
+    font-size: clamp(8px, 1.5vw, 16px);
     font-weight: 400;
-    line-height: 1.5;
+    line-height: 1.5rem;
     color: #000000;
 }
 

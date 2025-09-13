@@ -28,6 +28,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const carouselContainerElm = document.getElementById('difficult-carousel');
     const ribbonElm = document.querySelector('.ribbon'); // リボンの要素を取得
     const carouselBgElm = document.querySelector('.carousel-bg-container');
+    
+    // 問題形式のラジオボタンを取得
+    const pictoRadio = document.getElementById('picto');
+    const charaRadio = document.getElementById('chara');
 
     // 難易度、コース名、説明、背景画像パス、リボン色クラスをまとめた配列
     const difficulties = [
@@ -73,8 +77,30 @@ document.addEventListener('DOMContentLoaded', () => {
         carouselItemElm.classList.add('slide-right');
     };
 
+    // 吹き出しのテキストを更新する関数
+    const updateBubble = () => {
+        // 1. 問題の形式
+        const formatValue = pictoRadio.checked ? '画像' : '文字';
+
+        // 4. 選択肢の種類
+        const optionsValue = document.getElementById('textbox-options').value;
+
+        // 3. 問題の種類
+        const typesValue = document.getElementById('textbox-type').value;
+
+        // 2. 問題の合計点数
+        const totalPointsValue = document.getElementById('textbox-type-disp').value;
+
+        // 吹き出しの要素
+        const bubbleText = document.querySelector('.bubble-r');
+        
+        // 吹き出しのテキストを更新
+        bubbleText.innerHTML = `${formatValue}形式で<br>${optionsValue}種類陳列されている中から<br>${typesValue}種類選び、合計点数${totalPointsValue}点<br>の買い物を始めます`;
+    };
+
     // 初期表示
     updateUI(currentDiffIndex);
+    updateBubble(); // 吹き出しの初期値を設定
 
     // 画面がタップされたときの処理
     titleScreen.addEventListener('click', () => {
@@ -89,69 +115,68 @@ document.addEventListener('DOMContentLoaded', () => {
         }, { once: true }); // イベントリスナーを一度だけ実行
     });
 
-    // ボタンが押されたらカウント減(個数)
-    downbuttonOpt.addEventListener('click', (event) => {
-        //1以下にはならないようにする
+    // 各ボタンにイベントリスナーを追加して、クリック時に吹き出しを更新
+    downbuttonOpt.addEventListener('click', () => {
         if(textOpt.value > 1) {
             textOpt.value--;
         }
         if(textType.value > textOpt.value) {
             textType.value--;
         }
+        updateBubble();
     });
 
-    //ボタンが押されたらカウント増
-    upbuttonOpt.addEventListener('click', (event) => {
+    upbuttonOpt.addEventListener('click', () => {
         if(textOpt.value < 8) {
             textOpt.value++;
         }
-    })
+        updateBubble();
+    });
 
-    //ボタンが押されたらカウント減(種類)
-    downbuttonType.addEventListener('click', (event) => {
-        //1以下にはならないようにする
+    downbuttonType.addEventListener('click', () => {
         if(textType.value > 1) {
             textType.value--;
         }
+        updateBubble();
     });
 
-    //ボタンが押されたらカウント増
-    upbuttonType.addEventListener('click', (event) => {
-        //選択肢の数以下にはならないようにする
+    upbuttonType.addEventListener('click', () => {
         if(textType.value < textOpt.value && textType.value < 4) {
             textType.value++;
         }
-
         if(textTypeDisp.value < textType.value) {
             textTypeDisp.value++;
         }
-    })
+        updateBubble();
+    });
 
-    //ボタンが押されたらカウント減(種類)
-    downbuttonTypeDisp.addEventListener('click', (event) => {
-        //textType以下にはならないようにする
+    downbuttonTypeDisp.addEventListener('click', () => {
         if(textTypeDisp.value > textType.value && textTypeDisp.value > 1) {
             textTypeDisp.value--;
         }
+        updateBubble();
     });
 
-    //ボタンが押されたらカウント増
-    upbuttonTypeDisp.addEventListener('click', (event) => {
-        //8以上にはならないようにする
+    upbuttonTypeDisp.addEventListener('click', () => {
         if(textTypeDisp.value < 8) {
             textTypeDisp.value++;
         }
-    })
+        updateBubble();
+    });
+
+    // 問題形式のラジオボタンにもイベントリスナーを追加して、変更時に吹き出しを更新
+    pictoRadio.addEventListener('change', updateBubble);
+    charaRadio.addEventListener('change', updateBubble);
 
     // 難易度を減らすボタンの処理 (左矢印)
-    downbuttonDiff.addEventListener('click', (event) => {
+    downbuttonDiff.addEventListener('click', () => {
         currentDiffIndex = (currentDiffIndex - 1 + difficulties.length) % difficulties.length;
         updateUI(currentDiffIndex);
         animateCarousel();
     });
 
     // 難易度を増やすボタンの処理 (右矢印)
-    upbuttonDiff.addEventListener('click', (event) => {
+    upbuttonDiff.addEventListener('click', () => {
         currentDiffIndex = (currentDiffIndex + 1) % difficulties.length;
         updateUI(currentDiffIndex);
         animateCarousel();
@@ -189,7 +214,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    startButton.addEventListener('click', (event) => {
+    startButton.addEventListener('click', () => {
         const pictoJudgeElm = document.getElementById('picto');
         const charaJudgeElm = document.getElementById('chara');
         const optJudgeElm = document.getElementById('textbox-options');

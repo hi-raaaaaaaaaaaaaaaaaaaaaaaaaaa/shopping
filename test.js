@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const titleScreen = document.getElementById('title-screen');
     const gameBackground = document.getElementById('game-background');
     const pressStart = document.getElementById('press-start');
+    const pressStartText = document.getElementById('start-text');
     const gameSettings = document.getElementById('game-settings');
 
     const downbuttonOpt = document.getElementById('down-options');
@@ -106,7 +107,8 @@ document.addEventListener('DOMContentLoaded', () => {
     titleScreen.addEventListener('click', () => {
         // 背景を上方向にスライドさせるクラスを追加
         gameBackground.classList.add('slide-up');
-        pressStart.style.display = 'none'; // Press Start テキストを非表示にする
+        pressStart.style.display = 'none'; // Press Start 背景を非表示にする
+        pressStartText.style.display = 'none'; // Press Start テキストを非表示にする
 
         // アニメーションが完了した後にゲーム設定を表示
         gameBackground.addEventListener('transitionend', () => {

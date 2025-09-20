@@ -7,7 +7,7 @@ body {
 /* クラッカーのコンテナを画面下部に固定 */
 .cracker-container {
     position: fixed;
-    bottom: 0;
+    top: 75%;
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -18,7 +18,7 @@ body {
 }
 
 .cracker {
-    width: 150px;
+    width: 20vh;
     height: auto;
 }
 

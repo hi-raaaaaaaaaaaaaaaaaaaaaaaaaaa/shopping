@@ -98,9 +98,8 @@ h4 {
         left: -80%;
         width: 100%;
         height: 100%;
-        background-image: repeating-linear-gradient(90deg, #454f65, #454f65 10px, #4e5667 10px, #4e5667 20px);
+        background-image: repeating-linear-gradient(90deg, #fff, #fff 10px, #4e5667 10px, #4e5667 20px);
         z-index: -1;
-        color: #837484;
     }
 }
 

@@ -26,7 +26,7 @@
     /* widthを320pxから350pxに拡大 */
     width: 350px; /* さらに大きく */
     text-align: center;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.272);
     overflow: hidden;
     transform: translateY(20px);
     transition: transform 0.3s ease-in-out;

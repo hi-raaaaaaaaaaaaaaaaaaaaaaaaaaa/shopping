@@ -10,7 +10,7 @@ const colors = ['rgba(171, 87, 255, 1)', 'rgba(43, 161, 153, 1)', 'rgba(0, 119, 
         const confettiContainer = document.getElementById('confetti-container');
         if (!confettiContainer) return; // 念のためチェック
 
-        for (let i = 0; i < 150; i++) {
+        for (let i = 0; i < 80; i++) {
             // ... (紙吹雪の生成ロジックは省略) ...
             const confetti = document.createElement('div');
             confetti.classList.add('confetti');

@@ -260,7 +260,8 @@ function hidePopup() {
     const confettiContainer = document.getElementById('confetti-container');
     if (confettiContainer) {
         // 現在の紙吹雪をクリア
-        confettiContainer.innerHTML = ''; 
+        confettiContainer.querySelectorAll('.confetti').forEach(c => c.remove());
+        confettiContainer.innerHTML = '';
     }
     // setIntervalを停止
     if (crackerInterval !== null) {

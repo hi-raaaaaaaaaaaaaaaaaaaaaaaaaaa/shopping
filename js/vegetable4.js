@@ -222,9 +222,26 @@ function ansJudge() {
     judge = 0;
 }
 
+// クラッカー制御のためのグローバル変数
+let crackerInterval = null; // クラッカーアニメーションのsetInterval IDを保持
+
 // ポップアップを表示する関数
 function correctPopup(){
     document.getElementById('correct_Popup').classList.add('show');
+    
+    // --- クラッカーアニメーションを開始 ---
+    const crackerContainer = document.getElementById('cracker-container');
+    if (crackerContainer) {
+        crackerContainer.classList.add('active'); // コンテナを表示
+    }
+    
+    // cracker.jsで定義された関数を呼び出してループを開始
+    // animateCrackerがグローバルに定義されていることを前提とする
+    // **修正箇所**: activeクラス追加後にanimateCrackerを呼び出す
+    if (typeof animateCracker === 'function' && crackerInterval === null) {
+        animateCracker(); // 初回実行
+        crackerInterval = setInterval(animateCracker, 3000); // 3秒間隔でループ
+    }
 };
 
 function wrongPopup(){
@@ -235,6 +252,21 @@ function wrongPopup(){
 function hidePopup() {
     document.getElementById('correct_Popup').classList.remove('show');
     document.getElementById('wrong_Popup').classList.remove('show');
+    // --- クラッカーアニメーションを停止・リセット ---
+    const crackerContainer = document.getElementById('cracker-container');
+    if (crackerContainer) {
+        crackerContainer.classList.remove('active'); // コンテナを非表示
+    }
+    const confettiContainer = document.getElementById('confetti-container');
+    if (confettiContainer) {
+        // 現在の紙吹雪をクリア
+        confettiContainer.innerHTML = ''; 
+    }
+    // setIntervalを停止
+    if (crackerInterval !== null) {
+        clearInterval(crackerInterval);
+        crackerInterval = null;
+    }
 }
 
 //かごの中身をクリックしたら中身減るプログラム達

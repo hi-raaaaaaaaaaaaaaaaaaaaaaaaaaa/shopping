@@ -1,16 +1,17 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const confettiContainer = document.querySelector('.confetti-container');
-    const crackers = document.querySelectorAll('.cracker');
-
-    const colors = ['rgba(171, 87, 255, 1)', 'rgba(43, 161, 153, 1)', 'rgba(0, 119, 255, 1)', 'rgba(208, 255, 0, 1)', 'rgba(255, 115, 0, 1)', 'rgba(232, 92, 232, 1)'];
+const colors = ['rgba(171, 87, 255, 1)', 'rgba(43, 161, 153, 1)', 'rgba(0, 119, 255, 1)', 'rgba(208, 255, 0, 1)', 'rgba(255, 115, 0, 1)', 'rgba(232, 92, 232, 1)'];
     const crackerLeftPosition = { x: 10, y: 80 };
     const crackerRightPosition = { x: 90, y: 80 };
 
     const shapes = ['square', 'circle', 'triangle', 'star', 'heart'];
 
-    // 紙吹雪を生成する関数
+    // 紙吹雪を生成する関数 (内容は変更なし)
     function createConfetti(positionX, positionY, direction) {
+        // 関数内で要素を再取得
+        const confettiContainer = document.getElementById('confetti-container');
+        if (!confettiContainer) return; // 念のためチェック
+
         for (let i = 0; i < 150; i++) {
+            // ... (紙吹雪の生成ロジックは省略) ...
             const confetti = document.createElement('div');
             confetti.classList.add('confetti');
 
@@ -62,8 +63,17 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // クラッカーのアニメーションと紙吹雪のループを制御する関数
+    // クラッカーのアニメーションと紙吹雪の制御をする関数
     function animateLoop() {
+        // エラー回避のため、関数内で要素を再取得する
+        const crackerContainer = document.getElementById('cracker-container');
+        const crackers = document.querySelectorAll('.cracker');
+        
+        // **修正箇所**: crackerContainerがnullでないことを確認
+        if (!crackerContainer || !crackerContainer.classList.contains('active')) {
+             return;
+        }
+
         crackers.forEach(cracker => {
             cracker.style.animation = 'none'; // アニメーションをリセット
             cracker.offsetHeight; // 強制的に再描画
@@ -71,14 +81,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         setTimeout(() => {
+            // クラッカーがポップする音に合わせて紙吹雪を生成
             createConfetti(crackerLeftPosition.x, crackerLeftPosition.y, 'left');
             createConfetti(crackerRightPosition.x, crackerRightPosition.y, 'right');
-        }, 350); // 400ミリ秒 = 0.4秒
+        }, 350);
     }
-
-    // 初回実行
-    animateLoop();
-
-    // 2秒待ってからアニメーションを再度開始（ループ）
-    setInterval(animateLoop, 5000); // 2000ミリ秒 = 2秒
-});
+    
+    // 外部のvegetable4.jsから呼び出せるようにグローバルスコープに公開
+    window.animateCracker = animateLoop;

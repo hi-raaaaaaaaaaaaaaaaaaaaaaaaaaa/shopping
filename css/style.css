@@ -191,7 +191,13 @@ button {
     padding: 20px;
     box-sizing: border-box;
     pointer-events: none;
-    z-index: 10;
+    z-index: 1001;
+    opacity: 0; /* ← これだけだと要素は残る */
+    transition: opacity 0.3s;
+}
+
+.cracker-container.active {
+    opacity: 1; /* active時に表示 */
 }
 
 .cracker {

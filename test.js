@@ -35,6 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const charaRadio = document.getElementById('chara');
 
     // 難易度、コース名、説明、背景画像パス、リボン色クラスをまとめた配列
+    //例：{ difficulty: '難易度名', course: 'コース名', desc: '説明文', bg: '背景画像', colorClass: 'cssで宣言したribbonクラス' },
     const difficulties = [
         { difficulty: 'かんたん', course: '1. 野菜コース', desc: '色、形、名前から判別できます', bg: 'vegetable-back.png', colorClass: 'ribbon-vegetable' },
         { difficulty: 'ふつう', course: '2. お菓子コース', desc: '色、似た形、名前から判別できます', bg: 'sweets-back.png', colorClass: 'ribbon-sweets' },
@@ -94,7 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // 吹き出しの要素
         const bubbleText = document.querySelector('.bubble-r');
-        
+
         // 吹き出しのテキストを更新
         bubbleText.innerHTML = `${formatValue}形式で<br>${optionsValue}種類陳列されている中から<br>${typesValue}種類選び、合計点数${totalPointsValue}点<br>の買い物を始めます`;
     };
@@ -216,6 +217,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
+    //「スタート」ボタンの処理
     startButton.addEventListener('click', () => {
         const pictoJudgeElm = document.getElementById('picto');
         const charaJudgeElm = document.getElementById('chara');
@@ -223,9 +225,16 @@ document.addEventListener('DOMContentLoaded', () => {
         const typeJudgeElm = document.getElementById('textbox-type');
         const typedispJudgeElm = document.getElementById('textbox-type-disp');
         // 難易度の値を取得
-        const courseJudge = difficulties[currentDiffIndex].course;
+        const courseJudge = difficulties[currentDiffIndex].colorClass;
+        //difficulties.courseからribbon-(先頭から7文字)を除いた文字列を取得
+        const course = courseJudge.substring(7);
 
         console.warn(pictoJudgeElm.checked, charaJudgeElm.checked, optJudgeElm.value, typeJudgeElm.value, typedispJudgeElm.value,
-                        courseJudge);
+                        course);
+        //転移([コース名]-game[選択肢の数].html?pic=[1.写真true/false]&chara=[1.文字true/false]&questSum=[問題の合計点数]&questTypeSum=[問題の種類])
+        //例:   sweet  -game     1    .html?pic=         true     &chara=        false    &questSum=       1      &questTypeSum=     1
+        window.location.href = course+"-game"+typedispJudgeElm.value+".html?pic="+pictoJudgeElm.checked+"&chara="+charaJudgeElm.checked+"&questSum="
+                                    +optJudgeElm.value+"&questTypeSum="+typeJudgeElm.value;
+
     })
 });

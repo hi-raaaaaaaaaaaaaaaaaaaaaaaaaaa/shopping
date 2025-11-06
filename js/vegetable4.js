@@ -15,6 +15,32 @@ const potato_list = document.getElementById("list-2");
 const greenpepper_list = document.getElementById("list-3");
 const tomato_list = document.getElementById("list-4");
 
+//URLの取得
+let url = new URL(window.location.href);
+
+let params = url.searchParams;
+
+//console.log(params.get('pic'));
+//console.log(params.get('chara'));
+//console.log(params.get('questSum'));
+//console.log(params.get('questTypeSum'));
+
+var type = 0;
+const picture = params.get('pic');
+const chara = params.get('chara');
+
+console.warn(picture);
+
+if(picture == 'true') type = '写真';
+else if(chara == 'true') type = '文字';
+else type = 'error';
+console.warn(type);
+
+const questSum = params.get('questSum');
+const questTypeSum = params.get('questTypeSum');
+
+console.log('%s形式で%i種類陳列されている中から%i種類選ぶ',type,questSum,questTypeSum);
+
 //問題決定 と #titleにinnerHTML
 let vege_name_num = Math.floor(Math.random() * 4);
 const vege_name = ["さつまいも", "じゃがいも", "ピーマン", "トマト"];

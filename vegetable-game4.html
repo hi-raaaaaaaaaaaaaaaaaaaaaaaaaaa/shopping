@@ -1,0 +1,117 @@
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/iphone_popup.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=BIZ+UDGothic:wght@700&display=swap" rel="stylesheet">
+	<link rel="icon" href="favicon.ico">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+
+	<title>お買い物ゲーム</title>
+</head>
+<body class="content" id="background">
+
+	<div class="question">
+		<h2 id="title"></h2>
+	</div>
+
+	<div class="game" id="container">
+
+		<image class="product_locate" src="image/game4*2_fruit_basket.png"></image>
+
+		<image class="product_locate_overlay" src="image/game4*2_fruit_basket_OVER-VEGETABLE.png"></image>
+
+		<image class="tomato" id="tomato" src="image/tomato.png"></image>
+		<image class="potato" id="potato" src="image/potato.png"></image>
+		<image class="greenpepper" id="greenpepper" src="image/greenpepper.png"></image>
+		<image class="yam" id="yam" src="image/yam.png"></image>
+
+		<image class="basket" id="box" src="image/kaimono.png"></image>
+	</div>
+
+	<div class="panel-back"></div>
+	<div class="panel-front"></div>
+
+	<div class="list" id="stuff">
+		<h1 class="list_label">かごのなかみ</h1>
+		<h1 id="list-1"></h1>
+		<h1 id="list-2"></h1>
+		<h1 id="list-3"></h1>
+		<h1 id="list-4"></h1>
+		<button class="check" id="check-button">できた！</button>
+	</div>
+
+	<div class="popup-overlay" id="correct_Popup">
+
+		<div class="popup-content">
+			<div class="popup-title">かんぺき！</div>
+			<div class="popup-message">このちょうしでつぎもがんばろう！</div>
+			<button class="popup-button" id="correct-popup-button">つぎのステージへ</button>
+
+		</div>
+	</div>
+
+	<div class="popup-overlay" id="wrong_Popup">
+		<div class="popup-content">
+			<div class="popup-title">みなおしてみよう...</div>
+			<div class="popup-message">なにかがちがうかも？</div>
+			<button class="popup-button" id="wrong-popup-button">もどる</button>
+		</div>
+	</div>
+
+	<div class="confetti-container" id="confetti-container"></div>
+
+	<div class="cracker-container" id="cracker-container">
+        <img src="image/cracker_left.png" alt="クラッカー左" class="cracker cracker-left">
+        <img src="image/cracker_right.png" alt="クラッカー右" class="cracker cracker-right">
+    </div>
+
+</body>
+
+<style>
+	.product_locate ,
+	.product_locate_overlay{
+		position: absolute;
+		left: -25%;
+		width: 125%;
+    	height: 80%;
+    	top: 22%;
+		z-index: 1;
+	}
+
+	#tomato {
+	    position: absolute;
+	    width: 30%;
+		z-index: 5;
+	}
+
+	#potato {
+	    position: absolute;
+	    width: 30%;
+		z-index: 4;
+	}
+
+
+	#greenpepper {
+	    position: absolute;
+	    width: 30%;
+		z-index: 5;
+	}
+
+
+	#yam {
+	    position: absolute;
+	    width: 30%;
+		z-index: 3;
+	}
+
+</style>
+
+<script type="text/javascript" src="js/cracker.js"></script>
+<script type="text/javascript" src="js/vegetable4.js"></script>
+
+
+</html>

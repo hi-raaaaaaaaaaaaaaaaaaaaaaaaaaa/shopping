@@ -7,29 +7,26 @@ const veges = [
     { element: document.getElementById('yam'), id: 'yam', startX: 0, startY: 0 },
 ];
 
-//innerHTMLのための宣言
-const question = document.getElementById('title');
+//innerHTMLのための宣言 - 質問の表示先を title-1, title-2, ... に変更
+const title_elements = [
+    document.getElementById('title-1'),
+    document.getElementById('title-2'),
+    document.getElementById('title-3'),
+    document.getElementById('title-4'),
+];
 const box = document.getElementById('box');
-const yam_list = document.getElementById("list-1");
+const yam_list = document.getElementById("list-4");
 const potato_list = document.getElementById("list-2");
 const greenpepper_list = document.getElementById("list-3");
-const tomato_list = document.getElementById("list-4");
+const tomato_list = document.getElementById("list-1");
 
 //URLの取得
 let url = new URL(window.location.href);
-
 let params = url.searchParams;
-
-//console.log(params.get('pic'));
-//console.log(params.get('chara'));
-//console.log(params.get('dispTypeSum'));
-//console.log(params.get('questTypeSum'));
 
 var type = 0;
 const picture = params.get('pic');
 const chara = params.get('chara');
-
-console.warn(picture);
 
 if(picture == 'true') type = '写真';
 else if(chara == 'true') type = '文字';
@@ -37,8 +34,8 @@ else type = 'error';
 console.warn(type);
 
 const dispTypeSum = params.get('dispTypeSum');
-const questTypeSum = params.get('questTypeSum');
-const questSum = params.get('questSum');
+const questTypeSumParam = params.get('questTypeSum'); // 問題の種類数 (questTypeSum)
+const questSumParam = params.get('questSum'); // 問題の合計個数 (questSum)
 
 // dispTypeSumを数値に変換し、1～4の範囲内かチェック。そうでなければデフォルトで4とする
 let numdispTypeSum = parseInt(dispTypeSum);
@@ -46,79 +43,116 @@ if (isNaN(numdispTypeSum) || numdispTypeSum < 1 || numdispTypeSum > 4) {
     numdispTypeSum = 4;
 }
 
-console.log('%s形式で%i種類陳列されている中から%i種類選ぶ',type, numdispTypeSum, questTypeSum);
+// questTypeSumを数値に変換し、1～4の範囲内かチェック。そうでなければデフォルトで1とする
+let numquestTypeSum = parseInt(questTypeSumParam);
+if (isNaN(numquestTypeSum) || numquestTypeSum < 1 || numquestTypeSum > 4) {
+    numquestTypeSum = 1;
+}
 
-// 陳列数の制御
+// questSumを数値に変換し、1～10の範囲内かチェック。そうでなければデフォルトで1とする
+let numquestSum = parseInt(questSumParam);
+if (isNaN(numquestSum) || numquestSum < 1 || numquestSum > 10) {
+    numquestSum = 1;
+}
+
+console.log('%s形式で%i種類陳列されている中から%i種類合計%i個選ぶ',type, numdispTypeSum, numquestTypeSum, numquestSum);
+
+// 陳列数の制御（既存ロジック）
 const allVegetables = [
-    { element: document.getElementById('tomato'), id: 'tomato', overlayId: 'tomato_overlay' }, // 0: トマト
-    { element: document.getElementById('potato'), id: 'potato', overlayId: 'potato_overlay' }, // 1: じゃがいも
-    { element: document.getElementById('greenpepper'), id: 'greenpepper', overlayId: 'greenpepper_overlay' }, // 2: ピーマン
-    { element: document.getElementById('yam'), id: 'yam', overlayId: 'yam_overlay' }, // 3: さつまいも
+    { element: document.getElementById('tomato'), id: 'tomato', name: "トマト　　", overlayId: 'tomato_overlay', originalIndex: 0 }, // 0: トマト
+    { element: document.getElementById('potato'), id: 'potato', name: "じゃがいも", overlayId: 'potato_overlay', originalIndex: 1 }, // 1: じゃがいも
+    { element: document.getElementById('greenpepper'), id: 'greenpepper', name: "ピーマン　", overlayId: 'greenpepper_overlay', originalIndex: 2 }, // 2: ピーマン
+    { element: document.getElementById('yam'), id: 'yam', name: "さつまいも", overlayId: 'yam_overlay', originalIndex: 3 }, // 3: さつまいも
 ];
 
-// 陳列する野菜のインデックスをランダムに選択
+// 陳列する野菜のインデックスをランダムに選択（既存ロジック）
 const availableIndices = [0, 1, 2, 3];
-// Fisher-Yates shuffleアルゴリズムでシャッフル
 for (let i = availableIndices.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [availableIndices[i], availableIndices[j]] = [availableIndices[j], availableIndices[i]];
 }
 
-// numdispTypeSumの数だけ野菜を表示し、残りを非表示にする
+// numdispTypeSumの数だけ野菜を表示し、残りを非表示にする（既存ロジック）
 for (let i = 0; i < allVegetables.length; i++) {
     const originalIndex = availableIndices[i];
     const vege = allVegetables[originalIndex];
     const overlayElement = document.getElementById(vege.overlayId);
 
     if (i < numdispTypeSum) {
-        // 表示する野菜
-        vege.element.style.display = ''; 
-        // 対応するオーバーレイを表示 (opacity=1)
+        vege.element.style.display = '';
         if (overlayElement) {
             overlayElement.style.opacity = 1;
         }
     } else {
-        // 非表示にする野菜
         vege.element.style.display = 'none';
-        // 対応するオーバーレイを非表示 (opacity=0)
         if (overlayElement) {
             overlayElement.style.opacity = 0;
         }
     }
 }
 
-// 表示されている野菜だけを格納する新しい配列を生成
-// 問題の選択やリストのクリック処理で参照するために使用
+// 表示されている野菜だけを格納する新しい配列を生成（既存ロジック）
 const displayedVeges = allVegetables.filter(vege => vege.element.style.display !== 'none');
 
+// 問題決定ロジックの変更
+// 問題の野菜は表示されているものから選び、種類数と合計個数を考慮する
 
-// 問題決定 と #titleにinnerHTML
-// 問題の野菜は表示されているものから選ぶ
-// 表示されている野菜の名前リストを作成
-const displayedVegeNames = displayedVeges.map(v => {
-    if (v.id === 'yam') return "さつまいも";
-    if (v.id === 'potato') return "じゃがいも";
-    if (v.id === 'greenpepper') return "ピーマン";
-    if (v.id === 'tomato') return "トマト";
-    return "";
-});
+let target_veges = []; // 答えとなる野菜と個数の配列 [{originalIndex: 0-3, count: 1-10}, ...]
 
-// 表示されている野菜の中からランダムで問題にする野菜を選ぶ
-let vege_name_num_index = Math.floor(Math.random() * displayedVegeNames.length);
-const vege_name = displayedVegeNames[vege_name_num_index];
+if (displayedVeges.length > 0 && numquestSum > 0) {
+    // 実際に表示されている野菜の中から、問題にする野菜の候補を選ぶ
+    const questCandidates = [...displayedVeges]; // シャッフルされた候補リスト
+    const actualQuestTypeSum = Math.min(numquestTypeSum, questCandidates.length); // 実際に問題にできる種類数
 
-// 選択された野菜の元のインデックス (ansJudgeで使う) を特定
-// ここは固定の allVegetables のインデックス (tomato=0, potato=1, greenpepper=2, yam=3) に対応させる
-let original_vege_index = -1;
-if (vege_name === "さつまいも") original_vege_index = 3; // yam
-else if (vege_name === "じゃがいも") original_vege_index = 1; // potato
-else if (vege_name === "ピーマン") original_vege_index = 2; // greenpepper
-else if (vege_name === "トマト") original_vege_index = 0; // tomato
+    // 問題にする野菜をランダムに選択
+    for (let i = 0; i < actualQuestTypeSum; i++) {
+        // questCandidates は既にシャッフルされているため、最初の actualQuestTypeSum 個を選ぶ
+        target_veges.push({
+            originalIndex: questCandidates[i].originalIndex,
+            name: questCandidates[i].name,
+            count: 0 // 仮に0を設定
+        });
+    }
 
+    // 合計個数 (numquestSum) を actualQuestTypeSum 個の野菜にランダムに分配する
+    let remainingSum = numquestSum;
+    let counts = new Array(actualQuestTypeSum).fill(0);
 
-let vege_num = Math.floor(Math.random() * (4 - 1) + 1); // 1から3
-console.warn(original_vege_index, vege_name, vege_num);
-if((vege_name !== null) && (vege_num != 0)) question.innerHTML = `${vege_name}　${toFullWidth(vege_num)}こ`;
+    // まず、すべての種類に最低1個を割り当てる (合計個数 > 種類数の場合)
+    if (remainingSum >= actualQuestTypeSum) {
+        counts.fill(1);
+        remainingSum -= actualQuestTypeSum;
+    } else {
+        // 合計個数が種類数よりも少ない場合は、最初の remainingSum 個に1個ずつ割り当て
+        for(let i = 0; i < remainingSum; i++) {
+            counts[i] = 1;
+        }
+        remainingSum = 0;
+    }
+
+    // 残りの個数をランダムに分配
+    for (let i = 0; i < remainingSum; i++) {
+        // ランダムなインデックスを選んで1個増やす
+        const randomIndex = Math.floor(Math.random() * actualQuestTypeSum);
+        counts[randomIndex]++;
+    }
+
+    // target_vegesに個数を設定し、問題文を作成
+    for (let i = 0; i < actualQuestTypeSum; i++) {
+        if (counts[i] > 0) {
+            target_veges[i].count = counts[i];
+            // title-1, title-2, ... にinnerHTMLを設定
+            if (title_elements[i]) {
+                title_elements[i].innerHTML = `・${target_veges[i].name} ${toFullWidth(target_veges[i].count)}こ`;
+            }
+        }
+    }
+} else {
+    // 問題が作成できない場合、すべてクリア
+    title_elements.forEach(el => el.innerHTML = '');
+    console.error("問題作成に必要なパラメータが不足しているか、表示野菜がありません。");
+}
+
 
 //現在の野菜たちの数(随時更新)
 const countAll  = [0, 0, 0, 0]; // [tomato, potato, greenpepper, yam] の順
@@ -138,7 +172,7 @@ const boxRect = {
 box.style.left = `${boxRect.left}px`;
 box.style.top = `${boxRect.top}px`;
 
-//動く野菜たちの位置指定
+//動く野菜たちの位置指定（既存ロジック）
 // 固定の veges 配列の順番に合わせる
 veges[0].startX = sW * 0.08; // tomato
 veges[0].startY = sH * 0.57;
@@ -147,10 +181,10 @@ veges[1].startX = sW * 0.37; // potato
 veges[1].startY = sH * 0.57;
 
 veges[2].startX = sW * 0.08; // greenpepper
-veges[2].startY = sH * 0.2;
+veges[2].startY = sH * 0.28;
 
 veges[3].startX = sW * 0.37; // yam
-veges[3].startY = sH * 0.2;
+veges[3].startY = sH * 0.28;
 
 
 //  vege[2]---vege[3]
@@ -167,7 +201,7 @@ function easeInOutSine(t) {
     return -0.5 * (Math.cos(Math.PI * t) - 1);
 }
 
-//移動開始！！ (野菜をクリックしてカゴに入れるアニメーション)
+//移動開始！！ (野菜をクリックしてカゴに入れるアニメーション)（既存ロジック）
 veges.forEach(vegeInfo => {
     const vegeElement = vegeInfo.element;
     // 初期位置を設定（display: noneの要素も位置は設定しておく）
@@ -179,7 +213,7 @@ veges.forEach(vegeInfo => {
     vegeElement.addEventListener('click', () => {
         // 非表示の要素がクリックされても処理しない
         if (vegeElement.style.display === 'none') return;
-        
+
         //if (isMoving) return;
         isMoving = true;
 
@@ -249,7 +283,7 @@ veges.forEach(vegeInfo => {
 });
 
 
-// 移動開始！！（カゴから元の位置に戻るアニメーション）
+// 移動開始！！（カゴから元の位置に戻るアニメーション）（既存ロジック）
 function animateFromBox(vegeId) {
     const vegeInfo = veges.find(v => v.id === vegeId);//削除された野菜を見つけ出す
     if (!vegeInfo) return;//例外処理
@@ -307,7 +341,7 @@ function animateFromBox(vegeId) {
     currentAnimationFrameId = requestAnimationFrame(animateBack);
 }
 
-// カウント表示を更新する関数
+// カウント表示を更新する関数（既存ロジック）
 function updateCountDisplay() {
     yam_list.innerHTML = yam_cnt > 0 ? `さつまいも ${toFullWidth(yam_cnt)}こ` : "";
     potato_list.innerHTML = potato_cnt > 0 ? `じゃがいも ${toFullWidth(potato_cnt)}こ` : "";
@@ -315,18 +349,17 @@ function updateCountDisplay() {
     tomato_list.innerHTML = tomato_cnt > 0 ? `トマト　　 ${toFullWidth(tomato_cnt)}こ` : "";
 }
 
-// 正誤判定
+// 正誤判定（ロジック修正）
 // countAllの順序: [tomato=0, potato=1, greenpepper=2, yam=3]
 function ansJudge() {
     let countAll_quest = [0, 0, 0, 0];
     let judge = 0;
-    
-    // original_vege_index は allVegetables のインデックス順 (tomato=0, potato=1, greenpepper=2, yam=3)
-    countAll_quest[0] = original_vege_index == 0 ? vege_num : 0; // トマト(tomato)
-    countAll_quest[1] = original_vege_index == 1 ? vege_num : 0; // じゃがいも(potato)
-    countAll_quest[2] = original_vege_index == 2 ? vege_num : 0; // ピーマン(greenpepper)
-    countAll_quest[3] = original_vege_index == 3 ? vege_num : 0; // さつまいも(yam)
-    
+
+    // target_veges 配列に基づいて正解の個数配列を作成
+    target_veges.forEach(target => {
+        countAll_quest[target.originalIndex] = target.count;
+    });
+
     console.warn(countAll_quest, countAll);
 
     // JSON.stringifyでの比較はオブジェクトの順序まで厳密なので、配列の順序を合わせる
@@ -339,19 +372,19 @@ function ansJudge() {
     judge = 0;
 }
 
-// クラッカー制御のためのグローバル変数
+// クラッカー制御のためのグローバル変数（既存ロジック）
 let crackerInterval = null; // クラッカーアニメーションのsetInterval IDを保持
 
-// ポップアップを表示する関数
+// ポップアップを表示する関数（既存ロジック）
 function correctPopup(){
     document.getElementById('correct_Popup').classList.add('show');
-    
+
     // --- クラッカーアニメーションを開始 ---
     const crackerContainer = document.getElementById('cracker-container');
     if (crackerContainer) {
         crackerContainer.classList.add('active'); // コンテナを表示
     }
-    
+
     // cracker.jsで定義された関数を呼び出してループを開始
     // animateCrackerがグローバルに定義されていることを前提とする
     // activeクラス追加後にanimateCrackerを呼び出す
@@ -365,7 +398,7 @@ function wrongPopup(){
     document.getElementById('wrong_Popup').classList.add('show');
 };
 
-// ポップアップを非表示にする関数
+// ポップアップを非表示にする関数（既存ロジック）
 function hidePopup() {
     document.getElementById('correct_Popup').classList.remove('show');
     document.getElementById('wrong_Popup').classList.remove('show');
@@ -387,14 +420,14 @@ function hidePopup() {
     }
 }
 
-//かごの中身をクリックしたら中身減るプログラム達
+//かごの中身をクリックしたら中身減るプログラム達（既存ロジック）
 function DecYam() {
     if (isMoving) return;
     if (yam_cnt > 0) {
         yam_cnt--;
         updateCountDisplay();
         // countAllの順序: [tomato=0, potato=1, greenpepper=2, yam=3]
-        countAll[3] = yam_cnt; 
+        countAll[3] = yam_cnt;
         animateFromBox('yam'); // アニメーションを呼び出す
     }
 }
@@ -439,7 +472,7 @@ function toFullWidth(str) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    // ボタンとリストアイテムにイベントリスナーを追加
+    // ボタンとリストアイテムにイベントリスナーを追加（既存ロジック）
     document.getElementById('check-button').addEventListener('click', ansJudge);
     document.getElementById('correct-popup-button').addEventListener('click', hidePopup);
     document.getElementById('wrong-popup-button').addEventListener('click', hidePopup);

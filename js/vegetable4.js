@@ -15,10 +15,10 @@ const title_elements = [
     document.getElementById('title-4'),
 ];
 const box = document.getElementById('box');
-const yam_list = document.getElementById("list-4");
+const yam_list = document.getElementById("list-1");
 const potato_list = document.getElementById("list-2");
 const greenpepper_list = document.getElementById("list-3");
-const tomato_list = document.getElementById("list-1");
+const tomato_list = document.getElementById("list-4");
 
 //URLの取得
 let url = new URL(window.location.href);

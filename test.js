@@ -221,20 +221,37 @@ document.addEventListener('DOMContentLoaded', () => {
     startButton.addEventListener('click', () => {
         const pictoJudgeElm = document.getElementById('picto');
         const charaJudgeElm = document.getElementById('chara');
-        const optJudgeElm = document.getElementById('textbox-options');
-        const typeJudgeElm = document.getElementById('textbox-type');
-        const typedispJudgeElm = document.getElementById('textbox-type-disp');
+        const optJudgeElm = document.getElementById('textbox-options'); //問題の合計点数
+        const typeJudgeElm = document.getElementById('textbox-type'); //問題の種類
+        const dispJudgeElm = document.getElementById('textbox-type-disp'); //選択肢の種類
         // 難易度の値を取得
         const courseJudge = difficulties[currentDiffIndex].colorClass;
         //difficulties.courseからribbon-(先頭から7文字)を除いた文字列を取得
         const course = courseJudge.substring(7);
 
-        console.warn(pictoJudgeElm.checked, charaJudgeElm.checked, optJudgeElm.value, typeJudgeElm.value, typedispJudgeElm.value,
-                        course);
-        //転移([コース名]-game[選択肢の数].html?pic=[1.写真true/false]&chara=[1.文字true/false]&questSum=[問題の合計点数]&questTypeSum=[問題の種類])
-        //例:   sweet  -game     1    .html?pic=         true     &chara=        false    &questSum=       1      &questTypeSum=     1
-        window.location.href = course+"-game"+typedispJudgeElm.value+".html?pic="+pictoJudgeElm.checked+"&chara="+charaJudgeElm.checked+"&questSum="
-                                    +optJudgeElm.value+"&questTypeSum="+typeJudgeElm.value;
+        //①typeDispJudgeElmの値を②dispJudgeElmから計算
+        //② が 1 -→ ① は 1 (game1.htmlになる)、② が 2 -→ ① は 2 (game2.htmlになる)、② が 3 or 4 -→ ① は 4　(game4.htmlになる)
+        let typeDispJudgeElm = 4 //初期値は4（game4.html）
+
+        switch(dispJudgeElm.value) {
+            case '1': typeDispJudgeElm = 1;
+            break;
+            case '2': typeDispJudgeElm = 2;
+            break;
+            case '3': typeDispJudgeElm = 4;
+            break;
+            case '4': typeDispJudgeElm = 4;
+            break;
+            default: typeDispJudgeElm = 4;
+        }
+
+        console.warn(pictoJudgeElm.checked, charaJudgeElm.checked, optJudgeElm.value, typeJudgeElm.value, dispJudgeElm.value,
+                        course, typeDispJudgeElm);
+        //転移([コース名]-game[ベース陳列棚の種類].html?pic=[1.写真true/false]&chara=[1.文字true/false]&questSum=[問題の合計点数]&questTypeSum=[問題の種類]&dispTypeSum=[選択肢の種類])
+        //例:   sweet  -game   1 or 2 or 4   .html?pic=         true     &chara=        false    &questSum=       1      &questTypeSum=     1
+
+        window.location.href = course + "-game" + typeDispJudgeElm + ".html?pic=" + pictoJudgeElm.checked + "&chara=" + charaJudgeElm.checked
+                                + "&questSum=" + optJudgeElm.value + "&questTypeSum=" + typeJudgeElm.value + "&dispTypeSum=" + dispJudgeElm.value;
 
     })
 });

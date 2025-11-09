@@ -153,6 +153,11 @@ veges[3].startX = sW * 0.37; // yam
 veges[3].startY = sH * 0.2;
 
 
+//  vege[2]---vege[3]
+//     |          |
+//  vege[0]---vege[1]
+
+
 let isMoving = false;
 const duration = 840; //アニメーションに要する秒数(カゴに入れるのも出すのも)
 
@@ -168,7 +173,7 @@ veges.forEach(vegeInfo => {
     // 初期位置を設定（display: noneの要素も位置は設定しておく）
     vegeElement.style.left = `${vegeInfo.startX}px`;
     vegeElement.style.top = `${vegeInfo.startY}px`;
-    let animationInterval = null; 
+    let animationInterval = null; // この変数は、個々の野菜のアニメーションIDを保持するために必要なのだ
 
     //野菜をクリックすると動くよ〜
     vegeElement.addEventListener('click', () => {
@@ -288,7 +293,7 @@ function animateFromBox(vegeId) {
         vegeElement.style.top = `${newY}px`;
 
         // progressが0から1に進むにつれて、opacityも0.2から1に増加
-        vegeElement.style.opacity = 0.2 + (0.8 * (progress * 40)); 
+        vegeElement.style.opacity = 0.2 + (0.8 * (progress * 40)); // 0.2 (開始) + 0.8 (最大増加量) * progressの40倍
 
         if (elapsed < duration) {
             currentAnimationFrameId = requestAnimationFrame(animateBack);

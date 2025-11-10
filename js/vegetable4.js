@@ -193,7 +193,7 @@ veges[3].startY = sH * 0.28;
 
 
 let isMoving = false;
-const duration = 840; //アニメーションに要する秒数(カゴに入れるのも出すのも)
+const duration = 700; //アニメーションに要する秒数(カゴに入れるのも出すのも)
 
 // easeInOutCubic イージング関数 (グローバル)
 // https://easings.net/ja#easeInOutSine を参照！

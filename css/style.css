@@ -52,7 +52,7 @@ button {
 }
 
 #title-1, #title-2, #title-3, #title-4{
-    font-size: clamp(6px, 3.3vw, 36px);
+    font-size: clamp(6px, 3.1vw, 36px);
     letter-spacing: 0.1em;
     width:50%;
     margin-top :2%;
@@ -281,4 +281,5 @@ button {
         opacity: 0;
     }
 }
+
 

@@ -147,7 +147,7 @@ if (displayedVeges.length > 0 && numquestSum > 0) {
 
 
 //現在の野菜たちの数(随時更新)
-const countAll  = [0, 0, 0, 0]; // [tomato, potato, greenpepper, yam] の順
+const countAll  = [0, 0]; // [tomato, potato, greenpepper, yam] の順
 
 //ウィンドウの縦幅(sW)と横幅(sH)
 var sW = window.innerWidth;

@@ -167,15 +167,15 @@ box.style.top = `${boxRect.top}px`;
 //動く野菜たちの位置指定（既存ロジック）
 // 固定の veges 配列の順番に合わせる
 veges[0].startX = sW * 0.08; // tomato
-veges[0].startY = sH * 0.57;
+veges[0].startY = sH * 0.47;
 
 veges[1].startX = sW * 0.37; // potato
-veges[1].startY = sH * 0.57;
+veges[1].startY = sH * 0.47;
 
 
-//  vege[2]---vege[3]
+//  (vege[2])---(vege[3])
 //     |          |
-//  vege[0]---vege[1]
+//   vege[0] --- vege[1]
 
 
 let isMoving = false;

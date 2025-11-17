@@ -359,7 +359,7 @@ function ansJudge() {
     target_veges.forEach(target => {
         countAll_quest[target.originalIndex] = target.count;
     });
-
+    
     console.warn(countAll_quest, countAll);
 
     // JSON.stringifyでの比較はオブジェクトの順序まで厳密なので、配列の順序を合わせる
@@ -379,6 +379,10 @@ let crackerInterval = null; // クラッカーアニメーションのsetInterva
 function correctPopup(){
     document.getElementById('correct_Popup').classList.add('show');
 
+    //正解の音を鳴らす
+    const audio = new Audio('./sound/correct.mp3');
+    audio.play();
+
     // --- クラッカーアニメーションを開始 ---
     const crackerContainer = document.getElementById('cracker-container');
     if (crackerContainer) {
@@ -396,6 +400,10 @@ function correctPopup(){
 
 function wrongPopup(){
     document.getElementById('wrong_Popup').classList.add('show');
+
+    //不正解の音を鳴らす
+    const audio = new Audio('./sound/fail.mp3');
+    audio.play();
 };
 
 // ポップアップを非表示にする関数（既存ロジック）

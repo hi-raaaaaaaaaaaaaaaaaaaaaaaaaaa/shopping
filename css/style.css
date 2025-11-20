@@ -1,7 +1,3 @@
-:root {
-    --vh: 100%;
-}
-
 body {
     font-family: "BIZ UDGothic", sans-serif;
     font-weight: 700;
@@ -49,14 +45,14 @@ button {
 }
 
 .kaimono-memo{
-    font-size: clamp(6px, 2.8vw, 36px);;
+    font-size: clamp(6px, 2.8dvw, 36px);;
     width: 100%;
     margin: 2%;
     letter-spacing: 0.4em;
 }
 
 #title-1, #title-2, #title-3, #title-4{
-    font-size: clamp(6px, 3.1vw, 36px);
+    font-size: clamp(6px, 3.1dvw, 36px);
     letter-spacing: 0.1em;
     width:50%;
     margin-top :2%;
@@ -107,7 +103,7 @@ button {
     border-radius: 1px;
     background-color: #ffffff;
     text-align: left;
-    font-size: clamp(6px, 3vw, 36px);;
+    font-size: clamp(6px, 3dvw, 36px);;
     font-weight: 400;
     line-height: 1.5;
     color: #000000;
@@ -149,7 +145,7 @@ button {
 
 .list_label {
     text-align: center;
-    font-size: clamp(6px, 2.4vw, 36px);;
+    font-size: clamp(6px, 2.4dvw, 36px);;
     margin-top: 3%;
     margin-bottom: 3%;
 }
@@ -159,7 +155,7 @@ button {
     position: relative;
     margin: 0;
     margin-left: 3%;
-    font-size: clamp(6px, 2.4vw, 36px);;
+    font-size: clamp(6px, 2.4dvw, 36px);;
 }
 
 .list_case1, .list_case2,
@@ -171,7 +167,7 @@ button {
 .howto{
     text-align: center;
     color: #4d4d4d;
-    font-size: clamp(6px, 2.4vw, 36px);;
+    font-size: clamp(6px, 2.4dvw, 36px);;
     margin-top: 3%;
     margin-bottom: 3%;
 }
@@ -180,7 +176,7 @@ button {
     font-family: "BIZ UDPGothic", sans-serif;
     font-weight: 700;
     color: rgba(0, 0, 0);
-    font-size: clamp(6px, 3vw, 36px);;
+    font-size: clamp(6px, 3dvw, 36px);;
     cursor: pointer;
     letter-spacing: .5rem;
     background-color: white;
@@ -218,7 +214,7 @@ button {
 }
 
 .cracker {
-    width: 20vh;
+    width: 20dvh;
     height: auto;
 }
 

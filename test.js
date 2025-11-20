@@ -161,7 +161,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     upbuttonTypeDisp.addEventListener('click', () => {
-        if(textTypeDisp.value < 8) {
+        if(textTypeDisp.value < 4) {
             textTypeDisp.value++;
         }
         updateBubble();

@@ -31,6 +31,15 @@
             <image class="product_locate_overlay_3" id="yam_overlay" src="image/vegetable-4_OVERRAY/yam.png"></image>
             <image class="product_locate_overlay_0" id="tomato_overlay" src="image/vegetable-4_OVERRAY/tomato.png"></image>
             <image class="product_locate_overlay_1" id="potato_overlay" src="image/vegetable-4_OVERRAY/potato.png"></image>
+			
+		</div>
+
+		<div class="product_overlay">
+			<image class="product_overlay_2" id="greenpepper_overlay" src="image/vegetable-4/greenpepper.png"></image>
+            <image class="product_overlay_3" id="yam_overlay" src="image/vegetable-4/yam.png"></image>
+            <image class="product_overlay_0" id="tomato_overlay" src="image/vegetable-4/tomato.png"></image>
+            <image class="product_overlay_1" id="potato_overlay" src="image/vegetable-4/potato.png"></image>
+			
 		</div>
 
 		<image class="tomato" id="tomato" src="image/vegetable-4/tomato.png"></image>
@@ -38,6 +47,7 @@
 		<image class="greenpepper" id="greenpepper" src="image/vegetable-4/greenpepper.png"></image>
 		<image class="yam" id="yam" src="image/vegetable-4/yam.png"></image>
 
+		
 		<image class="basket" id="box" src="image/kaimono.png"></image>
 	</div>
 
@@ -133,29 +143,63 @@
 		width:62vw;
 	}
 
+
+	.product_overlay_2 {
+		position: absolute;
+		left: 10%;
+		top: 30%;
+		width: 26%;
+		z-index: 5;
+	}
+
+	.product_overlay_3 {
+		position: absolute;
+		left: 38%;
+		top: 30%;
+		width: 26%;
+		z-index: 3;
+	}
+
+	.product_overlay_0 {
+		position: absolute;
+		left: 10%;
+		top: 63%;
+		width: 26%;
+		z-index: 5;
+	}
+
+	.product_overlay_1 {
+		position: absolute;
+		left: 38%;
+		top: 63%;
+		width: 26%;
+		z-index: 4;
+	}
+
+
 	#tomato {
 	    position: absolute;
-	    width: 30%;
+	    width: 26%;
 		z-index: 5;
 	}
 
 	#potato {
 	    position: absolute;
-	    width: 30%;
+	    width: 26%;
 		z-index: 4;
 	}
 
 
 	#greenpepper {
 	    position: absolute;
-	    width: 30%;
+	    width: 26%;
 		z-index: 5;
 	}
 
 
 	#yam {
 	    position: absolute;
-	    width: 30%;
+	    width: 26%;
 		z-index: 3;
 	}
 

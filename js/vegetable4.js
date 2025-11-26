@@ -174,17 +174,17 @@ box.style.top = `${boxRect.top}px`;
 
 //動く野菜たちの位置指定（既存ロジック）
 // 固定の veges 配列の順番に合わせる
-veges[0].startX = sW * 0.08; // tomato
-veges[0].startY = sH * 0.57;
+veges[0].startX = sW * 0.1; // tomato
+veges[0].startY = sH * 0.63;
 
-veges[1].startX = sW * 0.37; // potato
-veges[1].startY = sH * 0.57;
+veges[1].startX = sW * 0.38; // potato
+veges[1].startY = sH * 0.63;
 
-veges[2].startX = sW * 0.08; // greenpepper
-veges[2].startY = sH * 0.28;
+veges[2].startX = sW * 0.1; // greenpepper
+veges[2].startY = sH * 0.3;
 
-veges[3].startX = sW * 0.37; // yam
-veges[3].startY = sH * 0.28;
+veges[3].startX = sW * 0.38; // yam
+veges[3].startY = sH * 0.3;
 
 
 //  vege[2]---vege[3]

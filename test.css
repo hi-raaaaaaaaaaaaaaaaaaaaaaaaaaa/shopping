@@ -58,10 +58,12 @@ h4 {
 }
 
 .main-area {
+    position: relative;
     display: flex;
+    top: -4%;
     flex-direction: row;
     width: 120dvw;
-    height: 73dvh;
+    height: 105dvh;
     transform: rotate(4deg);
 }
 
@@ -71,11 +73,12 @@ h4 {
 }
 
 .prev-screen {
-    width: 100%;
+    width: 83%;
     aspect-ratio: 4/3;
     margin-left: 8%;
-    margin-top: 30%;
-    background-color: #000000;
+    margin-top: 25%;
+    background-color: #1c1c1c;
+    border-radius: 10px;
 }
 
 .setting-area {
@@ -106,8 +109,9 @@ h4 {
     position: relative;
     display: flex;
     left: -2%;
+    top: -4%;
     width: 110dvw;
-    height: 30dvh;
+    height: 35dvh;
     justify-content: center;
     background-color: #ff94bf;
     transform: rotate(4deg);
@@ -296,7 +300,7 @@ h4 {
     border: 4px solid rgb(0, 0, 0);
     box-shadow: 8px 8px 0px 0px rgb(88, 88, 88);
     outline: 0;
-    height: 35%;
+    height: 40%;
     margin-top: 2rem;
     transform: rotate(-4deg);
 
@@ -388,6 +392,7 @@ h4 {
     height: 110dvh;
     background-color: #fbebff;
     color: rgb(0, 0, 0);
+    overflow: hidden;
 }
 
 .bubble-r {
@@ -438,7 +443,7 @@ h4 {
     justify-content: right;
     width: 100%;
     height: 100%;
-    margin-right: 1dvw;
+    margin-right: 1.5dvw;
 }
 
 .carousel-nav {
@@ -542,18 +547,18 @@ h4 {
 /* コース名 */
 #course-name {
     font-family: "BIZ UDPGothic", sans-serif;
-    font-size: clamp(16px, 5dvw, 22px);
-    padding-right: 1.7dvw;
+    font-size: clamp(16px, 4dvw, 20px);
+    padding-right: .8dvw;
     padding-bottom: 1%;
     letter-spacing: 0.3rem;
 }
 
 /* 説明文 */
 #difficulty-desc {
-    font-size: clamp(8px, 2dvw, 13px);
+    font-size: clamp(8px, 2dvw, 12px);
     margin: 0;
     margin-bottom: 1%;
-    padding-right: 2dvw;
+    padding-right: 1.2dvw;
     letter-spacing: 0.1rem;
 }
 

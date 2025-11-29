@@ -76,7 +76,7 @@ h4 {
     width: 83%;
     aspect-ratio: 4/3;
     margin-left: 8%;
-    margin-top: 25%;
+    margin-top: 30%;
     background-color: #1c1c1c;
     border-radius: 10px;
 }
@@ -139,7 +139,7 @@ h4 {
 
 .rotate-4 {
     transform: rotate(-4deg);
-    margin-top: 8%;
+    margin-top: 10%;
     margin-left: 6%;
 }
 

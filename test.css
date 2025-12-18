@@ -67,20 +67,6 @@ h4 {
     transform: rotate(4deg);
 }
 
-.preview-area{
-    flex: 7;
-    transform: rotate(-4deg);
-}
-
-.prev-screen {
-    width: 83%;
-    aspect-ratio: 4/3;
-    margin-left: 8%;
-    margin-top: 30%;
-    background-color: #1c1c1c;
-    border-radius: 10px;
-}
-
 .setting-area {
     flex: 11;
     position: relative;

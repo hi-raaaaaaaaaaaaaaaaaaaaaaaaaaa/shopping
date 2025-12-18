@@ -1,0 +1,39 @@
+.preview-area{
+    flex: 7;
+    transform: rotate(-4deg);
+}
+
+.prev-screen-bez {
+    width: 83%;
+    aspect-ratio: 4/3;
+    margin-left: 8%;
+    margin-top: 30%;
+    background-color: #1c1c1c;
+    justify-items: center;
+    align-content: center;
+    border-radius: 20px;
+}
+
+.prev-screen {
+    width: 93%;
+    height: 90.5%;
+    background-color: #ffffff;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.question {
+    width: 68%;
+    height: 40%;
+    margin: 2%;
+    border: 2px;
+    border: 2px solid #000000;
+}
+
+.game {
+    width: 80%;
+    height: 60%;
+    background-image: url("./image/game4_2_fruit_basket.png");
+    background-size: cover;
+}

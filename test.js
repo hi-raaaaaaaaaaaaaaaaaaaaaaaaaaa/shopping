@@ -98,6 +98,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // 吹き出しのテキストを更新
         bubbleText.innerHTML = `${formatValue}形式で<br>${optionsValue}種類陳列されている中から<br>${typesValue}種類選び、合計点数${totalPointsValue}点<br>の買い物を始めます`;
+    
+        updatePreview();
     };
 
     // 初期表示
@@ -234,7 +236,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let typeDispJudgeElm = 4 //初期値は4（game4.html）
 
         switch(dispJudgeElm.value) {
-            case '1': typeDispJudgeElm = 1;
+            case '1': typeDispJudgeElm = 2;
             break;
             case '2': typeDispJudgeElm = 2;
             break;
@@ -254,4 +256,87 @@ document.addEventListener('DOMContentLoaded', () => {
                                 + "&questSum=" + optJudgeElm.value + "&questTypeSum=" + typeJudgeElm.value + "&dispTypeSum=" + dispJudgeElm.value;
 
     })
+
+    function updatePreview() {
+        const questionArea = document.querySelector('.question');
+        const gameArea = document.querySelector('.game');
+
+        // 現在の設定値を取得
+        const isPicto = document.getElementById('picto').checked;
+        const questSum = parseInt(document.getElementById('textbox-options').value);
+        const questTypeSum = parseInt(document.getElementById('textbox-type').value);
+        const dispTypeSum = parseInt(document.getElementById('textbox-type-disp').value);
+
+        // --- 1. 問題エリア（お買い物メモ）の更新 ---
+        questionArea.innerHTML = '<h4 class="kaimono-memo">ーかってくるものー</h4>';
+        const vegeNames = ["・トマト　　 ", "・じゃがいも ", "・ピーマン　 ", "・さつまいも "];
+        const vegeIcons = ["🍅", "🥔", "🫑", "🍠"];
+
+        let remainingSum = questSum;
+        let counts = Array(questTypeSum).fill(0);
+        for (let i = 0; i < questTypeSum; i++) {
+            let val = Math.ceil(remainingSum / (questTypeSum - i));
+            counts[i] = val;
+            remainingSum -= val;
+        }
+
+        for (let i = 0; i < questTypeSum; i++) {
+            const row = document.createElement('div');
+            row.className = 'preview-memo-row';
+            row.innerHTML = isPicto 
+                ? `<span>${vegeIcons[i % 4]}</span> が ${counts[i]}` 
+                : `${vegeNames[i % 4]}${toFullWidth(counts[i])}こ`;
+            questionArea.appendChild(row);
+        }
+
+        // --- 2. ゲームエリア（陳列棚と野菜）の更新 ---
+        gameArea.innerHTML = ''; 
+        const vegeFiles = ["tomato.png", "potato.png", "greenpepper.png", "yam.png"];
+        
+        // 共通スタイルのリセット
+        gameArea.style.position = "absolute";
+
+        if (dispTypeSum <= 2) {
+            // 【1〜2種類：広いバスケット】
+            gameArea.style.backgroundImage = 'url("./image/game4_fruit_basket.png")';
+            // 指定された数値を適用
+            gameArea.style.left = "-25%";
+            gameArea.style.width = "125%";
+            gameArea.style.height = "74%";
+            gameArea.style.top = "35%";
+            
+            const folderPath = "./image/vegetable-2_OVERRAY/";
+            for (let i = 0; i < dispTypeSum; i++) {
+                const img = document.createElement('img');
+                img.src = folderPath + vegeFiles[i];
+                img.className = `prev-vege-img v2-pos-${i}`;
+                gameArea.appendChild(img);
+            }
+        } else {
+            // 【3〜4種類：4分割の棚】
+            gameArea.style.backgroundImage = 'url("./image/game4_2_fruit_basket.png")';
+            // 指定された数値を適用
+            gameArea.style.left = "-25%";
+            gameArea.style.width = "125%";
+            gameArea.style.height = "60%";
+            gameArea.style.top = "42%";
+
+            const folderPath = "./image/vegetable-4_OVERRAY/";
+            for (let i = 0; i < dispTypeSum; i++) {
+                const img = document.createElement('img');
+                img.src = folderPath + vegeFiles[i];
+                img.className = `prev-vege-img v4-pos-${i}`;
+                gameArea.appendChild(img);
+            }
+        }
+    }
+
+    function toFullWidth(str) {
+        str = String(str);
+        // 半角英数字を全角に変換
+        str = str.replace(/[A-Za-z0-9]/g, function(s) {
+            return String.fromCharCode(s.charCodeAt(0) + 0xFEE0);
+        });
+        return str;
+    }
 });

@@ -1,45 +1,90 @@
 document.addEventListener('DOMContentLoaded', () => {
     // 1. URLパラメータの取得
     const params = new URLSearchParams(window.location.search);
+    
+    // --- 【累積データの解析】 ---
+    const rounds = [];
+    let i = 1;
+    // playTime_1, playTime_2... と連番がある限りデータを取得
+    while (params.has(`playTime_${i}`)) {
+        rounds.push({
+            number: i,
+            playTime: parseInt(params.get(`playTime_${i}`)),
+            failCount: parseInt(params.get(`failCount_${i}`)),
+            mostMissed: params.get(`mostMissed_${i}`),
+            leastMissed: params.get(`leastMissed_${i}`)
+        });
+        i++;
+    }
+
+    // --- 【統計の計算】 ---
+    const successCount = rounds.length;
+    const minTime = successCount > 0 ? Math.min(...rounds.map(r => r.playTime)) : 0;
+    const avgTime = successCount > 0 ? rounds.reduce((sum, r) => sum + r.playTime, 0) / successCount : 0;
+
+    // 最頻値を求める関数（ミス傾向の集計用）
+    const getMostFrequent = (arr) => {
+        const validItems = arr.filter(item => item && item !== "なし" && item !== "すべて正解");
+        if (validItems.length === 0) return "なし";
+        const counts = {};
+        validItems.forEach(item => counts[item] = (counts[item] || 0) + 1);
+        return Object.keys(counts).reduce((a, b) => counts[a] > counts[b] ? a : b);
+    };
+
+    const mostMissedCommon = getMostFrequent(rounds.map(r => r.mostMissed));
+    const leastMissedCommon = getMostFrequent(rounds.map(r => r.leastMissed));
+
+    // 時間フォーマット関数 (MM:SS)
+    const formatTimeSimple = (totalSeconds) => {
+        const m = Math.floor(totalSeconds / 60);
+        const s = totalSeconds % 60;
+        return `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+    };
+
+    // 数字を全角にする関数
+    const toFullWidth = (str) => {
+        return String(str).replace(/[A-Za-z0-9]/g, s => String.fromCharCode(s.charCodeAt(0) + 0xFEE0));
+    };
+
+    // --- 【記録の画面反映】 ---
+    const countNumEl = document.getElementById('count_num');
+    const timeNumEl = document.getElementById('time_num');
+    const detailEl = document.getElementById('detail');
+
+    if (countNumEl) countNumEl.textContent = `${toFullWidth(successCount)}回`;
+    if (timeNumEl) timeNumEl.textContent = formatTimeSimple(minTime);
+    if (detailEl) {
+        detailEl.innerHTML = `平均クリア時間：${toFullWidth(formatTimeSimple(Math.round(avgTime)))}<br><br>` +
+                             `間違えやすい商品：${mostMissedCommon}<br>` +
+                             `間違えにくい商品：${leastMissedCommon}`;
+    }
+
+    // ラウンド別リストの動的生成
+    const recordDetailContainer = document.getElementById('time_detail');
+    if (recordDetailContainer) {
+        recordDetailContainer.innerHTML = ''; 
+        rounds.forEach(r => {
+            const roundDiv = document.createElement('div');
+            roundDiv.className = 'round';
+            roundDiv.innerHTML = `
+                <h3>ラウンド${toFullWidth(r.number)}</h3>
+                <div class="d-panel">
+                    <div class="d-time">${formatTimeSimple(r.playTime)}</div>
+                    <div class="m-count">${toFullWidth(r.failCount)}回ミス</div>
+                </div>
+            `;
+            recordDetailContainer.appendChild(roundDiv);
+        });
+    }
+
+    // --- 【現在の設定をテーブルへ表示】 ---
     const pic = params.get('pic') === 'true';
-    const chara = params.get('chara') === 'true';
     const questSum = params.get('questSum') || '0';
     const questTypeSum = params.get('questTypeSum') || '0';
     const dispTypeSum = params.get('dispTypeSum') || '0';
     const course = params.get('course') || '未設定';
-    const playTimeSec = parseInt(params.get('playTime')) || 0;
-    const failCount = parseInt(params.get('failCount')) || 0;
-    const mostMissed = params.get('mostMissed') || 'なし';
-    const leastMissed = params.get('leastMissed') || 'なし';
+    let formatText = pic ? "写真形式" : "文字形式";
 
-    // 2. 問題の形式の判定
-    let formatText = "";
-    if (pic === chara) {
-        formatText = "エラー：形式不明";
-    } else {
-        formatText = pic ? "写真形式" : "文字形式";
-    }
-
-    // 3. プレイ時間のフォーマット (H:MM:SS または MM:SS)
-    const formatTime = (totalSeconds) => {
-        const h = Math.floor(totalSeconds / 3600);
-        const m = Math.floor((totalSeconds % 3600) / 60);
-        const s = Math.floor(totalSeconds % 60);
-        if (h > 0) {
-            return `${h}時間${m}分${s}秒`;
-        }
-        return `${m}分${s}秒`;
-    };
-
-    const timeDisplay = formatTime(playTimeSec);
-
-    // 4. 平均時間の計算 (playTime / (failCount + 1))
-    const successCount = failCount + 1;
-    const avgTotalSeconds = playTimeSec / successCount;
-    const avgDisplay = formatTime(avgTotalSeconds);
-
-    // 5. 画面への反映
-    // 表の中の各セルを順番に取得
     const tableRows = document.querySelectorAll('.setting-disp tbody tr');
     if (tableRows.length >= 6) {
         tableRows[1].cells[1].textContent = formatText;        // 問題の形式
@@ -49,112 +94,64 @@ document.addEventListener('DOMContentLoaded', () => {
         tableRows[5].cells[1].textContent = `${course}コース`;   // 難易度
     }
 
-    // クリア時間の表示
-    const timeNumEl = document.getElementById('time_num');
-    if (timeNumEl) timeNumEl.textContent = timeDisplay;
-
-    // 詳細テキストの更新
-    const detailEl = document.getElementById('detail');
-    if (detailEl) {
-        detailEl.innerHTML = `${successCount}回目でお買い物成功 <br>━▶︎1回のお買い物に平均 ${avgDisplay}<br><br>` +
-                           `間違えやすい商品：${mostMissed}<br>` +
-                           `間違えにくい商品：${leastMissed}`;
-    }
-
-    //ロックボタンの挙動
+    // --- 【ロックボタンの挙動（長押し）】 ---
     const unlockBtn = document.getElementById('unlock');
     let pressTimer;
-    const longPressDuration = 1000; // 2秒
+    const longPressDuration = 1000; // 1秒 (2秒にする場合は2000に変更してください)
 
-    // ロック状態を切り替える関数
     function toggleLock() {
         document.body.classList.toggle('unlocked');
-        
-        // ボタンのテキスト
         if (document.body.classList.contains('unlocked')) {
-            unlockBtn.textContent = "ロックする (２秒押し)";
+            unlockBtn.textContent = "ロックする (長押し)";
         } else {
-            unlockBtn.textContent = "ロック解除 (２秒押し)";
+            unlockBtn.textContent = "ロック解除 (長押し)";
         }
     }
 
-    // 長押し開始の処理
     const startPress = (e) => {
-        // 右クリックメニューなどを防止
         if (e.type === 'touchstart') e.preventDefault();
-        
-        unlockBtn.style.backgroundColor = "#ffcccc"; // 押してる感の演出
+        unlockBtn.style.backgroundColor = "#ffcccc";
         pressTimer = setTimeout(() => {
             toggleLock();
-            unlockBtn.style.backgroundColor = ""; // 元に戻す
+            unlockBtn.style.backgroundColor = "";
         }, longPressDuration);
     };
 
-    // 長押し中断の処理
     const cancelPress = () => {
         clearTimeout(pressTimer);
         unlockBtn.style.backgroundColor = "";
     };
 
-    // マウス・タッチ両方のイベントを登録
-    unlockBtn.addEventListener('mousedown', startPress);
-    unlockBtn.addEventListener('touchstart', startPress);
-    
-    unlockBtn.addEventListener('mouseup', cancelPress);
-    unlockBtn.addEventListener('mouseleave', cancelPress);
-    unlockBtn.addEventListener('touchend', cancelPress);
-    unlockBtn.addEventListener('touchcancel', cancelPress);
+    if (unlockBtn) {
+        unlockBtn.addEventListener('mousedown', startPress);
+        unlockBtn.addEventListener('touchstart', startPress);
+        unlockBtn.addEventListener('mouseup', cancelPress);
+        unlockBtn.addEventListener('mouseleave', cancelPress);
+        unlockBtn.addEventListener('touchend', cancelPress);
+        unlockBtn.addEventListener('touchcancel', cancelPress);
+    }
 
-    // 「今回の設定でもう一度スタート」ボタンの処理
+    // --- 【もう一度スタート ボタン】 ---
     const playAgainBtn = document.getElementById('playagain');
     if (playAgainBtn) {
         playAgainBtn.addEventListener('click', () => {
-            // 1. コース名からベースファイル名を決定
-            let baseFileName = "";
-            const course = params.get('course');
-            if (course === 'やさい') {
-                baseFileName = "vegetable";
-            } else {
-                // 他のコース（くだもの等）があればここに追加
-                baseFileName = "vegetable"; 
-            }
+            let baseFileName = "vegetable";
+            const dTypeSum = params.get('dispTypeSum');
+            let gameNumber = (dTypeSum === '1' || dTypeSum === '2') ? 2 : 4;
 
-            // 2. dispTypeSumの値によってgame番号(2 or 4)を決定
-            const dispTypeSum = params.get('dispTypeSum');
-            let gameNumber = 4;
-            switch(dispTypeSum) {
-                case '1':
-                case '2':
-                    gameNumber = 2;
-                    break;
-                case '3':
-                case '4':
-                    gameNumber = 4;
-                    break;
-                default:
-                    gameNumber = 4;
-            }
-
-            // 3. 引き継ぐパラメータを抽出
             const nextParams = new URLSearchParams();
-            const keysToCopy = ['pic', 'chara', 'questSum', 'questTypeSum', 'dispTypeSum'];
-            keysToCopy.forEach(key => {
-                if (params.has(key)) {
-                    nextParams.append(key, params.get(key));
-                }
+            ['pic', 'chara', 'questSum', 'questTypeSum', 'dispTypeSum'].forEach(key => {
+                if (params.has(key)) nextParams.append(key, params.get(key));
             });
-
-            // 4. URLを組み立ててジャンプ
-            // 例: vegetable-game4.html?pic=true&...
-            const nextUrl = `${baseFileName}-game${gameNumber}.html?${nextParams.toString()}`;
-            window.location.href = nextUrl;
+            window.location.href = `${baseFileName}-game${gameNumber}.html?${nextParams.toString()}`;
         });
     }
 
+    // --- 【タイトルへ戻る（test.htmlへ遷移）】 ---
     const backTitleBtn = document.getElementById('backtotitle');
     if (backTitleBtn) {
         backTitleBtn.addEventListener('click', () => {
-            window.location.href = `test.html`
+            window.location.href = `test.html`;
         });
     }
 });

@@ -19,21 +19,15 @@ const potato_list = document.getElementById("list-2");
 const greenpepper_list = document.getElementById("list-3");
 const tomato_list = document.getElementById("list-4");
 
-// --- 追加: データ計測用の変数 ---
+// --- データ計測用の変数 ---
 let startTime = Date.now(); // 開始時間
 let failCount = 0;          // 失敗回数
 let playTime = 0;           // プレイ時間(秒)
-// 野菜ごとのミス数累計（[tomato, potato, greenpepper, yam] の順）
 let missAccumulator = [0, 0, 0, 0]; 
 const vegeInternalNames = ["tomato", "potato", "greenpepper", "yam"];
-// ------------------------------
 
 let url = new URL(window.location.href);
 let params = url.searchParams;
-
-var type = 0;
-const picture = params.get('pic');
-const chara = params.get('chara');
 
 const dispTypeSum = params.get('dispTypeSum');
 const questTypeSumParam = params.get('questTypeSum');
@@ -50,59 +44,73 @@ const allVegetables = [
     { element: document.getElementById('yam'), id: 'yam', name: "さつまいも", overlayId: 'yam_overlay', originalIndex: 3 },
 ];
 
-const availableIndices = [0, 1, 2, 3];
-for (let i = availableIndices.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [availableIndices[i], availableIndices[j]] = [availableIndices[j], availableIndices[i]];
-}
+// --- 1. 表示する野菜をランダムに選択 ---
+const shuffledIndices = [0, 1, 2, 3].sort(() => Math.random() - 0.5);
 
 for (let i = 0; i < allVegetables.length; i++) {
-    const originalIndex = availableIndices[i];
+    const originalIndex = shuffledIndices[i];
     const vege = allVegetables[originalIndex];
     const overlayElement = document.getElementById(vege.overlayId);
+    
+    const overlayElementP = document.getElementById(vege.overlayId + 'P');
+
     if (i < numdispTypeSum) {
         vege.element.style.display = '';
         if (overlayElement) overlayElement.style.opacity = 1;
+        if (overlayElementP) overlayElementP.style.opacity = 1; // Pも1にする
     } else {
         vege.element.style.display = 'none';
         if (overlayElement) overlayElement.style.opacity = 0;
+        if (overlayElementP) overlayElementP.style.opacity = 0; // Pも0にする
     }
 }
 
+// --- 2. 表示されている中から問題をランダムに選択し、順序を固定する ---
 const displayedVeges = allVegetables.filter(vege => vege.element.style.display !== 'none');
 let target_veges = [];
 
 if (displayedVeges.length > 0 && numquestSum > 0) {
-    const questCandidates = [...displayedVeges];
+    // 問題にする種類をランダムに選ぶ
+    const questCandidates = [...displayedVeges].sort(() => Math.random() - 0.5);
     const actualQuestTypeSum = Math.min(numquestTypeSum, questCandidates.length);
-
+    
+    let selectedForQuest = [];
     for (let i = 0; i < actualQuestTypeSum; i++) {
+        selectedForQuest.push(questCandidates[i]);
+    }
+
+    // 指定の順序（originalIndex順）に並べ替える
+    selectedForQuest.sort((a, b) => a.originalIndex - b.originalIndex);
+
+    for (let i = 0; i < selectedForQuest.length; i++) {
         target_veges.push({
-            originalIndex: questCandidates[i].originalIndex,
-            name: questCandidates[i].name,
+            originalIndex: selectedForQuest[i].originalIndex,
+            name: selectedForQuest[i].name,
             count: 0
         });
     }
 
+    // 個数の分配
     let remainingSum = numquestSum;
-    let counts = new Array(actualQuestTypeSum).fill(0);
-    if (remainingSum >= actualQuestTypeSum) {
+    let counts = new Array(target_veges.length).fill(0);
+    if (remainingSum >= target_veges.length) {
         counts.fill(1);
-        remainingSum -= actualQuestTypeSum;
+        remainingSum -= target_veges.length;
     } else {
         for(let i = 0; i < remainingSum; i++) counts[i] = 1;
         remainingSum = 0;
     }
     for (let i = 0; i < remainingSum; i++) {
-        const randomIndex = Math.floor(Math.random() * actualQuestTypeSum);
+        const randomIndex = Math.floor(Math.random() * target_veges.length);
         counts[randomIndex]++;
     }
-    for (let i = 0; i < actualQuestTypeSum; i++) {
-        if (counts[i] > 0) {
-            target_veges[i].count = counts[i];
-            if (title_elements[i]) {
-                title_elements[i].innerHTML = `・${target_veges[i].name} ${toFullWidth(target_veges[i].count)}こ`;
-            }
+
+    // お題の表示（ソート順）
+    title_elements.forEach(el => { if(el) el.innerHTML = ""; });
+    for (let i = 0; i < target_veges.length; i++) {
+        target_veges[i].count = counts[i];
+        if (title_elements[i] && target_veges[i].count > 0) {
+            title_elements[i].innerHTML = `・${target_veges[i].name} ${toFullWidth(target_veges[i].count)}こ`;
         }
     }
 }
@@ -212,7 +220,6 @@ function updateCountDisplay() {
     tomato_list.innerHTML = tomato_cnt > 0 ? `トマト　　 ${toFullWidth(tomato_cnt)}こ` : "";
 }
 
-// --- 正誤判定ロジックの修正 ---
 function ansJudge() {
     let countAll_quest = [0, 0, 0, 0];
     target_veges.forEach(target => {
@@ -222,7 +229,6 @@ function ansJudge() {
     if (JSON.stringify(countAll_quest) === JSON.stringify(countAll)) {
         correctPopup();
     } else {
-        // 失敗時の処理：ミスを記録
         failCount++;
         for (let i = 0; i < 4; i++) {
             missAccumulator[i] += Math.abs(countAll_quest[i] - countAll[i]);
@@ -234,15 +240,11 @@ function ansJudge() {
 let crackerInterval = null;
 
 function correctPopup(){
-    // 正解した瞬間にプレイ時間を確定させる
     playTime = Math.floor((Date.now() - startTime) / 1000);
-
     document.getElementById('correct_Popup').classList.add('show');
     new Audio('./sound/correct.mp3').play();
-
     const crackerContainer = document.getElementById('cracker-container');
     if (crackerContainer) crackerContainer.classList.add('active');
-
     if (typeof animateCracker === 'function' && crackerInterval === null) {
         animateCracker();
         crackerInterval = setInterval(animateCracker, 3000);
@@ -267,29 +269,36 @@ function hidePopup() {
     if (crackerInterval !== null) { clearInterval(crackerInterval); crackerInterval = null; }
 }
 
-// --- 追加: 次の画面へ遷移する関数 ---
-function goToNextStage() {
-    // URLSearchParams を使用してパラメータを構築
+// --- パラメータを蓄積するロジックの共通化 ---
+function finalizeRoundData() {
+    const currentParams = new URLSearchParams(window.location.search);
     const sendParams = new URLSearchParams();
 
-    // 固定値として course=やさい を追加
+    const settings = ['pic', 'chara', 'questSum', 'questTypeSum', 'dispTypeSum'];
+    settings.forEach(key => {
+        if (currentParams.has(key)) sendParams.append(key, currentParams.get(key));
+    });
     sendParams.append('course', 'やさい');
 
-    sendParams.append('pic', picture);
-    sendParams.append('chara', chara);
-    sendParams.append('questSum', numquestSum);
-    sendParams.append('questTypeSum', numquestTypeSum);
-    sendParams.append('dispTypeSum', numdispTypeSum);
-    sendParams.append('playTime', playTime);
-    sendParams.append('failCount', failCount);
+    let maxRound = 0;
+    for (let [key, value] of currentParams.entries()) {
+        if (key.startsWith('playTime_')) {
+            sendParams.append(key, value);
+            const roundNum = parseInt(key.split('_')[1]);
+            if (roundNum > maxRound) maxRound = roundNum;
+        } else if (key.startsWith('failCount_') || key.startsWith('mostMissed_') || key.startsWith('leastMissed_')) {
+            sendParams.append(key, value);
+        }
+    }
 
-    // ミスが多かった野菜と少なかった野菜を判定
+    const nextRound = maxRound + 1;
+    sendParams.append(`playTime_${nextRound}`, playTime);
+    sendParams.append(`failCount_${nextRound}`, failCount);
+
     let maxMissVal = -1;
     let minMissVal = Infinity;
     let mostMissedVege = "なし";
     let leastMissedVege = "なし";
-
-    // 日本語名とのマッピング
     const jpNames = ["トマト", "じゃがいも", "ピーマン", "さつまいも"];
 
     missAccumulator.forEach((val, idx) => {
@@ -303,17 +312,25 @@ function goToNextStage() {
         }
     });
 
-    // 1回も間違えていない場合は「なし」とするなどの調整が必要ならここで行う
     if (failCount === 0) {
         mostMissedVege = "なし";
         leastMissedVege = "すべて正解";
     }
 
-    sendParams.append('mostMissed', mostMissedVege);
-    sendParams.append('leastMissed', leastMissedVege);
+    sendParams.append(`mostMissed_${nextRound}`, mostMissedVege);
+    sendParams.append(`leastMissed_${nextRound}`, leastMissedVege);
 
-    // 遷移
-    window.location.href = `giveto.html?${sendParams.toString()}`;
+    return sendParams.toString();
+}
+
+function goToNextStage() {
+    const queryString = finalizeRoundData();
+    window.location.href = `vegetable-game4.html?${queryString}`;
+}
+
+function quitGame() {
+    const queryString = finalizeRoundData();
+    window.location.href = `giveto.html?${queryString}`;
 }
 
 function DecYam() { if (!isMoving && yam_cnt > 0) { yam_cnt--; updateCountDisplay(); countAll[3] = yam_cnt; animateFromBox('yam'); } }
@@ -327,9 +344,13 @@ function toFullWidth(str) {
 
 document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('check-button').addEventListener('click', ansJudge);
-    
-    // 「つぎのステージへ」ボタンのイベントリスナーを goToNextStage に変更
     document.getElementById('correct-popup-button').addEventListener('click', goToNextStage);
+    
+    // 「やめる」ボタンのイベントリスナー
+    const exitButton = document.getElementById('exit-popup-button');
+    if (exitButton) {
+        exitButton.addEventListener('click', quitGame);
+    }
     
     document.getElementById('wrong-popup-button').addEventListener('click', hidePopup);
     document.getElementById('list-1').addEventListener('click', DecYam);

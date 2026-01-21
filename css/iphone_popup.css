@@ -38,7 +38,8 @@
 
 .popup-title {
     font-size: 20px;
-    font-weight: 600;
+    font-family: "BIZ UDPGothic", sans-serif;
+    font-weight: 700;
     color: #000;
     /* 上下のマージンをさらに調整、左右のパディングも増やす */
     margin-top: 35px; /* 上部の余白をさらに増やす */
@@ -48,6 +49,8 @@
 
 .popup-message {
     font-size: 13px;
+    font-family: "BIZ UDPGothic", sans-serif;
+    font-weight: 700;
     color: #8e8e93;
     /* 下部のマージンをさらに調整、左右のパディングも増やす */
     margin-top: 10px;
@@ -59,7 +62,8 @@
     width: 100%;
     padding: 20px 0;
     font-size: 20px;
-    font-weight: 400;
+    font-family: "BIZ UDPGothic", sans-serif;
+    font-weight: 700;
     color: #007aff;
     background-color: transparent;
     border: none;

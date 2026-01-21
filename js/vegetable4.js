@@ -37,6 +37,24 @@ let numdispTypeSum = parseInt(dispTypeSum) || 4;
 let numquestTypeSum = parseInt(questTypeSumParam) || 1;
 let numquestSum = parseInt(questSumParam) || 1;
 
+// --- 表示モードの判定 ---
+const isPicMode = (params.get('pic') === 'true' && params.get('chara') === 'false');
+
+// 画像パスの定義
+const vegeImages = {
+    "トマト　　": "image/vegetable/tomato.png",
+    "じゃがいも": "image/vegetable/potato.png",
+    "ピーマン　": "image/vegetable/greenpepper.png",
+    "さつまいも": "image/vegetable/yam.png"
+};
+
+const vegeImagesById = {
+    "tomato": "image/vegetable/tomato.png",
+    "potato": "image/vegetable/potato.png",
+    "greenpepper": "image/vegetable/greenpepper.png",
+    "yam": "image/vegetable/yam.png"
+};
+
 const allVegetables = [
     { element: document.getElementById('tomato'), id: 'tomato', name: "トマト　　", overlayId: 'tomato_overlay', originalIndex: 0 },
     { element: document.getElementById('potato'), id: 'potato', name: "じゃがいも", overlayId: 'potato_overlay', originalIndex: 1 },
@@ -51,26 +69,24 @@ for (let i = 0; i < allVegetables.length; i++) {
     const originalIndex = shuffledIndices[i];
     const vege = allVegetables[originalIndex];
     const overlayElement = document.getElementById(vege.overlayId);
-    
     const overlayElementP = document.getElementById(vege.overlayId + 'P');
 
     if (i < numdispTypeSum) {
         vege.element.style.display = '';
         if (overlayElement) overlayElement.style.opacity = 1;
-        if (overlayElementP) overlayElementP.style.opacity = 1; // Pも1にする
+        if (overlayElementP) overlayElementP.style.opacity = 1;
     } else {
         vege.element.style.display = 'none';
         if (overlayElement) overlayElement.style.opacity = 0;
-        if (overlayElementP) overlayElementP.style.opacity = 0; // Pも0にする
+        if (overlayElementP) overlayElementP.style.opacity = 0;
     }
 }
 
-// --- 2. 表示されている中から問題をランダムに選択し、順序を固定する ---
+// --- 2. 問題の作成（画像モード時は1種類4個までに制限） ---
 const displayedVeges = allVegetables.filter(vege => vege.element.style.display !== 'none');
 let target_veges = [];
 
 if (displayedVeges.length > 0 && numquestSum > 0) {
-    // 問題にする種類をランダムに選ぶ
     const questCandidates = [...displayedVeges].sort(() => Math.random() - 0.5);
     const actualQuestTypeSum = Math.min(numquestTypeSum, questCandidates.length);
     
@@ -79,7 +95,6 @@ if (displayedVeges.length > 0 && numquestSum > 0) {
         selectedForQuest.push(questCandidates[i]);
     }
 
-    // 指定の順序（originalIndex順）に並べ替える
     selectedForQuest.sort((a, b) => a.originalIndex - b.originalIndex);
 
     for (let i = 0; i < selectedForQuest.length; i++) {
@@ -90,9 +105,10 @@ if (displayedVeges.length > 0 && numquestSum > 0) {
         });
     }
 
-    // 個数の分配
     let remainingSum = numquestSum;
     let counts = new Array(target_veges.length).fill(0);
+
+    // 最小1つずつ割り当て
     if (remainingSum >= target_veges.length) {
         counts.fill(1);
         remainingSum -= target_veges.length;
@@ -100,17 +116,36 @@ if (displayedVeges.length > 0 && numquestSum > 0) {
         for(let i = 0; i < remainingSum; i++) counts[i] = 1;
         remainingSum = 0;
     }
-    for (let i = 0; i < remainingSum; i++) {
+
+    // 残りをランダムに配分（画像モードなら「問題は最大4個」）
+    let safetyCounter = 0;
+    const questLimit = isPicMode ? 4 : 99; 
+    
+    while (remainingSum > 0 && safetyCounter < 100) {
         const randomIndex = Math.floor(Math.random() * target_veges.length);
-        counts[randomIndex]++;
+        if (counts[randomIndex] < questLimit) {
+            counts[randomIndex]++;
+            remainingSum--;
+        }
+        safetyCounter++;
     }
 
-    // お題の表示（ソート順）
+    updateQuestDisplay(counts);
+}
+
+function updateQuestDisplay(counts) {
     title_elements.forEach(el => { if(el) el.innerHTML = ""; });
     for (let i = 0; i < target_veges.length; i++) {
-        target_veges[i].count = counts[i];
-        if (title_elements[i] && target_veges[i].count > 0) {
-            title_elements[i].innerHTML = `・${target_veges[i].name} ${toFullWidth(target_veges[i].count)}こ`;
+        if (counts) target_veges[i].count = counts[i];
+        const target = target_veges[i];
+
+        if (title_elements[i] && target.count > 0) {
+            if (isPicMode) {
+                const imgTag = `<img src="${vegeImages[target.name]}" style="height:1.5em; vertical-align:middle; margin-right:1.5dvw;">`;
+                title_elements[i].innerHTML = imgTag.repeat(target.count);
+            } else {
+                title_elements[i].innerHTML = `・${target.name} ${toFullWidth(target.count)}こ`;
+            }
         }
     }
 }
@@ -142,6 +177,18 @@ veges.forEach(vegeInfo => {
 
     vegeElement.addEventListener('click', () => {
         if (vegeElement.style.display === 'none') return;
+
+        // --- カゴの上限チェック ---
+        // 画像モードの時、すでに4個入っていたらそれ以上入れられないようにする
+        if (isPicMode) {
+            let currentVal = 0;
+            if(vegeElement.id == 'yam') currentVal = yam_cnt;
+            if(vegeElement.id == 'potato') currentVal = potato_cnt;
+            if(vegeElement.id == 'greenpepper') currentVal = greenpepper_cnt;
+            if(vegeElement.id == 'tomato') currentVal = tomato_cnt;
+            if (currentVal >= 4) return; 
+        }
+
         isMoving = true;
         if (animationInterval) cancelAnimationFrame(animationInterval);
 
@@ -214,10 +261,27 @@ function animateFromBox(vegeId) {
 }
 
 function updateCountDisplay() {
-    yam_list.innerHTML = yam_cnt > 0 ? `さつまいも ${toFullWidth(yam_cnt)}こ` : "";
-    potato_list.innerHTML = potato_cnt > 0 ? `じゃがいも ${toFullWidth(potato_cnt)}こ` : "";
-    greenpepper_list.innerHTML = greenpepper_cnt > 0 ? `ピーマン　 ${toFullWidth(greenpepper_cnt)}こ` : "";
-    tomato_list.innerHTML = tomato_cnt > 0 ? `トマト　　 ${toFullWidth(tomato_cnt)}こ` : "";
+    const listConfig = [
+        { el: yam_list, count: yam_cnt, name: "さつまいも", id: "yam" },
+        { el: potato_list, count: potato_cnt, name: "じゃがいも", id: "potato" },
+        { el: greenpepper_list, count: greenpepper_cnt, name: "ピーマン　", id: "greenpepper" },
+        { el: tomato_list, count: tomato_cnt, name: "トマト　　", id: "tomato" }
+    ];
+
+    listConfig.forEach(item => {
+        if (item.count > 0) {
+            if (isPicMode) {
+                // カゴの中身は最大5つまで表示
+                const displayCount = Math.min(item.count, 5);
+                const imgTag = `<img src="${vegeImagesById[item.id]}" style="height:1.7em; vertical-align:middle; margin-right:1dvw;">`;
+                item.el.innerHTML = imgTag.repeat(displayCount);
+            } else {
+                item.el.innerHTML = `${item.name} ${toFullWidth(item.count)}こ`;
+            }
+        } else {
+            item.el.innerHTML = "";
+        }
+    });
 }
 
 function ansJudge() {
@@ -269,7 +333,6 @@ function hidePopup() {
     if (crackerInterval !== null) { clearInterval(crackerInterval); crackerInterval = null; }
 }
 
-// --- パラメータを蓄積するロジックの共通化 ---
 function finalizeRoundData() {
     const currentParams = new URLSearchParams(window.location.search);
     const sendParams = new URLSearchParams();
@@ -345,13 +408,21 @@ function toFullWidth(str) {
 document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('check-button').addEventListener('click', ansJudge);
     document.getElementById('correct-popup-button').addEventListener('click', goToNextStage);
-    
-    // 「やめる」ボタンのイベントリスナー
+
+    // --- 追加：playTime_11 がある場合にボタンを非表示にする ---
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.has('playTime_11')) {
+        const nextButton = document.getElementById('correct-popup-button');
+        if (nextButton) {
+            nextButton.style.display = 'none';
+        }
+    }
+
     const exitButton = document.getElementById('exit-popup-button');
     if (exitButton) {
         exitButton.addEventListener('click', quitGame);
     }
-    
+
     document.getElementById('wrong-popup-button').addEventListener('click', hidePopup);
     document.getElementById('list-1').addEventListener('click', DecYam);
     document.getElementById('list-2').addEventListener('click', DecPotato);

@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const difficulties = [
         { difficulty: 'かんたん', course: '1. 野菜コース', desc: '色、形、名前から判別できます', bg: 'vegetable-back.png', colorClass: 'ribbon-vegetable' },
       //  { difficulty: 'ふつう', course: '2. お菓子コース', desc: '色、似た形、名前から判別できます', bg: 'sweets-back.png', colorClass: 'ribbon-sweets' },
-        { difficulty: 'むずかしい', course: '3. 飲み物コース', desc: '色、名前から判別できます', bg: 'drink-back.png', colorClass: 'ribbon-drink' },
+        //{ difficulty: 'むずかしい', course: '3. 飲み物コース', desc: '色、名前から判別できます', bg: 'drink-back.png', colorClass: 'ribbon-drink' },
        // { difficulty: 'おに', course: '4. お肉コース', desc: '名前から判別できます', bg: 'meat-back.png', colorClass: 'ribbon-meat' }
     ];
     let currentDiffIndex = 0;
@@ -85,13 +85,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const formatValue = pictoRadio.checked ? '画像' : '文字';
 
         // 4. 選択肢の種類
-        const optionsValue = document.getElementById('textbox-options').value;
+        const optionsValue = document.getElementById('textbox-type-disp').value;
 
         // 3. 問題の種類
         const typesValue = document.getElementById('textbox-type').value;
 
         // 2. 問題の合計点数
-        const totalPointsValue = document.getElementById('textbox-type-disp').value;
+        const totalPointsValue = document.getElementById('textbox-options').value;
 
         // 吹き出しの要素
         const bubbleText = document.querySelector('.bubble-r');
@@ -132,8 +132,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     upbuttonOpt.addEventListener('click', () => {
-        if(textOpt.value < 8) {
+        if(textOpt.value < 8 && textType.value != 1) {
             textOpt.value++;
+        }
+        else{
+            if(textOpt.value < 4) {
+                textOpt.value++;
+            }
         }
         updateBubble();
     });
@@ -261,7 +266,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const questionArea = document.querySelector('.question');
         const gameArea = document.querySelector('.game');
 
-        // 現在の設定値を取得
         const isPicto = document.getElementById('picto').checked;
         const questSum = parseInt(document.getElementById('textbox-options').value);
         const questTypeSum = parseInt(document.getElementById('textbox-type').value);
@@ -269,9 +273,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // --- 1. 問題エリア（お買い物メモ）の更新 ---
         questionArea.innerHTML = '<h4 class="kaimono-memo">ーかってくるものー</h4>';
+        
+        // データ定義
         const vegeNames = ["・トマト　　 ", "・じゃがいも ", "・ピーマン　 ", "・さつまいも "];
-        const vegeIcons = ["🍅", "🥔", "🫑", "🍠"];
+        const vegeImgPaths = [
+            "image/vegetable/tomato.png",
+            "image/vegetable/potato.png",
+            "image/vegetable/greenpepper.png",
+            "image/vegetable/yam.png"
+        ];
 
+        // 各アイテムの個数計算（既存ロジック維持）
         let remainingSum = questSum;
         let counts = Array(questTypeSum).fill(0);
         for (let i = 0; i < questTypeSum; i++) {
@@ -280,14 +292,29 @@ document.addEventListener('DOMContentLoaded', () => {
             remainingSum -= val;
         }
 
+        // 表示エリアのコンテナ作成（グリッド状にするため）
+        const memoContainer = document.createElement('div');
+        memoContainer.className = isPicto ? 'memo-grid-picto' : 'memo-grid-text';
+
         for (let i = 0; i < questTypeSum; i++) {
-            const row = document.createElement('div');
-            row.className = 'preview-memo-row';
-            row.innerHTML = isPicto 
-                ? `<span>${vegeIcons[i % 4]}</span> が ${counts[i]}` 
-                : `${vegeNames[i % 4]}${toFullWidth(counts[i])}こ`;
-            questionArea.appendChild(row);
+            const itemBox = document.createElement('div');
+            itemBox.className = 'memo-item';
+
+            if (isPicto) {
+                // 【画像形式】 指定された画像（src）を個数（counts[i]）分並べる
+                for (let j = 0; j < counts[i]; j++) {
+                    const img = document.createElement('img');
+                    img.src = vegeImgPaths[i % 4];
+                    img.className = 'memo-vege-icon';
+                    itemBox.appendChild(img);
+                }
+            } else {
+                // 【文字形式】 従来通り
+                itemBox.textContent = `${vegeNames[i % 4]}${toFullWidth(counts[i])}こ`;
+            }
+            memoContainer.appendChild(itemBox);
         }
+        questionArea.appendChild(memoContainer);
 
         // --- 2. ゲームエリア（陳列棚と野菜）の更新 ---
         gameArea.innerHTML = ''; 

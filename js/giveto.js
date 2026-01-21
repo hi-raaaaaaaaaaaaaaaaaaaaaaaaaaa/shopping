@@ -102,9 +102,9 @@ document.addEventListener('DOMContentLoaded', () => {
     function toggleLock() {
         document.body.classList.toggle('unlocked');
         if (document.body.classList.contains('unlocked')) {
-            unlockBtn.textContent = "ロックする (長押し)";
+            unlockBtn.textContent = "ロックする (２秒押し)";
         } else {
-            unlockBtn.textContent = "ロック解除 (長押し)";
+            unlockBtn.textContent = "ロック解除 (２秒押し)";
         }
     }
 
@@ -137,7 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
         playAgainBtn.addEventListener('click', () => {
             let baseFileName = "vegetable";
             const dTypeSum = params.get('dispTypeSum');
-            let gameNumber = (dTypeSum === '1' || dTypeSum === '2') ? 2 : 4;
+            let gameNumber = (dTypeSum === '1' || dTypeSum === '2') ? 4 : 4; //一時的な変更
 
             const nextParams = new URLSearchParams();
             ['pic', 'chara', 'questSum', 'questTypeSum', 'dispTypeSum'].forEach(key => {

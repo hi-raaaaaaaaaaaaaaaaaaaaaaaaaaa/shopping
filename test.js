@@ -296,23 +296,23 @@ document.addEventListener('DOMContentLoaded', () => {
         // 共通スタイルのリセット
         gameArea.style.position = "absolute";
 
-        if (dispTypeSum <= 2) {
+            //if (dispTypeSum <= 2) {
             // 【1〜2種類：広いバスケット】
-            gameArea.style.backgroundImage = 'url("./image/game4_fruit_basket.png")';
+            //gameArea.style.backgroundImage = 'url("./image/game4_fruit_basket.png")';
             // 指定された数値を適用
-            gameArea.style.left = "-25%";
-            gameArea.style.width = "125%";
-            gameArea.style.height = "74%";
-            gameArea.style.top = "35%";
+            //gameArea.style.left = "-25%";
+           // gameArea.style.width = "125%";
+           // gameArea.style.height = "74%";
+           // gameArea.style.top = "35%";
             
-            const folderPath = "./image/vegetable-2_OVERRAY/";
-            for (let i = 0; i < dispTypeSum; i++) {
-                const img = document.createElement('img');
-                img.src = folderPath + vegeFiles[i];
-                img.className = `prev-vege-img v2-pos-${i}`;
-                gameArea.appendChild(img);
-            }
-        } else {
+           // const folderPath = "./image/vegetable-2_OVERRAY/";
+           // for (let i = 0; i < dispTypeSum; i++) {
+           //     const img = document.createElement('img');
+           //     img.src = folderPath + vegeFiles[i];
+           //     img.className = `prev-vege-img v2-pos-${i}`;
+           //     gameArea.appendChild(img);
+           // }
+       // } else {
             // 【3〜4種類：4分割の棚】
             gameArea.style.backgroundImage = 'url("./image/game4_2_fruit_basket.png")';
             // 指定された数値を適用
@@ -327,7 +327,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 img.src = folderPath + vegeFiles[i];
                 img.className = `prev-vege-img v4-pos-${i}`;
                 gameArea.appendChild(img);
-            }
+           // }
         }
     }
 
@@ -341,3 +341,4 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 });
+

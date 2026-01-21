@@ -38,9 +38,9 @@ document.addEventListener('DOMContentLoaded', () => {
     //例：{ difficulty: '難易度名', course: 'コース名', desc: '説明文', bg: '背景画像', colorClass: 'cssで宣言したribbonクラス' },
     const difficulties = [
         { difficulty: 'かんたん', course: '1. 野菜コース', desc: '色、形、名前から判別できます', bg: 'vegetable-back.png', colorClass: 'ribbon-vegetable' },
-        { difficulty: 'ふつう', course: '2. お菓子コース', desc: '色、似た形、名前から判別できます', bg: 'sweets-back.png', colorClass: 'ribbon-sweets' },
+      //  { difficulty: 'ふつう', course: '2. お菓子コース', desc: '色、似た形、名前から判別できます', bg: 'sweets-back.png', colorClass: 'ribbon-sweets' },
         { difficulty: 'むずかしい', course: '3. 飲み物コース', desc: '色、名前から判別できます', bg: 'drink-back.png', colorClass: 'ribbon-drink' },
-        { difficulty: 'おに', course: '4. お肉コース', desc: '名前から判別できます', bg: 'meat-back.png', colorClass: 'ribbon-meat' }
+       // { difficulty: 'おに', course: '4. お肉コース', desc: '名前から判別できます', bg: 'meat-back.png', colorClass: 'ribbon-meat' }
     ];
     let currentDiffIndex = 0;
 
@@ -236,9 +236,9 @@ document.addEventListener('DOMContentLoaded', () => {
         let typeDispJudgeElm = 4 //初期値は4（game4.html）
 
         switch(dispJudgeElm.value) {
-            case '1': typeDispJudgeElm = 2;
+            case '1': typeDispJudgeElm = 4; //本来は２　一時的変更
             break;
-            case '2': typeDispJudgeElm = 2;
+            case '2': typeDispJudgeElm = 4;//本来は２　一時的変更
             break;
             case '3': typeDispJudgeElm = 4;
             break;
@@ -339,4 +339,5 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         return str;
     }
+
 });

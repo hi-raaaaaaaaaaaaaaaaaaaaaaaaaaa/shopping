@@ -247,7 +247,7 @@ h4 {
 
 .unit {
     display: flex;
-    font-size: clamp(8px, 1.5dvw, 20px);
+    font-size: clamp(8px, 1dvw, 20px);
     padding-right: 20%;
     padding-top: 1dvw;
     align-items: center;
@@ -566,5 +566,6 @@ h4 {
 .ribbon-meat {
     background-image: repeating-linear-gradient(30deg, #76003f, #76003f 10px, #8f004c 10px, #8f004c 20px);
 }
+
 
 

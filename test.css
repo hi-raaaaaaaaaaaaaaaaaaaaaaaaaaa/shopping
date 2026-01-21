@@ -237,7 +237,7 @@ h4 {
     font-family: "BIZ UDPGothic", sans-serif;
     font-weight: 700;
     color:rgb(0, 0, 0) ;
-    font-size: clamp(10px, 2dvw, 33px);
+    font-size: clamp(10px, 2.2dvw, 33px);
     width: 10%;
     text-align: left;
     padding-left: 25%;
@@ -566,6 +566,7 @@ h4 {
 .ribbon-meat {
     background-image: repeating-linear-gradient(30deg, #76003f, #76003f 10px, #8f004c 10px, #8f004c 20px);
 }
+
 
 
 

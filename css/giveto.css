@@ -4,6 +4,7 @@ body {
     font-style: normal;
     letter-spacing: 0.1em;
     background-color: #a4daed;
+    overflow: hidden;
 }
 
 h1 {

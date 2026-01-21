@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const questTypeSum = params.get('questTypeSum') || '0';
     const dispTypeSum = params.get('dispTypeSum') || '0';
     const course = params.get('course') || '未設定';
-    let formatText = pic ? "写真形式" : "文字形式";
+    let formatText = pic ? "画像形式" : "文字形式";
 
     const tableRows = document.querySelectorAll('.setting-disp tbody tr');
     if (tableRows.length >= 6) {

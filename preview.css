@@ -18,6 +18,8 @@
 
 .prev-screen {
     position: relative; /* 子要素の absolute の基準 */
+    top: 3dvh;
+    left: 2dvw;
     width: 93%;
     height: 90.5%;
     background-color: #ffffff;

@@ -151,7 +151,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const backTitleBtn = document.getElementById('backtotitle');
     if (backTitleBtn) {
         backTitleBtn.addEventListener('click', () => {
-            window.location.href = `test.html`;
+            window.location.href = `title.html`;
         });
     }
 });

@@ -134,17 +134,34 @@ if (displayedVeges.length > 0 && numquestSum > 0) {
 }
 
 function updateQuestDisplay(counts) {
-    title_elements.forEach(el => { if(el) el.innerHTML = ""; });
+    // 1. 全てのタイトルを一旦「空白（&nbsp;）」でリセットして場所を確保する
+    title_elements.forEach(el => { 
+        if(el) el.innerHTML = "&nbsp;"; 
+    });
+
+    // 2. 問題（target_veges）に含まれる野菜を、指定された固定位置に表示する
     for (let i = 0; i < target_veges.length; i++) {
         if (counts) target_veges[i].count = counts[i];
         const target = target_veges[i];
 
-        if (title_elements[i] && target.count > 0) {
+        /**
+         * 固定位置の指定マッピング (titleIndexMap)
+         * originalIndex: 0(トマト)       -> index 2 (title-3)
+         * originalIndex: 1(じゃがいも)   -> index 3 (title-4)
+         * originalIndex: 2(ピーマン)     -> index 0 (title-1)
+         * originalIndex: 3(さつまいも)   -> index 1 (title-2)
+         */
+        const titleIndexMap = [2, 3, 0, 1];
+        const displayPos = titleIndexMap[target.originalIndex];
+
+        if (title_elements[displayPos] && target.count > 0) {
             if (isPicMode) {
+                // 画像モード
                 const imgTag = `<img src="${vegeImages[target.name]}" style="height:1.5em; vertical-align:middle; margin-right:1.5dvw;">`;
-                title_elements[i].innerHTML = imgTag.repeat(target.count);
+                title_elements[displayPos].innerHTML = imgTag.repeat(target.count);
             } else {
-                title_elements[i].innerHTML = `・${target.name} ${toFullWidth(target.count)}こ`;
+                // 文字モード
+                title_elements[displayPos].innerHTML = `・${target.name} ${toFullWidth(target.count)}こ`;
             }
         }
     }

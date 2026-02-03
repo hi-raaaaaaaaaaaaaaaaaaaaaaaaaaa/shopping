@@ -284,9 +284,9 @@ document.addEventListener('DOMContentLoaded', () => {
         if (currentCourse === 'drink') {
             // のみものコース
             itemNames = ["・むぎちゃ　　　　", "・こうちゃ　　　　 ", "・オレンジジュース ", "・ぶどうジュース　 "];
-            itemImgPaths = ["image/drink/barTea.png", "image/drink/stTea.png", "image/drink/orange.png", "image/drink/grape.png"];
+            itemImgPaths = ["image/drink-4_prev/barTea.png", "image/drink-4_prev/stTea.png", "image/drink-4_prev/orange.png", "image/drink-4_prev/grape.png"];
             bgImage = 'url("./image/game2_2_drink_corner.png")';
-            folderPath = "./image/drink-4_prev/";
+            folderPath = "./image/drink-4_OVERRAY/";
             fileNames = ["barTea.png", "stTea.png", "orange.png", "grape.png"];
         } else if (currentCourse === 'snack') {
             // お菓子コース

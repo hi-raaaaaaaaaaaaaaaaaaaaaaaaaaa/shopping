@@ -1,18 +1,19 @@
+
 	.product_locate{
 		position: absolute;
-		left: -25%;
-		width: 125%;
-    	height: 74%;
+		left: 0%;
+		width: 70%;
+    	height: 70%;
     	top: 30%;
 		z-index: 1;
 	}
 
 	.product_locate_overlay{
 		position: absolute;
-		left: -25%;
-		width: 125vw;
+		left: 0%;
+		width: 70vw;
     	height: 74vh;
-    	top: 30dvh;
+    	top: 31dvh;
 		z-index: 1;
 	}
 
@@ -25,30 +26,32 @@
     }
 
 	.product_locate_overlay_2 {
-		height:37dvh;
-		width:62dvw;
+		height:50%;
+		width:48%;
 	}
 
 	.product_locate_overlay_3 {
-		height:37dvh;
-		width:62dvw;
+		height:50%;
+		width:48%;
 	}
 
 	.product_locate_overlay_0 {
-		height:36dvh;
-		width:62dvw;
+        margin-top: 2%;
+		height:40%;
+		width:48%;
 	}
 
 	.product_locate_overlay_1 {
-		height:36dvh;
-		width:62dvw;
+        margin-top: 2%;
+		height:40%;
+		width:48%;
 	}
 
 
 	.product_overlay_2 {
 		position: absolute;
 		left: 10%;
-		top: 30%;
+		top: 39%;
 		width: 26%;
 		z-index: 5;
 	}
@@ -56,7 +59,7 @@
 	.product_overlay_3 {
 		position: absolute;
 		left: 38%;
-		top: 30%;
+		top: 39%;
 		width: 26%;
 		z-index: 3;
 	}
@@ -64,7 +67,7 @@
 	.product_overlay_0 {
 		position: absolute;
 		left: 10%;
-		top: 63%;
+		top: 68%;
 		width: 26%;
 		z-index: 5;
 	}
@@ -72,33 +75,38 @@
 	.product_overlay_1 {
 		position: absolute;
 		left: 38%;
-		top: 63%;
+		top: 68%;
 		width: 26%;
-		z-index: 4;
-	}
-
-    .product_0 {
-	    position: absolute;
-	    width: 26%;
-		z-index: 5;
-	}
-
-	.product_1 {
-	    position: absolute;
-	    width: 26%;
 		z-index: 4;
 	}
 
 
 	.product_0 {
 	    position: absolute;
-	    width: 26%;
+	    width: 35%;
+        height: 30%;
+		z-index: 5;
+	}
+
+	.product_1 {
+	    position: absolute;
+	    width: 35%;
+        height: 30%;
+		z-index: 4;
+	}
+
+
+	.product_2 {
+	    position: absolute;
+	    width: 35%;
+        height: 37%;
 		z-index: 5;
 	}
 
 
 	.product_3 {
 	    position: absolute;
-	    width: 26%;
+	    width: 35%;
+        height: 37%;
 		z-index: 3;
 	}

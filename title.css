@@ -584,6 +584,7 @@ h4 {
 .memo-grid-picto {
     display: grid;
     grid-template-columns: 1fr 1fr; /* 2列に分ける */
+    min-width: 30dvw;
     gap: 10px;
     padding: 10px;
     justify-items: start;
@@ -592,9 +593,38 @@ h4 {
 .memo-grid-text {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 5px 10px;
+    gap: 5px 5px;
 
     font-size: 1.2rem;
+}
+
+/* 横1列レイアウト (1x4) */
+.memo-grid-picto-landscape {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 横に4等分 */
+    gap: 0px;
+    width: 100%;
+    align-items: center;
+}
+
+/* テキスト形式の場合の調整 */
+.memo-item {
+    font-size: clamp(8px, 1.2dvw, 14px); /* 横並びなので少し小さめに */
+    white-space: nowrap;
+    text-align: center;
+}
+
+/* 画像形式の場合の調整 */
+.memo-grid-picto-landscape .memo-item {
+    display: flex;
+    justify-content: left;
+    align-items: left;
+}
+
+/* アイコンが重ならないようサイズ調整 */
+.memo-grid-picto-landscape .memo-vege-icon {
+    width: 45%; /* 4つ並ぶので1つあたりを小さく */
+    height: auto;
 }
 
 /* 画像形式のアイコンサイズ */
@@ -608,9 +638,9 @@ h4 {
 .memo-item {
     font-family: "BIZ UDGothic", sans-serif;
     font-weight: 700;
-    font-size: clamp(9px, 1.2dvw, 18px);
-    letter-spacing: 0;
-    min-width: 15dvw;
+    font-size: clamp(9px, 1.3dvw, 18px);
+    letter-spacing: -0.08rem;
+
     min-height: 30px;
     display: flex;
     align-items: center;

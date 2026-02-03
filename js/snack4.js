@@ -141,18 +141,33 @@ if (displayedsnacks.length > 0 && numquestSum > 0) {
 }
 
 function updateQuestDisplay(counts) {
+    // 1. 両方の要素（画像用/テキスト用）をリセットして場所を確保する
     title_elements.forEach(el => { if(el) el.innerHTML = ""; });
     title_elementsPic.forEach(el => { if(el) el.innerHTML = ""; });
+
+    // 2. 問題に含まれるお菓子を、指定された固定位置に表示する
     for (let i = 0; i < target_snacks.length; i++) {
         if (counts) target_snacks[i].count = counts[i];
         const target = target_snacks[i];
 
-        if ((title_elements[i] && target.count > 0)  || (title_elementsPic[i] && target.count > 0)){
+        /**
+         * 固定位置の指定マッピング
+         * originalIndex: 2(チョコクッキー)   -> index 0 (title-1)
+         * originalIndex: 3(ポテトチップス) -> index 1 (title-2)
+         * originalIndex: 0(ポテトスティック) -> index 2 (title-3)
+         * originalIndex: 1(チョコレート)     -> index 3 (title-4)
+         */
+        const titleIndexMap = [0, 1, 2, 3];
+        const displayPos = titleIndexMap[target.originalIndex];
+
+        if (target.count > 0) {
             if (isPicMode) {
-                const imgTag = `<img src="${snackImages[target.name]}" style="height:5.4dvw; vertical-align:middle; margin-right:0.3dvw; margin-bottom:0.3dvh;">`;
-                title_elementsPic[i].innerHTML = imgTag.repeat(target.count);
+                // 画像モード（title_elementsを使用）
+                const imgTag = `<img src="${snackImages[target.name]}" style="height:5.2dvw; vertical-align:middle; margin-right:0.3dvw; margin-bottom: 0.5dvh">`;
+                if(title_elementsPic[displayPos]) title_elementsPic[displayPos].innerHTML = imgTag.repeat(target.count);
             } else {
-                title_elements[i].innerHTML = `・${target.name} ${toFullWidth(target.count)}こ`;
+                // 文字モード（title_elementsPicを使用）
+                if(title_elements[displayPos]) title_elements[displayPos].innerHTML = `・${target.name} ${toFullWidth(target.count)}こ`;
             }
         }
     }

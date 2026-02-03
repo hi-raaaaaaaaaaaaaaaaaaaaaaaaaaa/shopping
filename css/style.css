@@ -45,19 +45,51 @@ button {
 }
 
 .kaimono-memo{
-    font-size: clamp(6px, 2.8dvw, 36px);;
+    font-size: clamp(6px, 2.4dvw, 34px);
     width: 100%;
-    margin: 2%;
+    margin: 1.5%;
+    padding-bottom: 0;
     letter-spacing: 0.4em;
 }
 
 #title-1, #title-2, #title-3, #title-4{
-    font-size: clamp(6px, 3.1dvw, 36px);
-    letter-spacing: 0.1em;
+    font-size: clamp(6px, 2.5dvw, 36px);
+    letter-spacing: 0em;
     width:50%;
     margin-top :1%;
-    margin-bottom :1%;
+    margin-bottom :0;
 }
+
+#title-1Pi, #title-2Pi, #title-3Pi, #title-4Pi{
+    font-size: clamp(6px, 2.5dvw, 36px);
+    letter-spacing: 0em;
+    width:50%;
+    margin-top :1%;
+    margin-bottom :0;
+}
+
+#title-1Pi, #title-2Pi {
+		position: absolute;
+		margin-left: 5%;
+		width: 44%;
+		margin-top: 0;
+		top: 48%;
+	}
+
+	#title-1Pi {
+		left: 15dvw;
+	}
+
+	#title-2Pi {
+		left: 46dvw;
+	}
+
+	#title-3Pi, #title-4Pi {
+		text-align: left;
+		margin-left: 3%;
+		width: 47%;
+		margin-top: 0;
+	}
 
 #background {
     user-drag: none; /* ドラッグ禁止 */
@@ -145,7 +177,7 @@ button {
 
 .list_label {
     text-align: center;
-    font-size: clamp(6px, 2.4dvw, 36px);;
+    font-size: clamp(6px, 2.2dvw, 36px);;
     margin-top: 3%;
     margin-bottom: 3%;
 }
@@ -155,13 +187,14 @@ button {
     position: relative;
     margin: 0;
     margin-left: 3%;
-    font-size: clamp(6px, 2.4dvw, 36px);;
+    font-size: clamp(6px, 2dvw, 36px);
+    letter-spacing: 0;
 }
 
 .list_case1, .list_case2,
 .list_case3, .list_case4 {
     flex: 3;
-    padding-top: 3%;
+    padding-top: 2%;
 }
 
 .howto{

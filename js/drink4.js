@@ -141,18 +141,30 @@ if (displayeddrinks.length > 0 && numquestSum > 0) {
 }
 
 function updateQuestDisplay(counts) {
+    // 1. 全てのタイトルを一旦「&nbsp;」でリセット
     title_elements.forEach(el => { if(el) el.innerHTML = ""; });
-    title_elementsPic.forEach(el => { if(el) el.innerHTML = ""; });
+
+    // 2. 問題に含まれる飲み物を、指定された固定位置に表示
     for (let i = 0; i < target_drinks.length; i++) {
         if (counts) target_drinks[i].count = counts[i];
         const target = target_drinks[i];
 
-        if ((title_elements[i] && target.count > 0) || (title_elementsPic[i] && target.count > 0)){
+        /**
+         * 固定位置の指定マッピング
+         * originalIndex: 3(オレンジジュース) -> index 0 (title-1)
+         * originalIndex: 1(ぶどうジュース)   -> index 1 (title-2)
+         * originalIndex: 2(むぎちゃ)         -> index 2 (title-3)
+         * originalIndex: 0(こうちゃ)         -> index 3 (title-4)
+         */
+        const titleIndexMap = [3, 1, 2, 0];
+        const displayPos = titleIndexMap[target.originalIndex];
+
+        if (title_elements[displayPos] && target.count > 0) {
             if (isPicMode) {
                 const imgTag = `<img src="${drinkImages[target.name]}" style="height:11dvh; vertical-align:middle; margin-right:0.8dvw;">`;
-                title_elementsPic[i].innerHTML = imgTag.repeat(target.count);
+                title_elementsPic[displayPos].innerHTML = imgTag.repeat(target.count);
             } else {
-                title_elements[i].innerHTML = `・${target.name} ${toFullWidth(target.count)}こ`;
+                title_elements[displayPos].innerHTML = `・${target.name} ${toFullWidth(target.count)}こ`;
             }
         }
     }

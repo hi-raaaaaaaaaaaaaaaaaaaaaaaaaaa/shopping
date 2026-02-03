@@ -3,6 +3,7 @@
     <meta charset="UTF-8">
 	<link rel="stylesheet" href="css/style.css">
 	<link rel="stylesheet" href="css/iphone_popup.css">
+	<link rel="stylesheet" href="css/product_locate.css">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=BIZ+UDGothic:wght@400;700&family=BIZ+UDPGothic:wght@400;700&display=swap" rel="stylesheet">
@@ -16,36 +17,34 @@
 
 	<div class="question">
 		<h4 class="kaimono-memo">ーかってくるものー</h4>
-		<h2 id="title-1"></h2>
-		<h2 id="title-2"></h2>
 		<h2 id="title-3"></h2>
 		<h2 id="title-4"></h2>
+		<h2 id="title-1"></h2>
+		<h2 id="title-2"></h2>
+		<div class="picspace">
+			<h2 id="title-3Pi"></h2>
+			<h2 id="title-4Pi"></h2>
+			<h2 id="title-1Pi"></h2>
+			<h2 id="title-2Pi"></h2>
+		</div>
 	</div>
 
 	<div class="game" id="container">
 
-		<image class="product_locate" src="image/game2_2_drink_corner.png"></image>
+		<image class="product_locate" src="image/game2_2_snack_corner.png"></image>
 
 		<div class="product_locate_overlay">
-			<image class="product_locate_overlay_2" id="orange_overlay" src="image/drink-4_OVERRAY/orange.png"></image>
-            <image class="product_locate_overlay_3" id="grape_overlay" src="image/drink-4_OVERRAY/grape.png"></image>
-            <image class="product_locate_overlay_0" id="barTea_overlay" src="image/drink-4_OVERRAY/barTea.png"></image>
-            <image class="product_locate_overlay_1" id="stTea_overlay" src="image/drink-4_OVERRAY/stTea.png"></image>
+			<image class="product_locate_overlay_2" id="chococookie_overlay" src="image/snack-4_OVERRAY/chococookie.png"></image>
+            <image class="product_locate_overlay_3" id="potatochips_overlay" src="image/snack-4_OVERRAY/potatochips.png"></image>
+            <image class="product_locate_overlay_0" id="potatostick_overlay" src="image/snack-4_OVERRAY/potatostick.png"></image>
+            <image class="product_locate_overlay_1" id="chocolate_overlay" src="image/snack-4_OVERRAY/chocolate.png"></image>
 			
 		</div>
 
-		<div class="product_overlay">
-			<image class="product_overlay_2" id="orange_overlayP" src="image/drink-4/orange.png"></image>
-            <image class="product_overlay_3" id="grape_overlayP" src="image/drink-4/grape.png"></image>
-            <image class="product_overlay_0" id="barTea_overlayP" src="image/drink-4/barTea.png"></image>
-            <image class="product_overlay_1" id="stTea_overlayP" src="image/drink-4/stTea.png"></image>
-			
-		</div>
-
-		<image class="barTea" id="barTea" src="image/drink-4/barTea.png"></image>
-		<image class="stTea" id="stTea" src="image/drink-4/stTea.png"></image>
-		<image class="orange" id="orange" src="image/drink-4/orange.png"></image>
-		<image class="grape" id="grape" src="image/drink-4/grape.png"></image>
+		<image class="product_0" id="potatostick" src="image/snack-4/potatostick.png"></image>
+		<image class="product_1" id="chocolate" src="image/snack-4/chocolate.png"></image>
+		<image class="product_2" id="chococookie" src="image/snack-4/chococookie.png"></image>
+		<image class="product_3" id="potatochips" src="image/snack-4/potatochips.png"></image>
 
 		
 		<image class="basket" id="box" src="image/kaimono.png"></image>
@@ -57,10 +56,10 @@
 	<div class="list" id="stuff">
 		<div class="list-text">
 			<h1 class="list_label">ーかごのなかみー</h1>
-			<div class="list_case4"><h1 id="list-4"></h1></div>
-			<div class="list_case2"><h1 id="list-2"></h1></div>
 			<div class="list_case3"><h1 id="list-3"></h1></div>
 			<div class="list_case1"><h1 id="list-1"></h1></div>
+			<div class="list_case4"><h1 id="list-4"></h1></div>
+			<div class="list_case2"><h1 id="list-2"></h1></div>
 			<h1 class="howto">タップでもどす</h1>
 		</div>
 		<button class="check" id="check-button">できた！</button>
@@ -98,116 +97,63 @@
 </body>
 
 <style>
-	.product_locate{
-		position: absolute;
-		left: 0%;
-		width: 70%;
-    	height: 70%;
-    	top: 30%;
-		z-index: 1;
+	.howto {
+		    text-align: center;
+			color: #4d4d4d;
+			font-size: clamp(6px, 2dvw, 36px);
+			margin-top: 2%;
+			margin-bottom: 2%;
 	}
 
-	.product_locate_overlay{
-		position: absolute;
-		left: 0%;
-		width: 70vw;
-    	height: 74vh;
-    	top: 31dvh;
-		z-index: 1;
+	.check {
+		font-size: clamp(6px, 2.4dvw, 36px);
+		height: 0%;
+		flex: 1.5;
 	}
 
-	.product_locate_overlay_2,
-    .product_locate_overlay_3,
-    .product_locate_overlay_0,
-    .product_locate_overlay_1 {
-        opacity: 0; /* 初期状態では非表示 */
-        transition: opacity 0.3s; /* スムーズに切り替えるためのトランジション */
-    }
-
-	.product_locate_overlay_2 {
-		height:35dvh;
-		width:34dvw;
+	.list_label {
+		margin-top: 0;
 	}
 
-	.product_locate_overlay_3 {
-		height:35dvh;
-		width:34dvw;
+	.basket {
+		margin-left: 4%;
+		margin-top: 4%;
+		width:20%;
 	}
 
-	.product_locate_overlay_0 {
-		height:36dvh;
-		width:34dvw;
+	.list {
+		height: 60%;
 	}
 
-	.product_locate_overlay_1 {
-		height:36dvh;
-		width:34dvw;
+	.question {
+		text-align: left;
 	}
 
-
-	.product_overlay_2 {
-		position: absolute;
-		left: 10%;
-		top: 39%;
-		width: 26%;
-		z-index: 5;
+	.kaimono-memo {
+		text-align: center;
 	}
 
-	.product_overlay_3 {
-		position: absolute;
-		left: 38%;
-		top: 39%;
-		width: 26%;
-		z-index: 3;
+	.picspace {
+		width: 100%;
+		display: flex;
+		flex-direction: row;
 	}
 
-	.product_overlay_0 {
-		position: absolute;
-		left: 10%;
-		top: 68%;
-		width: 26%;
-		z-index: 5;
+	#title-1Pi, #title-2Pi {
+		position: relative;
+		left: 0;
+		top: 0;
+		margin-left: 2%;
 	}
 
-	.product_overlay_1 {
-		position: absolute;
-		left: 38%;
-		top: 68%;
-		width: 26%;
-		z-index: 4;
-	}
-
-
-	#barTea {
-	    position: absolute;
-	    width: 26%;
-		z-index: 5;
-	}
-
-	#stTea {
-	    position: absolute;
-	    width: 26%;
-		z-index: 4;
-	}
-
-
-	#orange {
-	    position: absolute;
-	    width: 26%;
-		z-index: 5;
-	}
-
-
-	#grape {
-	    position: absolute;
-	    width: 26%;
-		z-index: 3;
+	#title-3Pi, #title-4Pi {
+		margin-left: 1%;
 	}
 
 </style>
 
 <script type="text/javascript" src="js/cracker.js"></script>
-<script type="text/javascript" src="js/drink4.js"></script>
+<script type="text/javascript" src="js/snack4.js"></script>
 
 
 </html>

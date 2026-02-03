@@ -135,7 +135,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const playAgainBtn = document.getElementById('playagain');
     if (playAgainBtn) {
         playAgainBtn.addEventListener('click', () => {
-            let baseFileName = "vegetable";
+
+            const translation = {
+                "やさい": "vegetable",
+                "おかし": "snack",
+                "のみもの": "drink"
+            };
+
+            let baseFileName = translation[params.get('course')] || "unknown";
+
             const dTypeSum = params.get('dispTypeSum');
             let gameNumber = (dTypeSum === '1' || dTypeSum === '2') ? 4 : 4; //一時的な変更
 

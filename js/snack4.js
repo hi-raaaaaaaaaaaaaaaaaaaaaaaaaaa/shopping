@@ -1,10 +1,10 @@
 const container = document.getElementById('container');
 // 野菜たちの初期位置指定
-const drinks = [
-    { element: document.getElementById('barTea'), id: 'barTea', startX: 0, startY: 0 },
-    { element: document.getElementById('stTea'), id: 'stTea', startX: 0, startY: 0 },
-    { element: document.getElementById('orange'), id: 'orange', startX: 0, startY: 0 },
-    { element: document.getElementById('grape'), id: 'grape', startX: 0, startY: 0 },
+const snacks = [
+    { element: document.getElementById('potatostick'), id: 'potatostick', startX: 0, startY: 0 },
+    { element: document.getElementById('chocolate'), id: 'chocolate', startX: 0, startY: 0 },
+    { element: document.getElementById('chococookie'), id: 'chococookie', startX: 0, startY: 0 },
+    { element: document.getElementById('potatochips'), id: 'potatochips', startX: 0, startY: 0 },
 ];
 
 const title_elements = [
@@ -21,17 +21,17 @@ const title_elementsPic = [
     document.getElementById('title-4Pi'),
 ];
 const box = document.getElementById('box');
-const grape_list = document.getElementById("list-1");
-const stTea_list = document.getElementById("list-2");
-const orange_list = document.getElementById("list-3");
-const barTea_list = document.getElementById("list-4");
+const potatochips_list = document.getElementById("list-1");
+const chocolate_list = document.getElementById("list-2");
+const chococookie_list = document.getElementById("list-3");
+const potatostick_list = document.getElementById("list-4");
 
 // --- データ計測用の変数 ---
 let startTime = Date.now(); // 開始時間
 let failCount = 0;          // 失敗回数
 let playTime = 0;           // プレイ時間(秒)
 let missAccumulator = [0, 0, 0, 0]; 
-const drinkInternalNames = ["barTea", "stTea", "orange", "grape"];
+const snackInternalNames = ["potatostick", "chocolate", "chococookie", "potatochips"];
 
 let url = new URL(window.location.href);
 let params = url.searchParams;
@@ -48,53 +48,53 @@ let numquestSum = parseInt(questSumParam) || 1;
 const isPicMode = (params.get('pic') === 'true' && params.get('chara') === 'false');
 
 // 画像パスの定義
-const drinkImages = {
-    "むぎちゃ　　　　": "image/drink/barTea.png",
-    "こうちゃ　　　　": "image/drink/stTea.png",
-    "オレンジジュース": "image/drink/orange.png",
-    "ぶどうジュース　": "image/drink/grape.png"
+const snackImages = {
+    "ポテトスティック": "image/snack/potatostick.png",
+    "チョコレート　　": "image/snack/chocolate.png",
+    "チョコクッキー　": "image/snack/chococookie.png",
+    "ポテトチップス　": "image/snack/potatochips.png"
 };
 
-const drinkImagesById = {
-    "barTea": "image/drink/barTea.png",
-    "stTea": "image/drink/stTea.png",
-    "orange": "image/drink/orange.png",
-    "grape": "image/drink/grape.png"
+const snackImagesById = {
+    "potatostick": "image/snack/potatostick.png",
+    "chocolate": "image/snack/chocolate.png",
+    "chococookie": "image/snack/chococookie.png",
+    "potatochips": "image/snack/potatochips.png"
 };
 
-const alldrinks = [
-    { element: document.getElementById('barTea'), id: 'barTea', name: "むぎちゃ　　　　", overlayId: 'barTea_overlay', originalIndex: 0 },
-    { element: document.getElementById('stTea'), id: 'stTea', name: "こうちゃ　　　　", overlayId: 'stTea_overlay', originalIndex: 1 },
-    { element: document.getElementById('orange'), id: 'orange', name: "オレンジジュース", overlayId: 'orange_overlay', originalIndex: 2 },
-    { element: document.getElementById('grape'), id: 'grape', name: "ぶどうジュース　", overlayId: 'grape_overlay', originalIndex: 3 },
+const allsnacks = [
+    { element: document.getElementById('potatostick'), id: 'potatostick', name: "ポテトスティック", overlayId: 'potatostick_overlay', originalIndex: 0 },
+    { element: document.getElementById('chocolate'), id: 'chocolate', name: "チョコレート　　", overlayId: 'chocolate_overlay', originalIndex: 1 },
+    { element: document.getElementById('chococookie'), id: 'chococookie', name: "チョコクッキー　", overlayId: 'chococookie_overlay', originalIndex: 2 },
+    { element: document.getElementById('potatochips'), id: 'potatochips', name: "ポテトチップス　", overlayId: 'potatochips_overlay', originalIndex: 3 },
 ];
 
 // --- 1. 表示する野菜をランダムに選択 ---
 const shuffledIndices = [0, 1, 2, 3].sort(() => Math.random() - 0.5);
 
-for (let i = 0; i < alldrinks.length; i++) {
+for (let i = 0; i < allsnacks.length; i++) {
     const originalIndex = shuffledIndices[i];
-    const drink = alldrinks[originalIndex];
-    const overlayElement = document.getElementById(drink.overlayId);
-    const overlayElementP = document.getElementById(drink.overlayId + 'P');
+    const snack = allsnacks[originalIndex];
+    const overlayElement = document.getElementById(snack.overlayId);
+    const overlayElementP = document.getElementById(snack.overlayId + 'P');
 
     if (i < numdispTypeSum) {
-        drink.element.style.display = '';
+        snack.element.style.display = '';
         if (overlayElement) overlayElement.style.opacity = 1;
         if (overlayElementP) overlayElementP.style.opacity = 1;
     } else {
-        drink.element.style.display = 'none';
+        snack.element.style.display = 'none';
         if (overlayElement) overlayElement.style.opacity = 0;
         if (overlayElementP) overlayElementP.style.opacity = 0;
     }
 }
 
 // --- 2. 問題の作成（画像モード時は1種類4個までに制限） ---
-const displayeddrinks = alldrinks.filter(drink => drink.element.style.display !== 'none');
-let target_drinks = [];
+const displayedsnacks = allsnacks.filter(snack => snack.element.style.display !== 'none');
+let target_snacks = [];
 
-if (displayeddrinks.length > 0 && numquestSum > 0) {
-    const questCandidates = [...displayeddrinks].sort(() => Math.random() - 0.5);
+if (displayedsnacks.length > 0 && numquestSum > 0) {
+    const questCandidates = [...displayedsnacks].sort(() => Math.random() - 0.5);
     const actualQuestTypeSum = Math.min(numquestTypeSum, questCandidates.length);
     
     let selectedForQuest = [];
@@ -105,7 +105,7 @@ if (displayeddrinks.length > 0 && numquestSum > 0) {
     selectedForQuest.sort((a, b) => a.originalIndex - b.originalIndex);
 
     for (let i = 0; i < selectedForQuest.length; i++) {
-        target_drinks.push({
+        target_snacks.push({
             originalIndex: selectedForQuest[i].originalIndex,
             name: selectedForQuest[i].name,
             count: 0
@@ -113,12 +113,12 @@ if (displayeddrinks.length > 0 && numquestSum > 0) {
     }
 
     let remainingSum = numquestSum;
-    let counts = new Array(target_drinks.length).fill(0);
+    let counts = new Array(target_snacks.length).fill(0);
 
     // 最小1つずつ割り当て
-    if (remainingSum >= target_drinks.length) {
+    if (remainingSum >= target_snacks.length) {
         counts.fill(1);
-        remainingSum -= target_drinks.length;
+        remainingSum -= target_snacks.length;
     } else {
         for(let i = 0; i < remainingSum; i++) counts[i] = 1;
         remainingSum = 0;
@@ -129,7 +129,7 @@ if (displayeddrinks.length > 0 && numquestSum > 0) {
     const questLimit = isPicMode ? 4 : 99; 
     
     while (remainingSum > 0 && safetyCounter < 100) {
-        const randomIndex = Math.floor(Math.random() * target_drinks.length);
+        const randomIndex = Math.floor(Math.random() * target_snacks.length);
         if (counts[randomIndex] < questLimit) {
             counts[randomIndex]++;
             remainingSum--;
@@ -143,13 +143,13 @@ if (displayeddrinks.length > 0 && numquestSum > 0) {
 function updateQuestDisplay(counts) {
     title_elements.forEach(el => { if(el) el.innerHTML = ""; });
     title_elementsPic.forEach(el => { if(el) el.innerHTML = ""; });
-    for (let i = 0; i < target_drinks.length; i++) {
-        if (counts) target_drinks[i].count = counts[i];
-        const target = target_drinks[i];
+    for (let i = 0; i < target_snacks.length; i++) {
+        if (counts) target_snacks[i].count = counts[i];
+        const target = target_snacks[i];
 
-        if ((title_elements[i] && target.count > 0) || (title_elementsPic[i] && target.count > 0)){
+        if ((title_elements[i] && target.count > 0)  || (title_elementsPic[i] && target.count > 0)){
             if (isPicMode) {
-                const imgTag = `<img src="${drinkImages[target.name]}" style="height:11dvh; vertical-align:middle; margin-right:0.8dvw;">`;
+                const imgTag = `<img src="${snackImages[target.name]}" style="height:5.4dvw; vertical-align:middle; margin-right:0.3dvw; margin-bottom:0.3dvh;">`;
                 title_elementsPic[i].innerHTML = imgTag.repeat(target.count);
             } else {
                 title_elements[i].innerHTML = `・${target.name} ${toFullWidth(target.count)}こ`;
@@ -161,49 +161,49 @@ function updateQuestDisplay(counts) {
 const countAll = [0, 0, 0, 0];
 var sW = window.innerWidth;
 var sH = window.innerHeight;
-var grape_cnt = 0, stTea_cnt = 0, orange_cnt = 0, barTea_cnt = 0; 
+var potatochips_cnt = 0, chocolate_cnt = 0, chococookie_cnt = 0, potatostick_cnt = 0; 
 
 const boxRect = { left: sW * 0.72, top: sH * 0.65 };
 box.style.left = `${boxRect.left}px`;
 box.style.top = `${boxRect.top}px`;
 
-drinks[0].startX = sW * -0.01; drinks[0].startY = sH * 0.7; // barTea
-drinks[1].startX = sW * 0.34; drinks[1].startY = sH * 0.7; // stTea
-drinks[2].startX = sW * -0.01; drinks[2].startY = sH * 0.31; // orange
-drinks[3].startX = sW * 0.34; drinks[3].startY = sH * 0.31; // grape
+snacks[0].startX = sW * -0.01; snacks[0].startY = sH * 0.7; // potatostick
+snacks[1].startX = sW * 0.34; snacks[1].startY = sH * 0.7; // chocolate
+snacks[2].startX = sW * -0.01; snacks[2].startY = sH * 0.31; // chococookie
+snacks[3].startX = sW * 0.34; snacks[3].startY = sH * 0.31; // potatochips
 
 let isMoving = false;
 const duration = 700;
 
 function easeInOutSine(t) { return -0.5 * (Math.cos(Math.PI * t) - 1); }
 
-drinks.forEach(drinkInfo => {
-    const drinkElement = drinkInfo.element;
-    drinkElement.style.left = `${drinkInfo.startX}px`;
-    drinkElement.style.top = `${drinkInfo.startY}px`;
+snacks.forEach(snackInfo => {
+    const snackElement = snackInfo.element;
+    snackElement.style.left = `${snackInfo.startX}px`;
+    snackElement.style.top = `${snackInfo.startY}px`;
     let animationInterval = null;
 
-    drinkElement.addEventListener('click', () => {
-        if (drinkElement.style.display === 'none') return;
+    snackElement.addEventListener('click', () => {
+        if (snackElement.style.display === 'none') return;
 
         // --- カゴの上限チェック ---
         // 画像モードの時、すでに4個入っていたらそれ以上入れられないようにする
         if (isPicMode) {
             let currentVal = 0;
-            if(drinkElement.id == 'grape') currentVal = grape_cnt;
-            if(drinkElement.id == 'stTea') currentVal = stTea_cnt;
-            if(drinkElement.id == 'orange') currentVal = orange_cnt;
-            if(drinkElement.id == 'barTea') currentVal = barTea_cnt;
+            if(snackElement.id == 'potatochips') currentVal = potatochips_cnt;
+            if(snackElement.id == 'chocolate') currentVal = chocolate_cnt;
+            if(snackElement.id == 'chococookie') currentVal = chococookie_cnt;
+            if(snackElement.id == 'potatostick') currentVal = potatostick_cnt;
             if (currentVal >= 4) return; 
         }
 
         isMoving = true;
         if (animationInterval) cancelAnimationFrame(animationInterval);
 
-        const targetX = boxRect.left + box.offsetWidth / 2 - drinkElement.offsetWidth / 2;
-        const targetY = boxRect.top + box.offsetHeight / 2 - drinkElement.offsetHeight / 2;
-        const startX = parseFloat(drinkElement.style.left);
-        const startY = parseFloat(drinkElement.style.top);
+        const targetX = boxRect.left + box.offsetWidth / 2 - snackElement.offsetWidth / 2;
+        const targetY = boxRect.top + box.offsetHeight / 2 - snackElement.offsetHeight / 2;
+        const startX = parseFloat(snackElement.style.left);
+        const startY = parseFloat(snackElement.style.top);
         let moveStartTime;
 
         function animateToBox(currentTime) {
@@ -211,24 +211,24 @@ drinks.forEach(drinkInfo => {
             const elapsed = currentTime - moveStartTime;
             let progress = Math.min(1, elapsed / duration);
             progress = easeInOutSine(progress);
-            drinkElement.style.left = `${startX + (targetX - startX) * progress}px`;
-            drinkElement.style.top = `${startY + (targetY - startY) * progress}px`;
+            snackElement.style.left = `${startX + (targetX - startX) * progress}px`;
+            snackElement.style.top = `${startY + (targetY - startY) * progress}px`;
 
-            if(progress > 0.9) drinkElement.style.opacity = Math.max(0, drinkElement.style.opacity - 0.05);
+            if(progress > 0.9) snackElement.style.opacity = Math.max(0, snackElement.style.opacity - 0.05);
 
             if (progress >= 0.99) {
                 isMoving = false;
-                drinkElement.style.left = `${drinkInfo.startX}px`;
-                drinkElement.style.top = `${drinkInfo.startY}px`;
-                drinkElement.style.opacity = 1;
+                snackElement.style.left = `${snackInfo.startX}px`;
+                snackElement.style.top = `${snackInfo.startY}px`;
+                snackElement.style.opacity = 1;
 
-                if(drinkElement.id == 'grape') grape_cnt++;
-                if(drinkElement.id == 'stTea') stTea_cnt++;
-                if(drinkElement.id == 'orange') orange_cnt++;
-                if(drinkElement.id == 'barTea') barTea_cnt++;
+                if(snackElement.id == 'potatochips') potatochips_cnt++;
+                if(snackElement.id == 'chocolate') chocolate_cnt++;
+                if(snackElement.id == 'chococookie') chococookie_cnt++;
+                if(snackElement.id == 'potatostick') potatostick_cnt++;
 
-                countAll[0] = barTea_cnt; countAll[1] = stTea_cnt;
-                countAll[2] = orange_cnt; countAll[3] = grape_cnt;
+                countAll[0] = potatostick_cnt; countAll[1] = chocolate_cnt;
+                countAll[2] = chococookie_cnt; countAll[3] = potatochips_cnt;
                 updateCountDisplay();
                 return;
             }
@@ -238,19 +238,19 @@ drinks.forEach(drinkInfo => {
     });
 });
 
-function animateFromBox(drinkId) {
-    const drinkInfo = drinks.find(v => v.id === drinkId);
-    if (!drinkInfo) return;
+function animateFromBox(snackId) {
+    const snackInfo = snacks.find(v => v.id === snackId);
+    if (!snackInfo) return;
     isMoving = true;
-    const drinkElement = drinkInfo.element;
-    const startX = boxRect.left + box.offsetWidth / 2 - drinkElement.offsetWidth / 2;
-    const startY = boxRect.top + box.offsetHeight / 2 - drinkElement.offsetHeight / 2;
-    drinkElement.style.left = `${startX}px`;
-    drinkElement.style.top = `${startY}px`;
-    drinkElement.style.opacity = 0.2;
+    const snackElement = snackInfo.element;
+    const startX = boxRect.left + box.offsetWidth / 2 - snackElement.offsetWidth / 2;
+    const startY = boxRect.top + box.offsetHeight / 2 - snackElement.offsetHeight / 2;
+    snackElement.style.left = `${startX}px`;
+    snackElement.style.top = `${startY}px`;
+    snackElement.style.opacity = 0.2;
 
-    const targetX = drinkInfo.startX;
-    const targetY = drinkInfo.startY;
+    const targetX = snackInfo.startX;
+    const targetY = snackInfo.startY;
     let backStartTime = null;
 
     function animateBack(currentTime) {
@@ -258,22 +258,22 @@ function animateFromBox(drinkId) {
         const elapsed = currentTime - backStartTime;
         let progress = Math.min(1, elapsed / duration);
         progress = easeInOutSine(progress);
-        drinkElement.style.left = `${startX + (targetX - startX) * progress}px`;
-        drinkElement.style.top = `${startY + (targetY - startY) * progress}px`;
-        drinkElement.style.opacity = 0.2 + (0.8 * progress);
+        snackElement.style.left = `${startX + (targetX - startX) * progress}px`;
+        snackElement.style.top = `${startY + (targetY - startY) * progress}px`;
+        snackElement.style.opacity = 0.2 + (0.8 * progress);
 
         if (elapsed < duration) requestAnimationFrame(animateBack);
-        else { drinkElement.style.opacity = 1; isMoving = false; }
+        else { snackElement.style.opacity = 1; isMoving = false; }
     }
     requestAnimationFrame(animateBack);
 }
 
 function updateCountDisplay() {
     const listConfig = [
-        { el: grape_list, count: grape_cnt, name: "ぶどうジュース　", id: "grape" },
-        { el: stTea_list, count: stTea_cnt, name: "こうちゃ　　　　", id: "stTea" },
-        { el: orange_list, count: orange_cnt, name: "オレンジジュース", id: "orange" },
-        { el: barTea_list, count: barTea_cnt, name: "むぎちゃ　　　　", id: "barTea" }
+        { el: potatochips_list, count: potatochips_cnt, name: "ポテトチップス　", id: "potatochips" },
+        { el: chocolate_list, count: chocolate_cnt, name: "チョコレート　　", id: "chocolate" },
+        { el: chococookie_list, count: chococookie_cnt, name: "チョコクッキー　", id: "chococookie" },
+        { el: potatostick_list, count: potatostick_cnt, name: "ポテトスティック", id: "potatostick" }
     ];
 
     listConfig.forEach(item => {
@@ -281,7 +281,7 @@ function updateCountDisplay() {
             if (isPicMode) {
                 // カゴの中身は最大5つまで表示
                 const displayCount = Math.min(item.count, 5);
-                const imgTag = `<img src="${drinkImagesById[item.id]}" style="height:2.8em; vertical-align:middle; margin-right:3dvw;">`;
+                const imgTag = `<img src="${snackImagesById[item.id]}" style="height:1.9em; vertical-align:middle; margin-right:0.3dvw;">`;
                 item.el.innerHTML = imgTag.repeat(displayCount);
             } else {
                 item.el.innerHTML = `${item.name} ${toFullWidth(item.count)}こ`;
@@ -294,7 +294,7 @@ function updateCountDisplay() {
 
 function ansJudge() {
     let countAll_quest = [0, 0, 0, 0];
-    target_drinks.forEach(target => {
+    target_snacks.forEach(target => {
         countAll_quest[target.originalIndex] = target.count;
     });
 
@@ -349,7 +349,7 @@ function finalizeRoundData() {
     settings.forEach(key => {
         if (currentParams.has(key)) sendParams.append(key, currentParams.get(key));
     });
-    sendParams.append('course', 'のみもの');
+    sendParams.append('course', 'おかし');
 
     let maxRound = 0;
     for (let [key, value] of currentParams.entries()) {
@@ -368,35 +368,35 @@ function finalizeRoundData() {
 
     let maxMissVal = -1;
     let minMissVal = Infinity;
-    let mostMisseddrink = "なし";
-    let leastMisseddrink = "なし";
-    const jpNames = ["むぎちゃ", "こうちゃ", "オレンジジュース", "ぶどうジュース"];
+    let mostMissedsnack = "なし";
+    let leastMissedsnack = "なし";
+    const jpNames = ["チョコスティック", "チョコレート", "チョコクッキー", "ポテトチップス"];
 
     missAccumulator.forEach((val, idx) => {
         if (val > maxMissVal) {
             maxMissVal = val;
-            mostMisseddrink = jpNames[idx];
+            mostMissedsnack = jpNames[idx];
         }
         if (val < minMissVal) {
             minMissVal = val;
-            leastMisseddrink = jpNames[idx];
+            leastMissedsnack = jpNames[idx];
         }
     });
 
     if (failCount === 0) {
-        mostMisseddrink = "なし";
-        leastMisseddrink = "すべて正解";
+        mostMissedsnack = "なし";
+        leastMissedsnack = "すべて正解";
     }
 
-    sendParams.append(`mostMissed_${nextRound}`, mostMisseddrink);
-    sendParams.append(`leastMissed_${nextRound}`, leastMisseddrink);
+    sendParams.append(`mostMissed_${nextRound}`, mostMissedsnack);
+    sendParams.append(`leastMissed_${nextRound}`, leastMissedsnack);
 
     return sendParams.toString();
 }
 
 function goToNextStage() {
     const queryString = finalizeRoundData();
-    window.location.href = `drink-game4.html?${queryString}`;
+    window.location.href = `snack-game4.html?${queryString}`;
 }
 
 function quitGame() {
@@ -404,10 +404,10 @@ function quitGame() {
     window.location.href = `giveto.html?${queryString}`;
 }
 
-function Decgrape() { if (!isMoving && grape_cnt > 0) { grape_cnt--; updateCountDisplay(); countAll[3] = grape_cnt; animateFromBox('grape'); } }
-function DecstTea() { if (!isMoving && stTea_cnt > 0) { stTea_cnt--; updateCountDisplay(); countAll[1] = stTea_cnt; animateFromBox('stTea'); } }
-function Decorange() { if (!isMoving && orange_cnt > 0) { orange_cnt--; updateCountDisplay(); countAll[2] = orange_cnt; animateFromBox('orange'); } }
-function DecbarTea() { if (!isMoving && barTea_cnt > 0) { barTea_cnt--; updateCountDisplay(); countAll[0] = barTea_cnt; animateFromBox('barTea'); } }
+function Decpotatochips() { if (!isMoving && potatochips_cnt > 0) { potatochips_cnt--; updateCountDisplay(); countAll[3] = potatochips_cnt; animateFromBox('potatochips'); } }
+function Decchocolate() { if (!isMoving && chocolate_cnt > 0) { chocolate_cnt--; updateCountDisplay(); countAll[1] = chocolate_cnt; animateFromBox('chocolate'); } }
+function Decchococookie() { if (!isMoving && chococookie_cnt > 0) { chococookie_cnt--; updateCountDisplay(); countAll[2] = chococookie_cnt; animateFromBox('chococookie'); } }
+function Decpotatostick() { if (!isMoving && potatostick_cnt > 0) { potatostick_cnt--; updateCountDisplay(); countAll[0] = potatostick_cnt; animateFromBox('potatostick'); } }
 
 function toFullWidth(str) {
     return String(str).replace(/[A-Za-z0-9]/g, s => String.fromCharCode(s.charCodeAt(0) + 0xFEE0));
@@ -432,8 +432,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     document.getElementById('wrong-popup-button').addEventListener('click', hidePopup);
-    document.getElementById('list-1').addEventListener('click', Decgrape);
-    document.getElementById('list-2').addEventListener('click', DecstTea);
-    document.getElementById('list-3').addEventListener('click', Decorange);
-    document.getElementById('list-4').addEventListener('click', DecbarTea);
+    document.getElementById('list-1').addEventListener('click', Decpotatochips);
+    document.getElementById('list-2').addEventListener('click', Decchocolate);
+    document.getElementById('list-3').addEventListener('click', Decchococookie);
+    document.getElementById('list-4').addEventListener('click', Decpotatostick);
 });

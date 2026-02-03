@@ -3,7 +3,6 @@
     <meta charset="UTF-8">
 	<link rel="stylesheet" href="css/style.css">
 	<link rel="stylesheet" href="css/iphone_popup.css">
-	<link rel="stylesheet" href="css/product_locate.css">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=BIZ+UDGothic:wght@400;700&family=BIZ+UDPGothic:wght@400;700&display=swap" rel="stylesheet">
@@ -17,10 +16,10 @@
 
 	<div class="question">
 		<h4 class="kaimono-memo">ーかってくるものー</h4>
-		<h2 id="title-3"></h2>
-		<h2 id="title-4"></h2>
 		<h2 id="title-1"></h2>
 		<h2 id="title-2"></h2>
+		<h2 id="title-3"></h2>
+		<h2 id="title-4"></h2>
 	</div>
 
 	<div class="game" id="container">
@@ -35,11 +34,18 @@
 			
 		</div>
 
+		<div class="product_overlay">
+			<image class="product_overlay_2" id="orange_overlayP" src="image/drink-4/orange.png"></image>
+            <image class="product_overlay_3" id="grape_overlayP" src="image/drink-4/grape.png"></image>
+            <image class="product_overlay_0" id="barTea_overlayP" src="image/drink-4/barTea.png"></image>
+            <image class="product_overlay_1" id="stTea_overlayP" src="image/drink-4/stTea.png"></image>
+			
+		</div>
 
-		<image class="product_0" id="barTea" src="image/drink-4/barTea.png"></image>
-		<image class="product_1" id="stTea" src="image/drink-4/stTea.png"></image>
-		<image class="product_2" id="orange" src="image/drink-4/orange.png"></image>
-		<image class="product_3" id="grape" src="image/drink-4/grape.png"></image>
+		<image class="barTea" id="barTea" src="image/drink-4/barTea.png"></image>
+		<image class="stTea" id="stTea" src="image/drink-4/stTea.png"></image>
+		<image class="orange" id="orange" src="image/drink-4/orange.png"></image>
+		<image class="grape" id="grape" src="image/drink-4/grape.png"></image>
 
 		
 		<image class="basket" id="box" src="image/kaimono.png"></image>
@@ -51,14 +57,10 @@
 	<div class="list" id="stuff">
 		<div class="list-text">
 			<h1 class="list_label">ーかごのなかみー</h1>
-			<div class="list_case3"><h1 id="list-3"></h1></div>
-			<div class="list_case1"><h1 id="list-1"></h1></div>
 			<div class="list_case4"><h1 id="list-4"></h1></div>
 			<div class="list_case2"><h1 id="list-2"></h1></div>
-			<div class="list_case3"><h1 id="list-3Pi"></h1></div>
-			<div class="list_case1"><h1 id="list-1Pi"></h1></div>
-			<div class="list_case4"><h1 id="list-4Pi"></h1></div>
-			<div class="list_case2"><h1 id="list-2Pi"></h1></div>
+			<div class="list_case3"><h1 id="list-3"></h1></div>
+			<div class="list_case1"><h1 id="list-1"></h1></div>
 			<h1 class="howto">タップでもどす</h1>
 		</div>
 		<button class="check" id="check-button">できた！</button>
@@ -96,43 +98,112 @@
 </body>
 
 <style>
-	.howto {
-		    text-align: center;
-			color: #4d4d4d;
-			font-size: clamp(6px, 2dvw, 36px);
-			margin-top: 2%;
-			margin-bottom: 2%;
+	.product_locate{
+		position: absolute;
+		left: 0%;
+		width: 70%;
+    	height: 70%;
+    	top: 30%;
+		z-index: 1;
 	}
 
-	.check {
-		font-size: clamp(6px, 2.4dvw, 36px);
-		height: 0%;
-		flex: 1.5;
+	.product_locate_overlay{
+		position: absolute;
+		left: 0%;
+		width: 70vw;
+    	height: 74vh;
+    	top: 31dvh;
+		z-index: 1;
 	}
 
-	.list_label {
-		margin-top: 0;
+	.product_locate_overlay_2,
+    .product_locate_overlay_3,
+    .product_locate_overlay_0,
+    .product_locate_overlay_1 {
+        opacity: 0; /* 初期状態では非表示 */
+        transition: opacity 0.3s; /* スムーズに切り替えるためのトランジション */
+    }
+
+	.product_locate_overlay_2 {
+		height:35dvh;
+		width:34dvw;
 	}
 
-	.basket {
-		margin-left: 4%;
-		margin-top: 4%;
-		width:20%;
+	.product_locate_overlay_3 {
+		height:35dvh;
+		width:34dvw;
 	}
 
-	.list {
-		height: 60%;
+	.product_locate_overlay_0 {
+		height:36dvh;
+		width:34dvw;
 	}
 
-	.question {
-		text-align: left;
+	.product_locate_overlay_1 {
+		height:36dvh;
+		width:34dvw;
 	}
 
-	.kaimono-memo {
-		text-align: center;
+
+	.product_overlay_2 {
+		position: absolute;
+		left: 10%;
+		top: 39%;
+		width: 26%;
+		z-index: 5;
 	}
 
-	
+	.product_overlay_3 {
+		position: absolute;
+		left: 38%;
+		top: 39%;
+		width: 26%;
+		z-index: 3;
+	}
+
+	.product_overlay_0 {
+		position: absolute;
+		left: 10%;
+		top: 68%;
+		width: 26%;
+		z-index: 5;
+	}
+
+	.product_overlay_1 {
+		position: absolute;
+		left: 38%;
+		top: 68%;
+		width: 26%;
+		z-index: 4;
+	}
+
+
+	#barTea {
+	    position: absolute;
+	    width: 26%;
+		z-index: 5;
+	}
+
+	#stTea {
+	    position: absolute;
+	    width: 26%;
+		z-index: 4;
+	}
+
+
+	#orange {
+	    position: absolute;
+	    width: 26%;
+		z-index: 5;
+	}
+
+
+	#grape {
+	    position: absolute;
+	    width: 26%;
+		z-index: 3;
+	}
+
 </style>
 
 <script type="text/javascript" src="js/cracker.js"></script>

@@ -38,8 +38,8 @@ document.addEventListener('DOMContentLoaded', () => {
     //例：{ difficulty: '難易度名', course: 'コース名', desc: '説明文', bg: '背景画像', colorClass: 'cssで宣言したribbonクラス' },
     const difficulties = [
         { difficulty: 'かんたん', course: '1. 野菜コース', desc: '色、形、名前から判別できます', bg: 'vegetable-back.png', colorClass: 'ribbon-vegetable' },
-      //  { difficulty: 'ふつう', course: '2. お菓子コース', desc: '色、似た形、名前から判別できます', bg: 'sweets-back.png', colorClass: 'ribbon-sweets' },
-        //{ difficulty: 'むずかしい', course: '3. 飲み物コース', desc: '色、名前から判別できます', bg: 'drink-back.png', colorClass: 'ribbon-drink' },
+        { difficulty: 'ふつう', course: '2. お菓子コース', desc: '色、似た形、名前から判別できます', bg: 'sweets-back.png', colorClass: 'ribbon-snack' },
+        { difficulty: 'むずかしい', course: '3. 飲み物コース', desc: '色、名前から判別できます', bg: 'drink-back.png', colorClass: 'ribbon-drink' },
        // { difficulty: 'おに', course: '4. お肉コース', desc: '名前から判別できます', bg: 'meat-back.png', colorClass: 'ribbon-meat' }
     ];
     let currentDiffIndex = 0;
@@ -183,6 +183,7 @@ document.addEventListener('DOMContentLoaded', () => {
         currentDiffIndex = (currentDiffIndex - 1 + difficulties.length) % difficulties.length;
         updateUI(currentDiffIndex);
         animateCarousel();
+        updatePreview();
     });
 
     // 難易度を増やすボタンの処理 (右矢印)
@@ -190,6 +191,7 @@ document.addEventListener('DOMContentLoaded', () => {
         currentDiffIndex = (currentDiffIndex + 1) % difficulties.length;
         updateUI(currentDiffIndex);
         animateCarousel();
+        updatePreview();
     });
 
     // タッチ操作を追加
@@ -214,11 +216,13 @@ document.addEventListener('DOMContentLoaded', () => {
             currentDiffIndex = (currentDiffIndex + 1) % difficulties.length;
             updateUI(currentDiffIndex);
             animateCarousel();
+            updatePreview();
         } else if (swipeDistance < -minSwipeDistance) {
             // 右スワイプ
             currentDiffIndex = (currentDiffIndex - 1 + difficulties.length) % difficulties.length;
             updateUI(currentDiffIndex);
             animateCarousel();
+            updatePreview();
         } else {
             return; // スワイプと認識しない場合は何もしない
         }
@@ -271,19 +275,38 @@ document.addEventListener('DOMContentLoaded', () => {
         const questTypeSum = parseInt(document.getElementById('textbox-type').value);
         const dispTypeSum = parseInt(document.getElementById('textbox-type-disp').value);
 
+        // 現在のコースを取得 (ribbon-vegetable -> vegetable 等)
+        const currentCourse = difficulties[currentDiffIndex].colorClass.substring(7);
+
+        // --- 難易度（コース）別データの定義 ---
+        let itemNames, itemImgPaths, bgImage, folderPath, fileNames;
+
+        if (currentCourse === 'drink') {
+            // のみものコース
+            itemNames = ["・むぎちゃ　　　　", "・こうちゃ　　　　 ", "・オレンジジュース ", "・ぶどうジュース　 "];
+            itemImgPaths = ["image/drink/barTea.png", "image/drink/stTea.png", "image/drink/orange.png", "image/drink/grape.png"];
+            bgImage = 'url("./image/game2_2_drink_corner.png")';
+            folderPath = "./image/drink-4_prev/";
+            fileNames = ["barTea.png", "stTea.png", "orange.png", "grape.png"];
+        } else if (currentCourse === 'snack') {
+            // お菓子コース
+            itemNames = ["・ポテトスティック ", "・チョコレート　　 ", "・チョコクッキー　 ", "・ポテトチップス　 "];
+            itemImgPaths = ["image/snack/potatostick.png", "image/snack/chocolate.png", "image/snack/chococookie.png", "image/snack/potatochips.png"];
+            bgImage = 'url("./image/game2_2_snack_corner.png")';
+            folderPath = "./image/snack-4_OVERRAY/";
+            fileNames = ["potatostick.png", "chocolate.png", "chococookie.png", "potatochips.png"];
+        } else {
+            // 野菜コース（デフォルト）
+            itemNames = ["・トマト　　　　  ", "　・じゃがいも　　 ", "・ピーマン　　　 ", "　・さつまいも　　 "];
+            itemImgPaths = ["image/vegetable/tomato.png", "image/vegetable/potato.png", "image/vegetable/greenpepper.png", "image/vegetable/yam.png"];
+            bgImage = 'url("./image/game2_2_vegetable_corner.png")';
+            folderPath = "./image/vege-4_prev/";
+            fileNames = ["tomato.png", "potato.png", "greenpepper.png", "yam.png"];
+        }
+
         // --- 1. 問題エリア（お買い物メモ）の更新 ---
         questionArea.innerHTML = '<h4 class="kaimono-memo">ーかってくるものー</h4>';
         
-        // データ定義
-        const vegeNames = ["・トマト　　 ", "・じゃがいも ", "・ピーマン　 ", "・さつまいも "];
-        const vegeImgPaths = [
-            "image/vegetable/tomato.png",
-            "image/vegetable/potato.png",
-            "image/vegetable/greenpepper.png",
-            "image/vegetable/yam.png"
-        ];
-
-        // 各アイテムの個数計算（既存ロジック維持）
         let remainingSum = questSum;
         let counts = Array(questTypeSum).fill(0);
         for (let i = 0; i < questTypeSum; i++) {
@@ -292,69 +315,47 @@ document.addEventListener('DOMContentLoaded', () => {
             remainingSum -= val;
         }
 
-        // 表示エリアのコンテナ作成（グリッド状にするため）
         const memoContainer = document.createElement('div');
-        memoContainer.className = isPicto ? 'memo-grid-picto' : 'memo-grid-text';
+
+        // コースが drink または snack の場合は 横1列用のクラスを付与
+        if (currentCourse === 'drink' || currentCourse === 'snack') {
+            memoContainer.className = isPicto ? 'memo-grid-picto-landscape' : 'memo-grid-text';
+        } else {
+            // 野菜コースなどは従来通り (2x2)
+            memoContainer.className = isPicto ? 'memo-grid-picto' : 'memo-grid-text';
+        }
 
         for (let i = 0; i < questTypeSum; i++) {
             const itemBox = document.createElement('div');
             itemBox.className = 'memo-item';
 
             if (isPicto) {
-                // 【画像形式】 指定された画像（src）を個数（counts[i]）分並べる
                 for (let j = 0; j < counts[i]; j++) {
                     const img = document.createElement('img');
-                    img.src = vegeImgPaths[i % 4];
+                    img.src = itemImgPaths[i % 4];
                     img.className = 'memo-vege-icon';
                     itemBox.appendChild(img);
                 }
             } else {
-                // 【文字形式】 従来通り
-                itemBox.textContent = `${vegeNames[i % 4]}${toFullWidth(counts[i])}こ`;
+                itemBox.textContent = `${itemNames[i % 4]}${toFullWidth(counts[i])}こ`;
             }
             memoContainer.appendChild(itemBox);
         }
         questionArea.appendChild(memoContainer);
 
-        // --- 2. ゲームエリア（陳列棚と野菜）の更新 ---
+        // --- 2. ゲームエリア（陳列棚）の更新 ---
         gameArea.innerHTML = ''; 
-        const vegeFiles = ["tomato.png", "potato.png", "greenpepper.png", "yam.png"];
-        
-        // 共通スタイルのリセット
-        gameArea.style.position = "absolute";
+        gameArea.style.position = "relative";
+        gameArea.style.backgroundImage = bgImage;
+        gameArea.style.left = "0%";
+        gameArea.style.width = "80%";
+        gameArea.style.height = "60%";
 
-            //if (dispTypeSum <= 2) {
-            // 【1〜2種類：広いバスケット】
-            //gameArea.style.backgroundImage = 'url("./image/game4_fruit_basket.png")';
-            // 指定された数値を適用
-            //gameArea.style.left = "-25%";
-           // gameArea.style.width = "125%";
-           // gameArea.style.height = "74%";
-           // gameArea.style.top = "35%";
-            
-           // const folderPath = "./image/vegetable-2_OVERRAY/";
-           // for (let i = 0; i < dispTypeSum; i++) {
-           //     const img = document.createElement('img');
-           //     img.src = folderPath + vegeFiles[i];
-           //     img.className = `prev-vege-img v2-pos-${i}`;
-           //     gameArea.appendChild(img);
-           // }
-       // } else {
-            // 【3〜4種類：4分割の棚】
-            gameArea.style.backgroundImage = 'url("./image/game4_2_fruit_basket.png")';
-            // 指定された数値を適用
-            gameArea.style.left = "-25%";
-            gameArea.style.width = "125%";
-            gameArea.style.height = "60%";
-            gameArea.style.top = "42%";
-
-            const folderPath = "./image/vegetable-4_OVERRAY/";
-            for (let i = 0; i < dispTypeSum; i++) {
-                const img = document.createElement('img');
-                img.src = folderPath + vegeFiles[i];
-                img.className = `prev-vege-img v4-pos-${i}`;
-                gameArea.appendChild(img);
-           // }
+        for (let i = 0; i < dispTypeSum; i++) {
+            const img = document.createElement('img');
+            img.src = folderPath + fileNames[i];
+            img.className = `prev-vege-img v4-pos-${i}`;
+            gameArea.appendChild(img);
         }
     }
 

@@ -17,7 +17,6 @@
 /* preview.css */
 
 .prev-screen {
-    position: relative; /* 子要素の absolute の基準 */
     top: 2.5dvh;
     left: 1.5dvw;
     width: 93%;
@@ -62,10 +61,10 @@
 .v2-pos-1 { top: 10%; left: 50%; width: 50%; height: 58%}
 
 /* 4分割棚用 (vegetable4.js の overlay 配置を参考) */
-.v4-pos-2 { top: 0%; left: 0%; width: 50%; height: 50%}  /* トマト */
-.v4-pos-3 { top: 0%; left: 50%; width: 50%; height: 50%}  /* じゃがいも */
-.v4-pos-0 { top: 50%; left: 0%; width: 50%; height: 48%}  /* ピーマン */
-.v4-pos-1 { top: 50%; left: 50%; width: 50%; height: 48%}  /* さつまいも */
+.v4-pos-2 { top: 5%; left: 0%; width: 50%; height: 50%}  /* トマト */
+.v4-pos-3 { top: 5%; left: 50%; width: 50%; height: 50%}  /* じゃがいも */
+.v4-pos-0 { top: 53%; left: 0%; width: 50%; height: 48%}  /* ピーマン */
+.v4-pos-1 { top: 53%; left: 50%; width: 50%; height: 48%}  /* さつまいも */
 
 .preview-memo-row {
     font-family: "BIZ UDGothic", sans-serif;

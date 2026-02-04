@@ -73,6 +73,8 @@ h4 {
 .setting-area {
     flex: 11;
     position: relative;
+    display: flex;
+    flex-direction: column;
     padding-right: 20%;
     justify-items: left;
     background-color: #f9f0d2;
@@ -131,6 +133,16 @@ h4 {
     transform: rotate(-4deg);
     margin-top: 10%;
     margin-left: 6%;
+}
+
+.rotate-4-error {
+    transform: rotate(-4deg);
+    margin-top: 0;
+    margin-left: 6%;
+    margin-right: -3dvw;
+    text-align: right;
+    color: rgb(199, 5, 83);
+    font-size: clamp(10px, 2.5dvw, 23px);
 }
 
 .quest h4 {

@@ -175,7 +175,7 @@ var sW = window.innerWidth;
 var sH = window.innerHeight;
 var grape_cnt = 0, stTea_cnt = 0, orange_cnt = 0, barTea_cnt = 0; 
 
-const boxRect = { left: sW * 0.72, top: sH * 0.65 };
+const boxRect = { left: sW * 0.76, top: sH * 0.71 };
 box.style.left = `${boxRect.left}px`;
 box.style.top = `${boxRect.top}px`;
 
@@ -426,6 +426,18 @@ function toFullWidth(str) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+    updateInfoDisplay();
+    setInterval(updateInfoDisplay, 1000);
+
+    // かってくるもの(kaimono-memo)を5回タップで表示
+    const memoEl = document.querySelector('.kaimono-memo');
+    if (memoEl) {
+        memoEl.addEventListener('click', () => {
+            tapCount++;
+            if (tapCount >= 5) showDisplay();
+        });
+    }
+
     document.getElementById('check-button').addEventListener('click', ansJudge);
     document.getElementById('correct-popup-button').addEventListener('click', goToNextStage);
 

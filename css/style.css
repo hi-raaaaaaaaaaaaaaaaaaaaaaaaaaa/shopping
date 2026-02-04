@@ -3,6 +3,11 @@ body {
     font-weight: 700;
     font-style: normal;
     letter-spacing: 0.1em;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
 }
 
 img {
@@ -38,10 +43,9 @@ button {
     height: 24%;
     left: 3%;
     top: 5%;
-    border: 2px solid #000000;
+    border: 3px solid #000000;
     justify-content: center;
     text-align: center;
-    
 }
 
 .kaimono-memo{
@@ -131,7 +135,7 @@ button {
     top: 4%;
     margin-bottom: 37px;
     padding: 16px;
-    border: 2px solid #000000;
+    border: 3px solid #000000;
     border-radius: 1px;
     background-color: #ffffff;
     text-align: left;
@@ -220,6 +224,32 @@ button {
 
     margin-left: 2.5%;
     flex: 2;
+}
+
+.round-counter {
+        position: absolute;
+        right: 20px;
+        top: 1dvh;
+        margin: 0;
+        padding: 5px 15px;
+        background-color: rgba(255, 255, 255, 0.7); /* 文字を見やすくするための背景 */
+        border-radius: 10px;
+        z-index: 100; /* 最前面に表示 */
+        font-family: 'BIZ UDPGothic', sans-serif;
+        color: #333;
+        transform: rotate(0deg);
+        transform-origin: left center;
+        opacity: 0; 
+        pointer-events: none; /* 非表示中はクリックを無効化 */
+        transition: opacity 1s linear; /* 1秒かけて変化させる */
+}
+
+.mini-round-counter {
+    position: absolute;
+    bottom: 2dvh;
+    right: 2dvw;
+    font-family: 'BIZ UDPGothic', sans-serif;
+    z-index: 100;
 }
 
 

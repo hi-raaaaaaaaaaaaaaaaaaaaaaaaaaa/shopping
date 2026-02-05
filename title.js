@@ -139,6 +139,9 @@ document.addEventListener('DOMContentLoaded', () => {
             if(textOpt.value < 4) {
                 textOpt.value++;
             }
+            else if (textOpt.value == 4 || textType.value == 1) {
+                showErrorDisplay("「問題の種類」が １種類 の場合はこれ以上増やせません");
+            }
         }
         updateBubble();
     });
@@ -146,6 +149,9 @@ document.addEventListener('DOMContentLoaded', () => {
     downbuttonType.addEventListener('click', () => {
         if(textType.value > 1) {
             textType.value--;
+            if(textType.value == 1) {
+                textOpt.value = 4;
+            }
         }
         updateBubble();
     });
@@ -154,15 +160,23 @@ document.addEventListener('DOMContentLoaded', () => {
         if(textType.value < textOpt.value && textType.value < 4) {
             textType.value++;
         }
+        else {
+            showErrorDisplay("「問題の合計点数」を増やしてください");
+        }
+
         if(textTypeDisp.value < textType.value) {
             textTypeDisp.value++;
         }
+
         updateBubble();
     });
 
     downbuttonTypeDisp.addEventListener('click', () => {
         if(textTypeDisp.value > textType.value && textTypeDisp.value > 1) {
             textTypeDisp.value--;
+        }
+        else {
+            showErrorDisplay("「問題の種類」を減らしてください");
         }
         updateBubble();
     });

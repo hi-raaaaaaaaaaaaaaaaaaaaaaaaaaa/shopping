@@ -290,6 +290,11 @@ h4 {
     margin-left: 0;
 }
 
+.error-display {
+    opacity: 0;
+    letter-spacing: 0;
+    font-size: clamp(8px, 2.1dvw, 23px);
+}
 
 .button-upbottom {
     font-family: "BIZ UDPGothic", sans-serif;

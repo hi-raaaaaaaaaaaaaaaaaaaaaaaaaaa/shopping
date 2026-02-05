@@ -416,6 +416,7 @@ function goToNextStage() {
 
 function quitGame() {
     const queryString = finalizeRoundData();
+    console.warn("aaa");
     window.location.href = `giveto.html?${queryString}`;
 }
 

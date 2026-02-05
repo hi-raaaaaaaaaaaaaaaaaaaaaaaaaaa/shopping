@@ -42,10 +42,10 @@ const isPicMode = (params.get('pic') === 'true' && params.get('chara') === 'fals
 
 // 画像パスの定義
 const vegeImages = {
-    "トマト　　": "image/vegetable/tomato.png",
-    "じゃがいも": "image/vegetable/potato.png",
-    "ピーマン　": "image/vegetable/greenpepper.png",
-    "さつまいも": "image/vegetable/yam.png"
+    "トマト　　　": "image/vegetable/tomato.png",
+    "じゃがいも　": "image/vegetable/potato.png",
+    "ピーマン　　": "image/vegetable/greenpepper.png",
+    "さつまいも　": "image/vegetable/yam.png"
 };
 
 const vegeImagesById = {
@@ -56,10 +56,10 @@ const vegeImagesById = {
 };
 
 const allVegetables = [
-    { element: document.getElementById('tomato'), id: 'tomato', name: "トマト　　", overlayId: 'tomato_overlay', originalIndex: 0 },
-    { element: document.getElementById('potato'), id: 'potato', name: "じゃがいも", overlayId: 'potato_overlay', originalIndex: 1 },
-    { element: document.getElementById('greenpepper'), id: 'greenpepper', name: "ピーマン　", overlayId: 'greenpepper_overlay', originalIndex: 2 },
-    { element: document.getElementById('yam'), id: 'yam', name: "さつまいも", overlayId: 'yam_overlay', originalIndex: 3 },
+    { element: document.getElementById('tomato'), id: 'tomato', name: "トマト　　　", overlayId: 'tomato_overlay', originalIndex: 0 },
+    { element: document.getElementById('potato'), id: 'potato', name: "じゃがいも　", overlayId: 'potato_overlay', originalIndex: 1 },
+    { element: document.getElementById('greenpepper'), id: 'greenpepper', name: "ピーマン　　", overlayId: 'greenpepper_overlay', originalIndex: 2 },
+    { element: document.getElementById('yam'), id: 'yam', name: "さつまいも　", overlayId: 'yam_overlay', originalIndex: 3 },
 ];
 
 // --- 1. 表示する野菜をランダムに選択 ---
@@ -279,10 +279,10 @@ function animateFromBox(vegeId) {
 
 function updateCountDisplay() {
     const listConfig = [
-        { el: yam_list, count: yam_cnt, name: "さつまいも", id: "yam" },
-        { el: potato_list, count: potato_cnt, name: "じゃがいも", id: "potato" },
-        { el: greenpepper_list, count: greenpepper_cnt, name: "ピーマン　", id: "greenpepper" },
-        { el: tomato_list, count: tomato_cnt, name: "トマト　　", id: "tomato" }
+        { el: yam_list, count: yam_cnt, name: "さつまいも　", id: "yam" },
+        { el: potato_list, count: potato_cnt, name: "じゃがいも　", id: "potato" },
+        { el: greenpepper_list, count: greenpepper_cnt, name: "ピーマン　　", id: "greenpepper" },
+        { el: tomato_list, count: tomato_cnt, name: "トマト　　　", id: "tomato" }
     ];
 
     listConfig.forEach(item => {

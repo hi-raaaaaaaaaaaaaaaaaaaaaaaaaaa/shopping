@@ -51,6 +51,7 @@ button {
 .kaimono-memo{
     font-size: clamp(6px, 2.4dvw, 34px);
     width: 100%;
+    height: 15%;
     margin: 0.75%;
     padding: 0.75%;
     margin-bottom: 0;
@@ -185,8 +186,9 @@ button {
 .list_label {
     text-align: center;
     font-size: clamp(6px, 2.2dvw, 36px);;
-    margin-top: 3%;
-    margin-bottom: 3%;
+    margin-top: 0;
+    margin-bottom: 6%;
+    border-bottom: 2px solid #000000;
 }
 
 #list-1, #list-2, #list-3, #list-4,
@@ -196,6 +198,7 @@ button {
     margin-left: 3%;
     font-size: clamp(6px, 2dvw, 36px);
     letter-spacing: 0;
+    text-align: center;
 }
 
 .list_case1, .list_case2,

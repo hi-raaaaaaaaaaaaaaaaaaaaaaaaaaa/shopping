@@ -21,12 +21,12 @@
     .product_locate_overlay_3,
     .product_locate_overlay_0,
     .product_locate_overlay_1 {
+		position: absolute;
         opacity: 0; /* 初期状態では非表示 */
         transition: opacity 0.3s; /* スムーズに切り替えるためのトランジション */
     }
 
 	.product_locate_overlay_2 {
-		position: absolute;
 		left: 0;
 		top: 0;
 		height:37dvh;
@@ -34,14 +34,12 @@
 	}
 
 	.product_locate_overlay_3 {
-		position: absolute;
 		left: 34dvw;
 		height:37dvh;
 		width:34dvw;
 	}
 
 	.product_locate_overlay_0 {
-		position: absolute;
 		left:0;
 		top: 37.5dvh;
         margin-top: 2%;
@@ -50,7 +48,6 @@
 	}
 
 	.product_locate_overlay_1 {
-		position: absolute;
 		left:34dvw;
 		top: 37.5dvh;
         margin-top: 2%;

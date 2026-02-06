@@ -26,6 +26,7 @@
     }
 
 	.product_locate_overlay_2 {
+		position: absolute;
 		left: 0;
 		top: 0;
 		height:37dvh;
@@ -33,17 +34,25 @@
 	}
 
 	.product_locate_overlay_3 {
-		height:50%;
-		width:48%;
+		position: absolute;
+		left: 34dvw;
+		height:37dvh;
+		width:34dvw;
 	}
 
 	.product_locate_overlay_0 {
+		position: absolute;
+		left:0;
+		top: 37.5dvh;
         margin-top: 2%;
 		height:40%;
 		width:48%;
 	}
 
 	.product_locate_overlay_1 {
+		position: absolute;
+		left:34dvw;
+		top: 37.5dvh;
         margin-top: 2%;
 		height:40%;
 		width:48%;

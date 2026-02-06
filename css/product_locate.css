@@ -26,6 +26,8 @@
     }
 
 	.product_locate_overlay_2 {
+		left: 0;
+		top: 0;
 		height:37dvh;
 		width:34dvw;
 	}

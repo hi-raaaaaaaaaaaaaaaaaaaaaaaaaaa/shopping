@@ -302,6 +302,7 @@ function updateCountDisplay() {
 }
 
 function ansJudge() {
+    if (isMoving) return;
     let countAll_quest = [0, 0, 0, 0];
     target_veges.forEach(target => {
         countAll_quest[target.originalIndex] = target.count;
@@ -408,9 +409,23 @@ function goToNextStage() {
     window.location.href = `vegetable-game4.html?${queryString}`;
 }
 
-function quitGame() {
+function exitGame() {
     const queryString = finalizeRoundData();
     window.location.href = `giveto.html?${queryString}`;
+}
+
+function quitGame() {
+    const currentParams = new URLSearchParams(window.location.search);
+
+    // 'course' パラメータがあるかどうかで判定
+    if (currentParams.has('course')) {
+        // ラウンド2以降：現在のパラメータを維持して giveto.html へ
+        const queryString = currentParams.toString();
+        window.location.href = `giveto.html?${queryString}`;
+    } else {
+        // ラウンド1：タイトル画面へ
+        window.location.href = `title.html`;
+    }
 }
 
 function DecYam() { if (!isMoving && yam_cnt > 0) { yam_cnt--; updateCountDisplay(); countAll[3] = yam_cnt; animateFromBox('yam'); } }
@@ -449,7 +464,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const exitButton = document.getElementById('exit-popup-button');
     if (exitButton) {
-        exitButton.addEventListener('click', quitGame);
+        exitButton.addEventListener('click', exitGame);
+    }
+
+    const quitButton = document.getElementById('quit-popup-button');
+    if (quitButton) {
+        quitButton.addEventListener('click', quitGame);
     }
 
     document.getElementById('wrong-popup-button').addEventListener('click', hidePopup);

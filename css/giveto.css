@@ -68,9 +68,9 @@ h3 {
     width: 100%;
     font-family: "BIZ UDPGothic", sans-serif;
     font-weight: 700;
-    font-size: 1.5dvw;
+    font-size: 1.4dvw;
     line-height: 3dvw;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.02em;
     word-break: auto-phrase;
     color: #000000;
     background-color: #f1f1f1;
@@ -165,4 +165,18 @@ h3 {
 .m-count {
     text-align: center;
     margin-bottom:1dvw;
+}
+
+.daina-1 ,.daina-2{
+    position: absolute;
+    height: 20dvh;
+    top: 14dvh;
+}
+
+.daina-1 {
+    left: 5dvw;
+}
+
+.daina-2 {
+    right: 5dvw;
 }

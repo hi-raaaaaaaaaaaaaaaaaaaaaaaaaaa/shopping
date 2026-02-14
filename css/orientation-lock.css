@@ -1,0 +1,34 @@
+/* 縦画面警告用のオーバーレイ */
+#orientation-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff;
+    z-index: 999999; /* 最前面 */
+    display: none;  /* JSで制御 */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.warning-text {
+    color: #008237; /* サイゼリヤ風グリーン */
+    font-family: "BIZ UDPGothic", sans-serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.ignore-button {
+    font-family: "BIZ UDPGothic", sans-serif;
+    padding: 12px 24px;
+    font-size: 1rem;
+    color: #555;
+    background: #eee;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    cursor: pointer;
+}

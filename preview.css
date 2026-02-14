@@ -1,6 +1,7 @@
 .preview-area{
     flex: 7;
     transform: rotate(-4deg);
+    touch-action: manipulation;
 }
 
 .prev-screen-bez {

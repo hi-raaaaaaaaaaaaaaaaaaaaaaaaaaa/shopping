@@ -7,6 +7,7 @@ body {
     color: white;
     letter-spacing: 0.3rem;
     -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
 }
 
 h1{
@@ -14,6 +15,7 @@ h1{
     text-align: center;
     -webkit-text-stroke: 8px #77108e;
     paint-order: stroke;
+    touch-action: manipulation;
 }
 
 
@@ -24,6 +26,7 @@ h2{
     margin-left: 4.3dvw;
     font-size: clamp(10px, 2.5dvw, 23px);
     letter-spacing: 0.3rem;
+    touch-action: manipulation;
 }
 
 h3{
@@ -35,6 +38,7 @@ h3{
     line-height: 1.1rem;
     color:#c3c3c3;
     word-break: auto-phrase;
+    touch-action: manipulation;
 }
 
 h4 {
@@ -46,6 +50,7 @@ h4 {
     letter-spacing: 0.1rem;
     line-height: clamp(0.5rem, 2dvw, 1.1rem);
     word-break: auto-phrase;
+    touch-action: manipulation;
 }
 
 
@@ -58,6 +63,7 @@ h4 {
     background-color:rgba(255,255,255,0.1);
     background-blend-mode:lighten;
     z-index: 5;
+    touch-action: manipulation;
 }
 
 .main-area {
@@ -68,6 +74,7 @@ h4 {
     width: 120dvw;
     height: 105dvh;
     transform: rotate(4deg);
+    touch-action: manipulation;
 }
 
 .setting-area {
@@ -122,11 +129,13 @@ h4 {
     -moz-transform: skewX(-30deg);
     transform: skewX(-30deg);
     margin-right: 0;
+    touch-action: manipulation;
 }
 
 
 .skew30 {
     transform: skewX(30deg);
+    touch-action: manipulation;
 }
 
 .rotate-4 {
@@ -143,10 +152,12 @@ h4 {
     text-align: right;
     color: rgb(199, 5, 83);
     font-size: clamp(10px, 2.5dvw, 23px);
+    touch-action: manipulation;
 }
 
 .quest h4 {
-    color: #dfdfdf
+    color: #dfdfdf;
+    touch-action: manipulation;
 }
 
 .radio-tile-group {
@@ -240,6 +251,7 @@ h4 {
     display: flex;
     margin-left: 3%;
     margin-right: 3%;
+    touch-action: manipulation;
 }
 
 .border-cnt {
@@ -259,6 +271,7 @@ h4 {
     padding-left: 25%;
     border: 0;
     background-color: transparent;
+    touch-action: manipulation;
 }
 
 .unit {
@@ -270,6 +283,7 @@ h4 {
     width: 20%;
     justify-content: center;
     text-align: center;
+    touch-action: manipulation;
 }
 
 .button {
@@ -283,6 +297,7 @@ h4 {
     border: 0;
     background-color: transparent;
     outline: 0;
+    touch-action: manipulation;
 }
 
 .message-cnt {
@@ -294,6 +309,7 @@ h4 {
     opacity: 0;
     letter-spacing: 0;
     font-size: clamp(8px, 2.1dvw, 23px);
+    touch-action: manipulation;
 }
 
 .button-upbottom {
@@ -460,6 +476,7 @@ h4 {
     width: 100%;
     height: 100%;
     margin-right: 1.5dvw;
+    touch-action: manipulation;
 }
 
 .carousel-nav {
@@ -467,6 +484,7 @@ h4 {
     display: flex;
     align-items: center;
     justify-content: center;
+    touch-action: manipulation;
 }
 
 .carousel-btn {

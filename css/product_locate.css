@@ -6,6 +6,7 @@
     	height: 70%;
     	top: 30%;
 		z-index: 1;
+		touch-action: manipulation;
 	}
 
 	.product_locate_overlay{
@@ -15,6 +16,7 @@
     	height: 74vh;
     	top: 31dvh;
 		z-index: 1;
+		touch-action: manipulation;
 	}
 
 	.product_locate_overlay_2,
@@ -24,6 +26,7 @@
 		position: absolute;
         opacity: 0; /* 初期状態では非表示 */
         transition: opacity 0.3s; /* スムーズに切り替えるためのトランジション */
+		touch-action: manipulation;
     }
 
 	.product_locate_overlay_2 {
@@ -60,6 +63,7 @@
 		top: 39%;
 		width: 26%;
 		z-index: 5;
+		touch-action: manipulation;
 	}
 
 	.product_overlay_3 {
@@ -68,6 +72,7 @@
 		top: 39%;
 		width: 26%;
 		z-index: 3;
+		touch-action: manipulation;
 	}
 
 	.product_overlay_0 {
@@ -76,6 +81,7 @@
 		top: 68%;
 		width: 26%;
 		z-index: 5;
+		touch-action: manipulation;
 	}
 
 	.product_overlay_1 {
@@ -84,6 +90,7 @@
 		top: 68%;
 		width: 26%;
 		z-index: 4;
+		touch-action: manipulation;
 	}
 
 
@@ -92,6 +99,7 @@
 	    width: 35%;
         height: 30%;
 		z-index: 5;
+		touch-action: manipulation;
 	}
 
 	.product_1 {
@@ -99,6 +107,7 @@
 	    width: 35%;
         height: 30%;
 		z-index: 4;
+		touch-action: manipulation;
 	}
 
 
@@ -107,6 +116,7 @@
 	    width: 35%;
         height: 37%;
 		z-index: 5;
+		touch-action: manipulation;
 	}
 
 
@@ -115,4 +125,5 @@
 	    width: 35%;
         height: 37%;
 		z-index: 3;
+		touch-action: manipulation;
 	}
